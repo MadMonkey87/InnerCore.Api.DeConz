@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>InnerCore.Api.DeConz</id>
+    <version>0.2-alpha</version>
+    <title>InnerCore.Api.DeConz</title>
+    <authors>Philippe Wechsler</authors>
+    <owners>Philippe Wechsler</owners>
+    <licenseUrl>https://github.com/MadMonkey87/InnerCore.Api.DeConz/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/MadMonkey87/InnerCore.Api.DeConz</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>A simple library to communicate with DeConz Zigbee Gateway</description>
+    <releaseNotes>Initial alpha release</releaseNotes>
+    <copyright>Copyright 2019 Philippe Wechsler</copyright>
+    <tags>deconz zigbee sensor</tags>
+	<repository type="GitHub" url="https://github.com/MadMonkey87/InnerCore.Api.DeConz" />
+  </metadata>
+</package>
