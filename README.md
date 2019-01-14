@@ -1,4 +1,4 @@
-InnerCore.Api.DeConz [![NuGet][nuget badge]][nuget package]	[![Build Status][azure build]][project]
+InnerCore.Api.DeConz [![Build Status][azure build]][project]	[![NuGet][nuget badge]][nuget package]
 ====================
 
 Open source library for communication with the Dresden Elektronik DeConz bridge.
