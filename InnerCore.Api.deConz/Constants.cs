@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace InnerCore.Api.DeConz
+﻿namespace InnerCore.Api.DeConz
 {
     public struct Constants
     {
-        public const string DiscoveryUrl = "https://dresden-light.appspot.com/discover";
+        public const string DISCOVERY_URL = "https://dresden-light.appspot.com/discover";
+
+        public const int WEB_SOCKET_BUFFER_SIZE = 2048;
     }
 }
