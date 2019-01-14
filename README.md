@@ -83,7 +83,7 @@ InnerCore.Api.DeConz is licensed under [MIT](http://www.opensource.org/licenses/
 
 Contributions are welcome. Fork this repository and send a pull request if you have something useful to add.
 
-[![Build status](https://innercore.visualstudio.com/InnerCore.Api.DeConz/_apis/build/status/InnerCore.Api.DeConz?branchName=master)](https://innercore.visualstudio.com/InnerCore.Api.DeConz/_apis/build/status/InnerCore.Api.DeConz?branchName=develop)
+[![Build status](https://innercore.visualstudio.com/InnerCore.Api.DeConz/_apis/build/status/InnerCore.Api.DeConz?branchName=master)]
 
 
 ## Related Projects
