@@ -34,7 +34,7 @@ Before you can communicate with the DeConz gateway, you need to find the bridge 
 Register your application
 	
 	// use the ip and port retrieved from the discovery
-	DeConzClient client = new DeConzClient("ip", 80);
+	DeConzClient client = new DeConzClient("ip");
 	var appKey = await client.RegisterAsync("mypersonalappname");
 	//Save the app key for later use
 	

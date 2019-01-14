@@ -46,7 +46,7 @@ namespace InnerCore.Api.DeConz
 
         private static HttpClient _httpClient;
 
-        public DeConzClient(string ip, int port)
+        public DeConzClient(string ip, int port = 80)
         {
             if (ip == null)
                 throw new ArgumentNullException(nameof(ip));
@@ -60,10 +60,10 @@ namespace InnerCore.Api.DeConz
         /// <summary>
         /// Initialize with Bridge IP/Port and AppKey
         /// </summary>
+        /// <param name="appKey"></param>
         /// <param name="ip"></param>
         /// <param name="port"></param>
-        /// <param name="appKey"></param>
-        public DeConzClient(string ip, int port, string appKey)
+        public DeConzClient(string appKey, string ip, int port = 80)
         {
             if (ip == null)
                 throw new ArgumentNullException(nameof(ip));
@@ -92,7 +92,6 @@ namespace InnerCore.Api.DeConz
                 throw new Exception(string.Format("The supplied ip to the DeConzClient is not a valid ip: {0}:{1}", ip, port));
             }
         }
-
 
         /// <summary>
         /// Initialize client with your app key

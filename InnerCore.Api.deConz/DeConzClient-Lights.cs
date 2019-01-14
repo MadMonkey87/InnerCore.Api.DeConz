@@ -67,7 +67,7 @@ namespace InnerCore.Api.DeConz
 
             CheckInitialized();
 
-            string command = JsonConvert.SerializeObject(new { name = name });
+            string command = JsonConvert.SerializeObject(new { name });
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
             var result = await client.PutAsync(new Uri(String.Format("{0}lights/{1}", ApiBase, id)), new JsonContent(command)).ConfigureAwait(false);

@@ -7,14 +7,11 @@ using System.Threading.Tasks;
 
 namespace InnerCore.Api.DeConz
 {
-
     /// <summary>
     /// Uses the special nupnp url from dresden elektronik to find registered bridges based on your external IP
     /// </summary>
     public class HttpBridgeLocator
     {
-        private readonly Uri _nuPnPUrl = new Uri("https://dresden-light.appspot.com/discover");
-
         /// <summary>
         /// Locate bridges
         /// </summary>
@@ -24,11 +21,9 @@ namespace InnerCore.Api.DeConz
         {
             // since this specifies timeout (and probably isn't called much), don't use shared client
 
-            HttpClient client = new HttpClient();
+            HttpClient client = new HttpClient() { Timeout = timeout };
 
-            client.Timeout = timeout;
-
-            string response = await client.GetStringAsync(_nuPnPUrl).ConfigureAwait(false);
+            string response = await client.GetStringAsync(new Uri(Constants.DiscoveryUrl)).ConfigureAwait(false);
 
             return JsonConvert.DeserializeObject<LocatedBridge[]>(response);
         }
