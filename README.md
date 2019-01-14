@@ -68,6 +68,9 @@ Or send it to all lights
 
 	client.SendCommandAsync(command);
 
+## How To install?
+Download the source from GitHub or get the compiled assembly from NuGet [InnerCore.Api.DeConz on NuGet](https://nuget.org/packages/InnerCore.Api.DeConz).
+
 ### Open Source Project Credits
 
 * adapted from Q42.HueApi
