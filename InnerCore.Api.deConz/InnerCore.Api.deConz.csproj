@@ -5,6 +5,14 @@
     <Authors>Philippe Wechsler</Authors>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Company>InnerCore</Company>
+    <Version>0.1.0</Version>
+    <RepositoryUrl>https://github.com/MadMonkey87/InnerCore.Api.DeConz</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/MadMonkey87/InnerCore.Api.DeConz</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/MadMonkey87/InnerCore.Api.DeConz/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <Copyright>Copyright © 2019 Philippe Wechsler</Copyright>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageTags>DeConz Zigbee sensor light smarthome</PackageTags>
+    <Description>A simple library to communicate with deConz Zigbee Gateway</Description>
   </PropertyGroup>
 
   <ItemGroup>
