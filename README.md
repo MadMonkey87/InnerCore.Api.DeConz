@@ -1,4 +1,4 @@
-InnerCore.Api.DeConz
+InnerCore.Api.DeConz [![NuGet][nuget badge]][nuget package]	[![Build Status][azure build]][project]
 ====================
 
 Open source library for communication with the Dresden Elektronik DeConz bridge.
@@ -81,10 +81,12 @@ InnerCore.Api.DeConz is licensed under [MIT](http://www.opensource.org/licenses/
 
 Contributions are welcome. Fork this repository and send a pull request if you have something useful to add.
 
-[![Build status](https://innercore.visualstudio.com/InnerCore.Api.DeConz/_apis/build/status/InnerCore.Api.DeConz?branchName=master)](https://innercore.visualstudio.com/InnerCore.Api.DeConz/_apis/build/status/InnerCore.Api.DeConz)
-
-
 ## Related Projects
 
 * [Official DeConz description](https://www.dresden-elektronik.de/funktechnik/products/software/pc/DeConz/)
 * [Official DeConz api documentation](https://dresden-elektronik.github.io/DeConz-rest-doc/)
+
+[azure build]: https://innercore.visualstudio.com/InnerCore.Api.DeConz/_apis/build/status/InnerCore.Api.DeConz?branchName=master
+[project]: https://github.com/MadMonkey87/InnerCore.Api.DeConz
+[nuget badge]: https://img.shields.io/nuget/v/InnerCore.Api.DeConz.svg
+[nuget package]: https://www.nuget.org/packages/InnerCore.Api.DeConz
