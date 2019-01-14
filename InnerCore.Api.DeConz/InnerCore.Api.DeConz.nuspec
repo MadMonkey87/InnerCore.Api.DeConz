@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>InnerCore.Api.DeConz</id>
-    <version>0.2-alpha</version>
+    <version>0.3-alpha</version>
     <title>InnerCore.Api.DeConz</title>
     <authors>Philippe Wechsler</authors>
     <owners>Philippe Wechsler</owners>
@@ -14,5 +14,10 @@
     <copyright>Copyright 2019 Philippe Wechsler</copyright>
     <tags>deconz zigbee sensor</tags>
 	<repository type="GitHub" url="https://github.com/MadMonkey87/InnerCore.Api.DeConz" />
+	<dependencies>
+		<group targetFramework="netcoreapp2.2">
+			<dependency id="Newtonsoft.Json" version="12.0.1" />
+		</group>
+	</dependencies>
   </metadata>
 </package>
