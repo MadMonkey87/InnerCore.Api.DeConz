@@ -1,8 +1,8 @@
 ﻿using System.Runtime.Serialization;
-using InnerCore.Api.deConz.Models.Sensors;
+using InnerCore.Api.DeConz.Models.Sensors;
 using Newtonsoft.Json;
 
-namespace InnerCore.Api.deConz.Models.Groups
+namespace InnerCore.Api.DeConz.Models.Groups
 {
     public class GroupLightLevel
     {

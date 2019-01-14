@@ -2,7 +2,7 @@
 using System;
 using System.Net.Http;
 
-namespace InnerCore.Api.deConz.Converters
+namespace InnerCore.Api.DeConz.Converters
 {
     internal class HttpMethodConverter : JsonConverter
     {

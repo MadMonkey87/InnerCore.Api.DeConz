@@ -1,11 +1,11 @@
-﻿using InnerCore.Api.deConz.Models;
+﻿using InnerCore.Api.DeConz.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace InnerCore.Api.deConz.Converters
+namespace InnerCore.Api.DeConz.Converters
 {
     /// <summary>
     /// Custom DateTime converter for deConz bridge

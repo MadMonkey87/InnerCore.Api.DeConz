@@ -1,10 +1,10 @@
-﻿using InnerCore.Api.deConz.Converters;
+﻿using InnerCore.Api.DeConz.Converters;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace InnerCore.Api.deConz.Models.Scenes
+namespace InnerCore.Api.DeConz.Models.Scenes
 {
     [DataContract]
     public class Scene

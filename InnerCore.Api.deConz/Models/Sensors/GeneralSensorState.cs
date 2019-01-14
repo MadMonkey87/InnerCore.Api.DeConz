@@ -1,4 +1,4 @@
-﻿namespace InnerCore.Api.deConz.Models.Sensors
+﻿namespace InnerCore.Api.DeConz.Models.Sensors
 {
     public interface IGeneralSensorState
     {

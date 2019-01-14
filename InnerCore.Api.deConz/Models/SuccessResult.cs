@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace InnerCore.Api.deConz.Models
+namespace InnerCore.Api.DeConz.Models
 {
     public class SuccessResult
     {

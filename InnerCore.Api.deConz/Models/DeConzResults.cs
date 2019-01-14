@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace InnerCore.Api.deConz.Models
+namespace InnerCore.Api.DeConz.Models
 {
     /// <summary>
     /// A PUT or POST returns a list which can contain multiple success and errors

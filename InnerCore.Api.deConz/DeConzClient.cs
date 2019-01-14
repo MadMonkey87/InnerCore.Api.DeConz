@@ -1,4 +1,4 @@
-﻿using InnerCore.Api.deConz.Models;
+﻿using InnerCore.Api.DeConz.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace InnerCore.Api.deConz
+namespace InnerCore.Api.DeConz
 {
     /// <summary>
     /// Responsible for communicating with the gateway

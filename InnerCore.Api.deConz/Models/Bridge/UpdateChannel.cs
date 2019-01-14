@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace InnerCore.Api.deConz.Models.Bridge
+namespace InnerCore.Api.DeConz.Models.Bridge
 {
     public enum UpdateChannel
     {

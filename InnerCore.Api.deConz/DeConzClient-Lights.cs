@@ -1,5 +1,5 @@
-﻿using InnerCore.Api.deConz.Extensions;
-using InnerCore.Api.deConz.Models;
+﻿using InnerCore.Api.DeConz.Extensions;
+using InnerCore.Api.DeConz.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using InnerCore.Api.deConz.Models.Lights;
+using InnerCore.Api.DeConz.Models.Lights;
 
-namespace InnerCore.Api.deConz
+namespace InnerCore.Api.DeConz
 {
     /// <summary>
     /// Partial DeConzClient, contains requests to the /Lights/ url

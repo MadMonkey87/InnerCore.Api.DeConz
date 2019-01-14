@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace InnerCore.Api.deConz.Models.Lights
+namespace InnerCore.Api.DeConz.Models.Lights
 {
     /// <summary>
     /// Extension methods to compose a light command

@@ -1,4 +1,4 @@
-﻿namespace InnerCore.Api.deConz.Interfaces
+﻿namespace InnerCore.Api.DeConz.Interfaces
 {
     /// <summary>
     /// Indicates this object can be used as a scheduled command

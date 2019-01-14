@@ -1,5 +1,5 @@
-﻿using InnerCore.Api.deConz.Models;
-using InnerCore.Api.deConz.Models.Sensors;
+﻿using InnerCore.Api.DeConz.Models;
+using InnerCore.Api.DeConz.Models.Sensors;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace InnerCore.Api.deConz
+namespace InnerCore.Api.DeConz
 {
     /// <summary>
     /// Partial DeConzClient, contains requests to the /Sensors/ url

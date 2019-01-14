@@ -1,32 +1,32 @@
-InnerCore.Api.deConz
+InnerCore.Api.DeConz
 =========
 
-Open source library for communication with the Dresden Elektronik deConz bridge.
+Open source library for communication with the Dresden Elektronik DeConz bridge.
 
-As the deConz api is very similar to the Philips Hue api, its usage should be similar too.
+As the DeConz api is very similar to the Philips Hue api, its usage should be similar too.
 This library is therefore adapted from the Q42.HueApi so the usage is also very simlar.
 Note however, that
- - not all features of the Philips Hue api are supported as they are not supported by deConz either
- - some objects might be missing some properties/features if they are not supported by deConz
- - some objects have additional properties/features specific to deConz
+ - not all features of the Philips Hue api are supported as they are not supported by DeConz either
+ - some objects might be missing some properties/features if they are not supported by DeConz
+ - some objects have additional properties/features specific to DeConz
  - coming soon: support to read sensors config/state updates in real time
 
  requirements:
   - dotnet core 2.2
-  - deConz 2.05.54 or later (earlier versions might work too)
+  - DeConz 2.05.54 or later (earlier versions might work too)
 
 ## State
 The project is currently in it's alpha state:
  - real time reading of sensor events is not yet supported
  - not all features have been tested (especially scenes, rules and schedules)
- - there might be further missing features/properties and some properties that are not supported by deConz might still be there
+ - there might be further missing features/properties and some properties that are not supported by DeConz might still be there
  - a NuGet package is not yet available
 
 ## How to use?
-Some basic usage examples -> you might also check [Q42.HueApi on NuGet](https://github.com/Q42/Q42.HueApi).
+Some basic usage examples -> you might also check [Q42.HueApi on GitHub](https://github.com/Q42/Q42.HueApi).
 
 ### Bridge/Gateway
-Before you can communicate with the deConz gateway, you need to find the bridge and register your application:
+Before you can communicate with the DeConz gateway, you need to find the bridge and register your application:
 
 	IBridgeLocator locator = new HttpBridgeLocator();
 	IEnumerable<LocatedBridge> bridgeIPs = await locator.LocateBridgesAsync(TimeSpan.FromSeconds(5));
@@ -77,16 +77,16 @@ Or send it to all lights
 
 ## License
 
-InnerCore.Api.deConz is licensed under [MIT](http://www.opensource.org/licenses/mit-license.php "Read more about the MIT license form"). Refer to [license.txt](https://github.com/MadMonkey87/InnerCore.Api.DeConz/blob/master/LICENSE.txt) for more information.
+InnerCore.Api.DeConz is licensed under [MIT](http://www.opensource.org/licenses/mit-license.php "Read more about the MIT license form"). Refer to [license.txt](https://github.com/MadMonkey87/InnerCore.Api.DeConz/blob/master/LICENSE.txt) for more information.
 
 ## Contributions
 
 Contributions are welcome. Fork this repository and send a pull request if you have something useful to add.
 
-[![Build status](https://innercore.visualstudio.com/InnerCore.Api.deConz/_apis/build/status/InnerCore.Api.deConz?branchName=master)](https://innercore.visualstudio.com/InnerCore.Api.deConz/_apis/build/status/InnerCore.Api.deConz?branchName=master)
+[![Build status](https://innercore.visualstudio.com/InnerCore.Api.DeConz/_apis/build/status/InnerCore.Api.DeConz?branchName=master)](https://innercore.visualstudio.com/InnerCore.Api.DeConz/_apis/build/status/InnerCore.Api.DeConz?branchName=develop)
 
 
 ## Related Projects
 
-* [Official deConz description](https://www.dresden-elektronik.de/funktechnik/products/software/pc/deconz/)
-* [Official deConz api documentation](https://dresden-elektronik.github.io/deconz-rest-doc/)
+* [Official DeConz description](https://www.dresden-elektronik.de/funktechnik/products/software/pc/DeConz/)
+* [Official DeConz api documentation](https://dresden-elektronik.github.io/DeConz-rest-doc/)

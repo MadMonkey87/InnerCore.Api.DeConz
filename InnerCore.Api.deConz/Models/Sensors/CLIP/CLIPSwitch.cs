@@ -1,4 +1,4 @@
-﻿namespace InnerCore.Api.deConz.Models.Sensors.CLIP
+﻿namespace InnerCore.Api.DeConz.Models.Sensors.CLIP
 {
 	public interface CLIPSwitch : IGeneralSensor
 	{

@@ -12,7 +12,9 @@
     <Copyright>Copyright © 2019 Philippe Wechsler</Copyright>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>DeConz Zigbee sensor light smarthome</PackageTags>
-    <Description>A simple library to communicate with deConz Zigbee Gateway</Description>
+    <Description>A simple library to communicate with DeConz Zigbee Gateway</Description>
+    <PackageId>InnerCore.Api.DeConz</PackageId>
+    <Product>InnerCore.Api.DeConz</Product>
   </PropertyGroup>
 
   <ItemGroup>

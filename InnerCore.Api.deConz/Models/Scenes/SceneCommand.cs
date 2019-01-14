@@ -1,7 +1,7 @@
-﻿using InnerCore.Api.deConz.Interfaces;
+﻿using InnerCore.Api.DeConz.Interfaces;
 using System.Runtime.Serialization;
 
-namespace InnerCore.Api.deConz.Models.Scenes
+namespace InnerCore.Api.DeConz.Models.Scenes
 {
     /// <summary>
     /// Send a SceneID as command

@@ -1,11 +1,11 @@
-﻿using InnerCore.Api.deConz.Models.Bridge;
+﻿using InnerCore.Api.DeConz.Models.Bridge;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace InnerCore.Api.deConz
+namespace InnerCore.Api.DeConz
 {
 
     /// <summary>

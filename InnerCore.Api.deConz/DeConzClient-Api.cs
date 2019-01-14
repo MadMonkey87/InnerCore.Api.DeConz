@@ -1,10 +1,10 @@
-﻿using InnerCore.Api.deConz.Models;
+﻿using InnerCore.Api.DeConz.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace InnerCore.Api.deConz
+namespace InnerCore.Api.DeConz
 {
     /// <summary>
     /// Partial DeConzClient, contains requests to the /api/ url

@@ -1,11 +1,11 @@
-﻿using InnerCore.Api.deConz.Converters;
+﻿using InnerCore.Api.DeConz.Converters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Runtime.Serialization;
-using InnerCore.Api.deConz.Models.Lights;
+using InnerCore.Api.DeConz.Models.Lights;
 
-namespace InnerCore.Api.deConz.Models
+namespace InnerCore.Api.DeConz.Models
 {
     [DataContract]
     public class State

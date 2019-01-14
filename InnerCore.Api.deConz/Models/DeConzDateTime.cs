@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace InnerCore.Api.deConz.Models
+namespace InnerCore.Api.DeConz.Models
 {
     public class DeConzDateTime
     {

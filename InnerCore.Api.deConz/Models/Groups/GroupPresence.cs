@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace InnerCore.Api.deConz.Models.Groups
+namespace InnerCore.Api.DeConz.Models.Groups
 {
     public class GroupPresence
     {

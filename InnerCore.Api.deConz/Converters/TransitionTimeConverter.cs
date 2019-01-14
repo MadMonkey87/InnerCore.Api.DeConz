@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace InnerCore.Api.deConz.Converters
+namespace InnerCore.Api.DeConz.Converters
 {
     internal class TransitionTimeConverter : JsonConverter
     {

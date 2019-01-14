@@ -1,10 +1,10 @@
 ﻿using System.Net.Http;
 using System.Runtime.Serialization;
-using InnerCore.Api.deConz.Converters;
-using InnerCore.Api.deConz.Interfaces;
+using InnerCore.Api.DeConz.Converters;
+using InnerCore.Api.DeConz.Interfaces;
 using Newtonsoft.Json;
 
-namespace InnerCore.Api.deConz.Models.Schedule
+namespace InnerCore.Api.DeConz.Models.Schedule
 {
     [DataContract]
     public class InternalBridgeCommand

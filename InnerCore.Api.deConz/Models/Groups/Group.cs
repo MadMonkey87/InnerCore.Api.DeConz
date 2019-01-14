@@ -1,9 +1,9 @@
-﻿using InnerCore.Api.deConz.Converters;
+﻿using InnerCore.Api.DeConz.Converters;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace InnerCore.Api.deConz.Models.Groups
+namespace InnerCore.Api.DeConz.Models.Groups
 {
     [DataContract]
     public class Group

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace InnerCore.Api.deConz.Models.Groups
+namespace InnerCore.Api.DeConz.Models.Groups
 {
     [DataContract]
     internal class UpdateGroupRequest : CreateGroupRequest

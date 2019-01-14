@@ -1,10 +1,10 @@
-﻿using InnerCore.Api.deConz.Models.Groups;
+﻿using InnerCore.Api.DeConz.Models.Groups;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using InnerCore.Api.deConz.Models.Lights;
+using InnerCore.Api.DeConz.Models.Lights;
 
-namespace InnerCore.Api.deConz.Models.Bridge
+namespace InnerCore.Api.DeConz.Models.Bridge
 {
     /// <summary>
     /// DeConz Bridge

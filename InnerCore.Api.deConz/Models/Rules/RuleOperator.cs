@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace InnerCore.Api.deConz.Models.Rules
+namespace InnerCore.Api.DeConz.Models.Rules
 {
     /// <summary>
     /// Possible light alerts

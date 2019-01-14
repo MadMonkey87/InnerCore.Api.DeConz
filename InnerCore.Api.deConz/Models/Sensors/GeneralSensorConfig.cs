@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace InnerCore.Api.deConz.Models.Sensors
+namespace InnerCore.Api.DeConz.Models.Sensors
 {
     public interface IGeneralSensorConfig
     {

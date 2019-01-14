@@ -3,7 +3,7 @@ using System;
 using Newtonsoft.Json;
 using System.Reflection;
 
-namespace InnerCore.Api.deConz.Converters
+namespace InnerCore.Api.DeConz.Converters
 {
     public class StringNullableEnumConverter : StringEnumConverter
     {

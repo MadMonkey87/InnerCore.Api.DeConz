@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using InnerCore.Api.deConz.Models.Schedule;
+using InnerCore.Api.DeConz.Models.Schedule;
 
-namespace InnerCore.Api.deConz.Models.Rules
+namespace InnerCore.Api.DeConz.Models.Rules
 {
     [DataContract]
     public class Rule

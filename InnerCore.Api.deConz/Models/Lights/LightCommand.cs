@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using InnerCore.Api.deConz.Converters;
-using InnerCore.Api.deConz.Interfaces;
+using InnerCore.Api.DeConz.Converters;
+using InnerCore.Api.DeConz.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace InnerCore.Api.deConz.Models.Lights
+namespace InnerCore.Api.DeConz.Models.Lights
 {
     /// <summary>
     /// Compose a light command to send to a light

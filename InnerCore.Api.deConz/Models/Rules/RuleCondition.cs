@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace InnerCore.Api.deConz.Models.Rules
+namespace InnerCore.Api.DeConz.Models.Rules
 {
     [DataContract]
     public class RuleCondition

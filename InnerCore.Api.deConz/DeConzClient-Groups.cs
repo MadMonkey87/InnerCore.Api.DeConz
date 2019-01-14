@@ -1,6 +1,6 @@
-﻿using InnerCore.Api.deConz.Interfaces;
-using InnerCore.Api.deConz.Models;
-using InnerCore.Api.deConz.Models.Groups;
+﻿using InnerCore.Api.DeConz.Interfaces;
+using InnerCore.Api.DeConz.Models;
+using InnerCore.Api.DeConz.Models.Groups;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace InnerCore.Api.deConz
+namespace InnerCore.Api.DeConz
 {
     /// <summary>
     /// Partial DeConzClient, contains requests to the /Groups/ url

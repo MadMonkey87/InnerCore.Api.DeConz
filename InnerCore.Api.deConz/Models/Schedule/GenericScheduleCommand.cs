@@ -1,11 +1,11 @@
-﻿using InnerCore.Api.deConz.Interfaces;
-using InnerCore.Api.deConz.Models.Lights;
-using InnerCore.Api.deConz.Models.Scenes;
-using InnerCore.Api.deConz.Models.Sensors;
+﻿using InnerCore.Api.DeConz.Interfaces;
+using InnerCore.Api.DeConz.Models.Lights;
+using InnerCore.Api.DeConz.Models.Scenes;
+using InnerCore.Api.DeConz.Models.Sensors;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace InnerCore.Api.deConz.Models.Schedule
+namespace InnerCore.Api.DeConz.Models.Schedule
 {
     /// <summary>
     /// Can be used to create any type of schedule command

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace InnerCore.Api.deConz.Models.Groups
+namespace InnerCore.Api.DeConz.Models.Groups
 {
     /// <summary>
     /// Possible group types

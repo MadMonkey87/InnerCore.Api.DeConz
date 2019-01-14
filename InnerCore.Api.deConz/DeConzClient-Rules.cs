@@ -1,5 +1,5 @@
-﻿using InnerCore.Api.deConz.Models;
-using InnerCore.Api.deConz.Models.Rules;
+﻿using InnerCore.Api.DeConz.Models;
+using InnerCore.Api.DeConz.Models.Rules;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using InnerCore.Api.deConz.Models.Schedule;
+using InnerCore.Api.DeConz.Models.Schedule;
 
-namespace InnerCore.Api.deConz
+namespace InnerCore.Api.DeConz
 {
     /// <summary>
     /// Partial DeConzClient, contains requests to the /Rules/ url

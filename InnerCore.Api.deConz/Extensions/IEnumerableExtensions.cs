@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace InnerCore.Api.deConz.Extensions
+namespace InnerCore.Api.DeConz.Extensions
 {
     /// <summary>
     /// Enumerable Helpers

@@ -1,10 +1,10 @@
-﻿using InnerCore.Api.deConz.Interfaces;
+﻿using InnerCore.Api.DeConz.Interfaces;
 using Newtonsoft.Json;
 using System;
 using Newtonsoft.Json.Linq;
-using InnerCore.Api.deConz.Models.Schedule;
+using InnerCore.Api.DeConz.Models.Schedule;
 
-namespace InnerCore.Api.deConz.Converters
+namespace InnerCore.Api.DeConz.Converters
 {
     internal class CommandBodyConverter : JsonConverter
     {

@@ -1,4 +1,4 @@
-﻿namespace InnerCore.Api.deConz.Models.Bridge
+﻿namespace InnerCore.Api.DeConz.Models.Bridge
 {
     public class LocatedBridge
     {

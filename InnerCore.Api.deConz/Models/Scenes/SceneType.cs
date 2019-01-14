@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace InnerCore.Api.deConz.Models.Scenes
+namespace InnerCore.Api.DeConz.Models.Scenes
 {
     public enum SceneType
     {

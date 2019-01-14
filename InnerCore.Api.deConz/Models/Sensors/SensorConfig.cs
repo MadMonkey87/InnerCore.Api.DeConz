@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using InnerCore.Api.deConz.Models.Sensors.CLIP;
-using InnerCore.Api.deConz.Models.Sensors.ZigBee;
+using InnerCore.Api.DeConz.Models.Sensors.CLIP;
+using InnerCore.Api.DeConz.Models.Sensors.ZigBee;
 using Newtonsoft.Json;
 
-namespace InnerCore.Api.deConz.Models.Sensors
+namespace InnerCore.Api.DeConz.Models.Sensors
 {
     public class SensorConfig :
         CLIPGenericFlagConfig,
