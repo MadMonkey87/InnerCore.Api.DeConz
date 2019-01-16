@@ -1,4 +1,5 @@
-﻿using InnerCore.Api.DeConz.Models.Lights;
+﻿using InnerCore.Api.DeConz.Exceptions;
+using InnerCore.Api.DeConz.Models.Lights;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,11 +40,23 @@ namespace InnerCore.Api.DeConz.Sample
 
             // retrieve an appkey
 
-            Console.WriteLine("registering on the bridge -> please unlock the bridge in the Phoscon app");
+            var appkey = string.Empty;
 
-            var appkey = await client.RegisterAsync("DeConz_Sample_Application");
-
-            Console.WriteLine($"successfully registered -> store the key {appkey} to initialize the DeConzClient in the future!");
+            while(appkey == string.Empty)
+            {
+                try
+                {
+                    Console.WriteLine("registering on the bridge...");
+                    appkey = await client.RegisterAsync("DeConz_Sample_Application");
+                    Console.WriteLine($"...successfully registered -> store the key {appkey} to initialize the DeConzClient in the future!");
+                }
+                catch(LinkButtonNotPressedException)
+                {
+                    Console.WriteLine("...failed -> please unlock the bridge in the Phoscon app");
+                    Console.WriteLine("Press enter to continue");
+                    Console.ReadLine();
+                }
+            }
 
             // list lights and sensors
 
