@@ -1,15 +1,15 @@
-InnerCore.Api.DeConz
-=========
+InnerCore.Api.DeConz [![Build Status][azure build]][project]	[![NuGet][nuget badge]][nuget package]
+====================
 
 Open source library for communication with the Dresden Elektronik DeConz bridge.
 
 As the DeConz api is very similar to the Philips Hue api, its usage should be similar too.
 This library is therefore adapted from the Q42.HueApi so the usage is also very simlar.
+
 Note however, that
  - not all features of the Philips Hue api are supported as they are not supported by DeConz either
  - some objects might be missing some properties/features if they are not supported by DeConz
  - some objects have additional properties/features specific to DeConz
- - coming soon: support to read sensors config/state updates in real time
 
  requirements:
   - dotnet core 2.2
@@ -17,7 +17,6 @@ Note however, that
 
 ## State
 The project is currently in it's alpha state:
- - real time reading of sensor events is not yet supported
  - not all features have been tested (especially scenes, rules and schedules)
  - there might be further missing features/properties and some properties that are not supported by DeConz might still be there
  - a NuGet package is not yet available
@@ -69,11 +68,13 @@ Or send it to all lights
 
 	client.SendCommandAsync(command);
 
+## How To install?
+Download the source from GitHub or get the compiled assembly from NuGet [InnerCore.Api.DeConz on NuGet](https://nuget.org/packages/InnerCore.Api.DeConz).
+
 ### Open Source Project Credits
 
 * adapted from Q42.HueApi
 * Newtonsoft.Json is used for object serialization
-
 
 ## License
 
@@ -83,10 +84,12 @@ InnerCore.Api.DeConz is licensed under [MIT](http://www.opensource.org/licenses/
 
 Contributions are welcome. Fork this repository and send a pull request if you have something useful to add.
 
-[![Build status](https://innercore.visualstudio.com/InnerCore.Api.DeConz/_apis/build/status/InnerCore.Api.DeConz?branchName=master)](https://innercore.visualstudio.com/InnerCore.Api.DeConz/_apis/build/status/InnerCore.Api.DeConz)
-
-
 ## Related Projects
 
 * [Official DeConz description](https://www.dresden-elektronik.de/funktechnik/products/software/pc/DeConz/)
 * [Official DeConz api documentation](https://dresden-elektronik.github.io/DeConz-rest-doc/)
+
+[azure build]: https://innercore.visualstudio.com/InnerCore.Api.DeConz/_apis/build/status/InnerCore.Api.DeConz?branchName=master
+[project]: https://github.com/MadMonkey87/InnerCore.Api.DeConz
+[nuget badge]: https://img.shields.io/nuget/v/InnerCore.Api.DeConz.svg
+[nuget package]: https://www.nuget.org/packages/InnerCore.Api.DeConz

@@ -23,7 +23,7 @@ namespace InnerCore.Api.DeConz
 
             HttpClient client = new HttpClient() { Timeout = timeout };
 
-            string response = await client.GetStringAsync(new Uri(Constants.DiscoveryUrl)).ConfigureAwait(false);
+            string response = await client.GetStringAsync(new Uri(Constants.DISCOVERY_URL)).ConfigureAwait(false);
 
             return JsonConvert.DeserializeObject<LocatedBridge[]>(response);
         }
