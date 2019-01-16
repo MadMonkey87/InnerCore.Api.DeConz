@@ -15,6 +15,7 @@
     <Description>A simple library to communicate with DeConz Zigbee Gateway</Description>
     <PackageId>InnerCore.Api.DeConz</PackageId>
     <Product>InnerCore.Api.DeConz</Product>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

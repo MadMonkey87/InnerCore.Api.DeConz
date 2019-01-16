@@ -1,4 +1,5 @@
-﻿using InnerCore.Api.DeConz.Models;
+﻿using InnerCore.Api.DeConz.Exceptions;
+using InnerCore.Api.DeConz.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Net.Http;
@@ -60,7 +61,7 @@ namespace InnerCore.Api.DeConz
             if (result.TryGetValue("error", out error))
             {
                 if (error["type"].Value<int>() == 101) // link button not pressed
-                    throw new Exception("Link button not pressed");
+                    throw new LinkButtonNotPressedException("Link button not pressed");
                 else
                     throw new Exception(error["description"].Value<string>());
             }
