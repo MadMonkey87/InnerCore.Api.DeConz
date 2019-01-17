@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>InnerCore.Api.DeConz</id>
-    <version>0.4-beta</version>
+    <version>0.4.1-beta</version>
     <title>InnerCore.Api.DeConz</title>
     <authors>Philippe Wechsler</authors>
     <owners>Philippe Wechsler</owners>
@@ -21,6 +21,7 @@
 	</dependencies>
   </metadata>
   <files>
-	<file src="bin\Release\**\*.*" target="content" /> 
+	<file src="bin\Release\**\*.dll" target="content" /> 
+	<file src="..\InnerCore.Api.DeConz.ColorConverters\bin\Release\**\*.dll" target="content" /> 
   </files>
 </package>
