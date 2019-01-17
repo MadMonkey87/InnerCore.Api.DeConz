@@ -90,7 +90,7 @@ namespace InnerCore.Api.DeConz.Sample
 
         private static void QuitGracefully()
         {
-            Console.WriteLine("Press enter to quit...");
+            Console.WriteLine("Press enter to quit");
             Console.ReadLine();
         }
     }

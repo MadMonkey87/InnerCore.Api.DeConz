@@ -21,6 +21,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InnerCore.Api.DeConz.Tests.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InnerCore.Api.DeConz.Tests", "InnerCore.Api.DeConz.Tests\InnerCore.Api.DeConz.Tests.csproj", "{A0E9D8A6-EFF6-417C-928A-1B000BBA8B95}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4C9FC2AC-29E8-4B22-8C21-37C96996BA54}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{BE57B81B-9A3B-4C46-BA91-908503D7992C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +58,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EEED7BCB-4D67-4974-BD5F-3635B21499A6} = {BE57B81B-9A3B-4C46-BA91-908503D7992C}
+		{174DFD8F-C9D4-46D2-B94D-6A73DA00309B} = {BE57B81B-9A3B-4C46-BA91-908503D7992C}
+		{55B53472-37ED-4E75-B7A5-4CE5A68FC9CF} = {4C9FC2AC-29E8-4B22-8C21-37C96996BA54}
+		{A0E9D8A6-EFF6-417C-928A-1B000BBA8B95} = {4C9FC2AC-29E8-4B22-8C21-37C96996BA54}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4A45CE4A-BCC6-466E-BD5E-0DE1B0BEC656}
