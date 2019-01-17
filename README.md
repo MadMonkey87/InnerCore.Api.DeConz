@@ -19,7 +19,7 @@ Note however, that
 The project is currently in it's alpha state:
  - not all features have been tested (especially scenes, rules and schedules)
  - there might be further missing features/properties and some properties that are not supported by DeConz might still be there
- - a NuGet package is not yet available
+ - touch-link is currently not supported
 
 ## How to use?
 Some basic usage examples -> you might also check [Q42.HueApi on GitHub](https://github.com/Q42/Q42.HueApi).
@@ -68,11 +68,40 @@ Or send it to all lights
 
 	client.SendCommandAsync(command);
 
+### Reading Sensor events in realtime
+
+DeConz allows you to read sensor events in realtime using websockets (this is not supported on Philips Hue however). After you created a DeConConz client
+you can register for sensor events:
+
+	client.SensorChanged += Client_SensorChanged;
+
+    ...
+
+	private static void Client_SensorChanged(object sender, Models.WebSocket.SensorChangedEvent e)
+	{
+        // handle the event here
+        // e.Id: the id of the sensor
+        // e.state: the current state of the sensor if it has changed
+        // e.config: the current config of the sensor if it has changed
+	}
+
+After that you can start listening to events
+
+    await client.ListenToEvents();
+
+You then will get events as long as the ListenToEvents task has not completed (i.e. when the server connection is lost).
+
+It is also possible to provide a cancellation token in case you wan't to close the connection manually:
+
+    var cancellationTokenSource = new CancellationTokenSource();
+    var task = client.ListenToEvents(cancellationTokenSource.Token);
+
+    cancellationTokenSource.Cancel();
+
 ## How To install?
 Download the source from GitHub or get the compiled assembly from NuGet [InnerCore.Api.DeConz on NuGet](https://nuget.org/packages/InnerCore.Api.DeConz).
 
 ### Open Source Project Credits
-
 * adapted from Q42.HueApi
 * Newtonsoft.Json is used for object serialization
 
