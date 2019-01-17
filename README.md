@@ -50,7 +50,7 @@ Main usage of this library is to be able to control your lights. We use a LightC
 There are some helpers to set a color on a command:
 	
 	//Turn the light on and set a Hex color for the command (see the section about Color Converters)
-    command.TurnOn().SetColor(new RGBColor("FF00AA"))
+    command.TurnOn().SetColor(new RGBColor("FF00AA"));
 	
 LightCommands also support Effects and Alerts
 
