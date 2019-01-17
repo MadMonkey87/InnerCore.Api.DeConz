@@ -21,7 +21,7 @@
 	</dependencies>
   </metadata>
   <files>
-	<file src="bin\Release\**\*.dll" target="content" /> 
-	<file src="..\InnerCore.Api.DeConz.ColorConverters\bin\Release\**\*.dll" target="content" /> 
+	<file src="bin\Release\**\InnerCore.Api.DeConz.dll" target="content" /> 
+	<file src="..\InnerCore.Api.DeConz.ColorConverters\bin\Release\**\InnerCore.Api.DeConz.ColorConverters.dll" target="content" /> 
   </files>
 </package>
