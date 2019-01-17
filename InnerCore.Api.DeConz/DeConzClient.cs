@@ -37,7 +37,7 @@ namespace InnerCore.Api.DeConz
             get
             {
                 if (!string.IsNullOrWhiteSpace(_appKey))
-                    return string.Format("http://{0}:{1}/api/{2}/", _ip,_port, _appKey);
+                    return string.Format("http://{0}:{1}/api/{2}/", _ip, _port, _appKey);
                 else
                     return string.Format("http://{0}:{1}/api/", _ip, _port);
 
@@ -46,6 +46,11 @@ namespace InnerCore.Api.DeConz
 
         private static HttpClient _httpClient;
 
+        /// <summary>
+        /// Initialize with Bridge IP/Port
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <param name="port"></param>
         public DeConzClient(string ip, int port = 80)
         {
             if (ip == null)
@@ -63,7 +68,7 @@ namespace InnerCore.Api.DeConz
         /// <param name="appKey"></param>
         /// <param name="ip"></param>
         /// <param name="port"></param>
-        public DeConzClient(string appKey, string ip, int port = 80)
+        public DeConzClient(string ip, int port, string appKey)
         {
             if (ip == null)
                 throw new ArgumentNullException(nameof(ip));
@@ -75,6 +80,16 @@ namespace InnerCore.Api.DeConz
 
             //Direct initialization
             Initialize(appKey);
+        }
+
+        /// <summary>
+        /// Initialize with Bridge IP/Port and AppKey
+        /// </summary>
+        /// <param name="appKey"></param>
+        /// <param name="ip"></param>
+        public DeConzClient(string ip, string appKey) : this(ip, 80, appKey)
+        {
+
         }
 
         /// <summary>
