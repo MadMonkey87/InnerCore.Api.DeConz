@@ -2,15 +2,15 @@
 <package >
   <metadata>
     <id>InnerCore.Api.DeConz</id>
-    <version>0.3-alpha</version>
+    <version>0.4-beta</version>
     <title>InnerCore.Api.DeConz</title>
     <authors>Philippe Wechsler</authors>
     <owners>Philippe Wechsler</owners>
     <licenseUrl>https://github.com/MadMonkey87/InnerCore.Api.DeConz/blob/master/LICENSE.txt</licenseUrl>
     <projectUrl>https://github.com/MadMonkey87/InnerCore.Api.DeConz</projectUrl>
-    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A simple library to communicate with DeConz Zigbee Gateway</description>
-    <releaseNotes>Initial alpha release</releaseNotes>
+    <releaseNotes>color converters, realtime sensor reading</releaseNotes>
     <copyright>Copyright 2019 Philippe Wechsler</copyright>
     <tags>deconz zigbee sensor</tags>
 	<repository type="GitHub" url="https://github.com/MadMonkey87/InnerCore.Api.DeConz" />

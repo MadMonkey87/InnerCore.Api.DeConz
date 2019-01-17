@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Authors>Philippe Wechsler</Authors>
+    <Company>InnerCore</Company>
+    <Description>A simple library to communicate with DeConz Zigbee Gateway</Description>
+    <Copyright>Copyright © 2019 Philippe Wechsler</Copyright>
+    <PackageLicenseUrl>https://github.com/MadMonkey87/InnerCore.Api.DeConz/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/MadMonkey87/InnerCore.Api.DeConz</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MadMonkey87/InnerCore.Api.DeConz</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
