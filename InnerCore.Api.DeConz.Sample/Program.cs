@@ -1,4 +1,6 @@
-﻿using InnerCore.Api.DeConz.Exceptions;
+﻿using InnerCore.Api.DeConz.ColorConverters;
+using InnerCore.Api.DeConz.ColorConverters.HSB.Extensions;
+using InnerCore.Api.DeConz.Exceptions;
 using InnerCore.Api.DeConz.Models.Lights;
 using System;
 using System.Linq;
@@ -78,7 +80,7 @@ namespace InnerCore.Api.DeConz.Sample
 
             Console.WriteLine("Turning on all lights...");
 
-            var command = new LightCommand().TurnOn();//.SetColor(new RGBColor("FF00AA"));
+            var command = new LightCommand().TurnOn().SetColor(new RGBColor("FF00AA"));
 
             var result = await client.SendCommandAsync(command);
             Console.WriteLine(result.Errors.Any() ? "...Failure!" : "...Success!");

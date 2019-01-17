@@ -14,6 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\InnerCore.Api.DeConz.ColorConverters\InnerCore.Api.DeConz.ColorConverters.csproj" />
     <ProjectReference Include="..\InnerCore.Api.deConz\InnerCore.Api.DeConz.csproj" />
   </ItemGroup>
 
