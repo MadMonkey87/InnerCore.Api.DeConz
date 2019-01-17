@@ -38,7 +38,7 @@ namespace InnerCore.Api.DeConz
             JToken token = JToken.Parse(stringResult);
             if (token.Type == JTokenType.Array)
             {
-                // Hue gives back errors in an array for this request
+                // the bridge gives back errors in an array for this request
                 JObject error = (JObject)token.First["error"];
                 if (error["type"].Value<int>() == 3) // Light not found
                     return null;

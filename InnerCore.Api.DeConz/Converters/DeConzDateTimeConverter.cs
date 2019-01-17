@@ -91,11 +91,11 @@ namespace InnerCore.Api.DeConz.Converters
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            DeConzDateTime hueValueDate = new DeConzDateTime();
+            DeConzDateTime deconzValueDate = new DeConzDateTime();
             if (reader.TokenType == JsonToken.Date)
             {
-                hueValueDate.DateTime = (DateTime)reader.Value;
-                return hueValueDate;
+                deconzValueDate.DateTime = (DateTime)reader.Value;
+                return deconzValueDate;
             }
 
             string rawValue = reader.Value?.ToString();
@@ -108,13 +108,13 @@ namespace InnerCore.Api.DeConz.Converters
                 var groups = Regex.Match(rawValue, @"(?<date>[0-9\-]+)T(?<time>[0-9:]+)(A(?<randomtime>[0-9:]+))?").Groups;
                 if (groups.Count != 1)
                 {
-                    hueValueDate.DateTime = DateTime.ParseExact(groups["date"].Value + "T" + groups["time"].Value, "yyyy-MM-ddTHH:mm:ss", (IFormatProvider)base.Culture, base.DateTimeStyles);
+                    deconzValueDate.DateTime = DateTime.ParseExact(groups["date"].Value + "T" + groups["time"].Value, "yyyy-MM-ddTHH:mm:ss", (IFormatProvider)base.Culture, base.DateTimeStyles);
                     if (groups["randomtime"].Success)
                     {
-                        hueValueDate.RandomizedTime = TimeSpan.ParseExact(groups["randomtime"].Value, "hh\\:mm\\:ss", (IFormatProvider)base.Culture);
+                        deconzValueDate.RandomizedTime = TimeSpan.ParseExact(groups["randomtime"].Value, "hh\\:mm\\:ss", (IFormatProvider)base.Culture);
                     }
 
-                    return hueValueDate;
+                    return deconzValueDate;
                 }
             }
 
@@ -123,33 +123,33 @@ namespace InnerCore.Api.DeConz.Converters
                 var groups = Regex.Match(rawValue, @"W(?<daysrecurring>\d{1,3})/T(?<time>[0-9:]+)(A(?<randomtime>[0-9:]+))?").Groups;
                 if (groups.Count != 1)
                 {
-                    hueValueDate.RecurringDay = (RecurringDay)Convert.ToInt32(groups["daysrecurring"].Value);
-                    hueValueDate.TimerTime = TimeSpan.ParseExact(groups["time"].Value, "hh\\:mm\\:ss", (IFormatProvider)base.Culture);
+                    deconzValueDate.RecurringDay = (RecurringDay)Convert.ToInt32(groups["daysrecurring"].Value);
+                    deconzValueDate.TimerTime = TimeSpan.ParseExact(groups["time"].Value, "hh\\:mm\\:ss", (IFormatProvider)base.Culture);
 
                     if (groups["randomtime"].Success)
                     {
-                        hueValueDate.RandomizedTime = TimeSpan.ParseExact(groups["randomtime"].Value, "hh\\:mm\\:ss", (IFormatProvider)base.Culture);
+                        deconzValueDate.RandomizedTime = TimeSpan.ParseExact(groups["randomtime"].Value, "hh\\:mm\\:ss", (IFormatProvider)base.Culture);
                     }
 
-                    return hueValueDate;
+                    return deconzValueDate;
                 }
             }
 
             //timers (optional recurrences and random time)
             {
                 var groups = Regex.Match(rawValue, @"(R(?<recurrence>\d{2})/)?PT(?<timertime>[0-9:]+)(A(?<randomtime>[0-9:]+))?").Groups;
-                hueValueDate.TimerTime = TimeSpan.ParseExact(groups["timertime"].Value, "hh\\:mm\\:ss", (IFormatProvider)base.Culture);
+                deconzValueDate.TimerTime = TimeSpan.ParseExact(groups["timertime"].Value, "hh\\:mm\\:ss", (IFormatProvider)base.Culture);
 
                 if (groups["randomtime"].Success)
                 {
-                    hueValueDate.RandomizedTime = TimeSpan.ParseExact(groups["randomtime"].Value, "hh\\:mm\\:ss", (IFormatProvider)base.Culture);
+                    deconzValueDate.RandomizedTime = TimeSpan.ParseExact(groups["randomtime"].Value, "hh\\:mm\\:ss", (IFormatProvider)base.Culture);
                 }
                 if (groups["recurrence"].Success)
                 {
-                    hueValueDate.NumberOfRecurrences = Convert.ToInt32(groups["recurrence"].Value);
+                    deconzValueDate.NumberOfRecurrences = Convert.ToInt32(groups["recurrence"].Value);
                 }
 
-                return hueValueDate;
+                return deconzValueDate;
             }
         }
     }

@@ -75,14 +75,14 @@ namespace InnerCore.Api.DeConz
 
             try
             {
-                //Check if there is a hue bridge on the specified IP by checking the content of description.xml
+                //Check if there is a deconz bridge on the specified IP by checking the content of description.xml
                 var result = await client.GetAsync(string.Format("http://{0}:{1}/description.xml", _ip, _port)).ConfigureAwait(false);
                 if (result.IsSuccessStatusCode)
                 {
                     string res = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
                     if (!string.IsNullOrWhiteSpace(res))
                     {
-                        if (!res.ToLower().Contains("philips hue bridge"))
+                        if (!res.ToLower().Contains("philips hue bridge")) // that is not a typo, we actually get exactly this from the deconz bridge
                             return false;
                     }
                 }
