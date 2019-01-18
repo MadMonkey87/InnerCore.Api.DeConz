@@ -150,5 +150,24 @@ namespace InnerCore.Api.DeConz
 
             return DeserializeDefaultDeConzResult(jsonResult);
         }
+
+        /// <summary>
+        /// Reset the gateway network settings to factory new and/or delete the deCONZ database (config, lights, scenes, groups, schedules, devices, rules).
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public async Task<DeConzResults> Reset(ResetRequest request)
+        {
+            CheckInitialized();
+
+            string command = JsonConvert.SerializeObject(request, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+
+            HttpClient client = await GetHttpClient().ConfigureAwait(false);
+            var result = await client.PostAsync(new Uri(string.Format("{0}config/reset", ApiBase)), new JsonContent(command)).ConfigureAwait(false);
+
+            string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+            return DeserializeDefaultDeConzResult(jsonResult);
+        }
     }
 }
