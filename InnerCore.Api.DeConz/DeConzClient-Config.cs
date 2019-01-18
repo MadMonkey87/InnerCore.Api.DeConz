@@ -114,5 +114,41 @@ namespace InnerCore.Api.DeConz
 
             return DeserializeDefaultDeConzResult(jsonResult);
         }
+
+        /// <summary>
+        /// Updates the software of the bridge if available
+        /// </summary>
+        /// <returns></returns>
+        public async Task<DeConzResults> UpdateSoftware()
+        {
+            CheckInitialized();
+
+            string command = JsonConvert.SerializeObject(new { }, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+
+            HttpClient client = await GetHttpClient().ConfigureAwait(false);
+            var result = await client.PostAsync(new Uri(string.Format("{0}config/update", ApiBase)), new JsonContent(command)).ConfigureAwait(false);
+
+            string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+            return DeserializeDefaultDeConzResult(jsonResult);
+        }
+
+        /// <summary>
+        /// Starts the update firmware process if newer firmware is available.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<DeConzResults> UpdateFirmware()
+        {
+            CheckInitialized();
+
+            string command = JsonConvert.SerializeObject(new { }, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+
+            HttpClient client = await GetHttpClient().ConfigureAwait(false);
+            var result = await client.PostAsync(new Uri(string.Format("{0}config/updatefirmware", ApiBase)), new JsonContent(command)).ConfigureAwait(false);
+
+            string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+            return DeserializeDefaultDeConzResult(jsonResult);
+        }
     }
 }
