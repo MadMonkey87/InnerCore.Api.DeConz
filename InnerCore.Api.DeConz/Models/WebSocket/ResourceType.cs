@@ -18,5 +18,17 @@ namespace InnerCore.Api.DeConz.Models.WebSocket
         /// </summary>
         [EnumMember(Value = "lights")]
         Light,
+
+        /// <summary>
+        /// the id field refers to a group resource
+        /// </summary>
+        [EnumMember(Value = "groups")]
+        Group,
+
+        /// <summary>
+        /// the id field refers to a scene resource
+        /// </summary>
+        [EnumMember(Value = "scenes")]
+        Scene
     }
 }

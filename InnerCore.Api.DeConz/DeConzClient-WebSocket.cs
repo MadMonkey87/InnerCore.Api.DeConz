@@ -100,6 +100,18 @@ namespace InnerCore.Api.DeConz
                         State = message.State
                     });
                 }
+                else if (message.ResourceType == ResourceType.Light)
+                {
+                    // currently not supported
+                }
+                else if (message.ResourceType == ResourceType.Group)
+                {
+                    // currently not supported
+                }
+                else if (message.ResourceType == ResourceType.Scene)
+                {
+                    // currently not supported
+                }
                 else
                 {
                     throw new NotSupportedException($"not supported message (event: {message.Event}, type: {message.Type}, resource: {message.ResourceType})");
