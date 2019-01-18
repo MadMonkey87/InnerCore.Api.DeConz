@@ -169,5 +169,40 @@ namespace InnerCore.Api.DeConz
 
             return DeserializeDefaultDeConzResult(jsonResult);
         }
+
+        /// <summary>
+        /// Change the Password of the Gateway
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public async Task<DeConzResults> ChangePassword(ChangePasswordRequest request)
+        {
+            CheckInitialized();
+
+            string command = JsonConvert.SerializeObject(request, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+
+            HttpClient client = await GetHttpClient().ConfigureAwait(false);
+            var result = await client.PutAsync(new Uri(string.Format("{0}config/password", ApiBase)), new JsonContent(command)).ConfigureAwait(false);
+
+            string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+            return DeserializeDefaultDeConzResult(jsonResult);
+        }
+
+        /// <summary>
+        /// Resets the username and password to default (“delight”,”delight”). Only possible within 10 minutes after gateway start.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<DeConzResults> ResetPassword()
+        {
+            CheckInitialized();
+
+            HttpClient client = await GetHttpClient().ConfigureAwait(false);
+            var result = await client.DeleteAsync(new Uri(string.Format("{0}config/password", ApiBase))).ConfigureAwait(false);
+
+            string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+            return DeserializeDefaultDeConzResult(jsonResult);
+        }
     }
 }
