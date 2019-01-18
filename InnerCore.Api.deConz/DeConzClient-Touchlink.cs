@@ -1,9 +1,6 @@
 ﻿using InnerCore.Api.DeConz.Models.Touchlink;
-using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace InnerCore.Api.DeConz
@@ -16,16 +13,16 @@ namespace InnerCore.Api.DeConz
         /// <summary>
         /// Starts scanning on all channels for devices which are located close to the gateway. The whole scan process will take about 10 seconds.
         /// </summary>
-        public async Task<ScanResult> Scan()
+        public async Task<ScanResult> ScanForNewDevices()
         {
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
             string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}touchlink/scan", ApiBase))).ConfigureAwait(false);
 
-            var result = DeserializeResult<ScanResult>(stringResult);
+            var result = DeserializeResult<RawScanResult>(stringResult);
 
-            return result;
+            return new ScanResult(result);
         }
     }
 }

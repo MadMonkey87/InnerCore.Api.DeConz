@@ -1,17 +1,30 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System.Runtime.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace InnerCore.Api.DeConz.Models.Touchlink
 {
-    [DataContract]
     public class ScanResult
     {
-        [JsonConverter(typeof(StringEnumConverter))]
-        [DataMember(Name = "scanstate")]
+        internal ScanResult(RawScanResult rawScanResult)
+        {
+            if (rawScanResult == null)
+                throw new ArgumentNullException(nameof(rawScanResult));
+
+            foreach (var discoveredDevices in rawScanResult.DiscoveredDevices)
+            {
+                discoveredDevices.Value.Id = discoveredDevices.Key;
+            }
+            DiscoveredDevices = rawScanResult.DiscoveredDevices.Select(l => l.Value).ToList();
+
+            State = rawScanResult.State;
+            LastScanned = rawScanResult.LastScanned;
+        }
+
         public ScanState State { get; set; }
 
-        [JsonProperty("lastscan")]
         public string LastScanned { get; set; }
+
+        public IEnumerable<DiscoveredDevice> DiscoveredDevices { get; private set; }
     }
 }
