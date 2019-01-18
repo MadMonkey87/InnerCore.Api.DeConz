@@ -46,7 +46,7 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         [JsonProperty("uniqueid")]
         public string UniqueId { get; set; }
 
-        #region deConz specific
+        #region DeConz specific
 
         [JsonProperty("ep")]
         public string EndPoint { get; set; }

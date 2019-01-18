@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 namespace InnerCore.Api.DeConz.Converters
 {
     /// <summary>
-    /// Custom DateTime converter for deConz bridge
+    /// Custom DateTime converter for DeConz bridge
     /// </summary>
     public class DeConzDateTimeConverter : IsoDateTimeConverter
     {
@@ -31,36 +31,36 @@ namespace InnerCore.Api.DeConz.Converters
                 return;
             }
 
-            DeConzDateTime deConzDateTime = value as DeConzDateTime;
-            if (deConzDateTime == null)
+            DeConzDateTime DeConzDateTime = value as DeConzDateTime;
+            if (DeConzDateTime == null)
             {
                 return;
             }
 
             //DateTime
-            if (deConzDateTime.DateTime != null && deConzDateTime.DateTime.HasValue)
+            if (DeConzDateTime.DateTime != null && DeConzDateTime.DateTime.HasValue)
             {
-                dateTimeValue = deConzDateTime.DateTime.Value.ToString("yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
+                dateTimeValue = DeConzDateTime.DateTime.Value.ToString("yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
             }
             //RandomTime
-            if (deConzDateTime.RandomizedTime != null && deConzDateTime.RandomizedTime.HasValue)
+            if (DeConzDateTime.RandomizedTime != null && DeConzDateTime.RandomizedTime.HasValue)
             {
-                randomTimeValue = "A" + deConzDateTime.RandomizedTime.Value.ToString("hh\\:mm\\:ss");
+                randomTimeValue = "A" + DeConzDateTime.RandomizedTime.Value.ToString("hh\\:mm\\:ss");
             }
             //TimerTime
-            if (deConzDateTime.TimerTime != null && deConzDateTime.TimerTime.HasValue)
+            if (DeConzDateTime.TimerTime != null && DeConzDateTime.TimerTime.HasValue)
             {
-                timerTimeValue = "T" + deConzDateTime.TimerTime.Value.ToString("hh\\:mm\\:ss");
+                timerTimeValue = "T" + DeConzDateTime.TimerTime.Value.ToString("hh\\:mm\\:ss");
             }
             //Days recurring
-            if (deConzDateTime.RecurringDay != RecurringDay.RecurringNone)
+            if (DeConzDateTime.RecurringDay != RecurringDay.RecurringNone)
             {
-                daysRecurring = string.Format("W{0}", Convert.ToString((int)deConzDateTime.RecurringDay));
+                daysRecurring = string.Format("W{0}", Convert.ToString((int)DeConzDateTime.RecurringDay));
             }
             //Recurrences
-            if (deConzDateTime.NumberOfRecurrences != null && deConzDateTime.NumberOfRecurrences.HasValue)
+            if (DeConzDateTime.NumberOfRecurrences != null && DeConzDateTime.NumberOfRecurrences.HasValue)
             {
-                recurrences = string.Format("R{0}", Convert.ToString(deConzDateTime.NumberOfRecurrences.Value));
+                recurrences = string.Format("R{0}", Convert.ToString(DeConzDateTime.NumberOfRecurrences.Value));
             }
 
             if (!string.IsNullOrEmpty(daysRecurring) && !string.IsNullOrEmpty(timerTimeValue))//recurrenceday with a timerTime

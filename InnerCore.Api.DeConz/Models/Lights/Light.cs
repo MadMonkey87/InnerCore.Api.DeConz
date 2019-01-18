@@ -32,7 +32,7 @@ namespace InnerCore.Api.DeConz.Models.Lights
         [DataMember(Name = "swversion")]
         public string SoftwareVersion { get; set; }
 
-        #region deConz specific
+        #region DeConz specific
 
         /// <summary>
         /// HTTP etag which changes on any action to the group.
