@@ -1,4 +1,4 @@
-﻿namespace InnerCore.Api.DeConz.Models.Sensors.CLIP
+﻿namespace InnerCore.Api.DeConz.Models.Sensors
 {
     public interface DaylightSensorConfig : IGeneralSensorConfig
     {
@@ -11,6 +11,5 @@
         int? SunriseOffset { get; set; }
 
         int? SunsetOffset { get; set; }
-
     }
 }

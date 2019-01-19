@@ -17,7 +17,7 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         DaylightSensorState,
         ZGPSwitchState,
         ZHAPresenceState,
-        ZLLSwitchState,
+        ZHASwitchState,
         ZHATemperatureState,
         ZHAPressureState,
         ZHAAlarmState,
