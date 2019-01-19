@@ -15,7 +15,6 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         CLIPPresenceConfig,
         CLIPSwitchConfig,
         DaylightSensorConfig,
-        ZGPSwitchConfig,
         ZHAPresenceConfig,
         ZHASwitchConfig,
         ZHATemperatureConfig,
@@ -26,7 +25,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         IASZoneConfig,
         GenericXiaomiConfig,
         ZHAWaterConfig,
-        ZHAVibrationConfig
+        ZHAVibrationConfig,
+        ZHAConsumptionConfig
     {
         [JsonProperty("alert")]
         public string Alert { get; set; }

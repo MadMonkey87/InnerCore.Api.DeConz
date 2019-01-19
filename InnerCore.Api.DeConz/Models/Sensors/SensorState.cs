@@ -15,7 +15,6 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         CLIPPresenceState,
         CLIPSwitchState,
         DaylightSensorState,
-        ZGPSwitchState,
         ZHAPresenceState,
         ZHASwitchState,
         ZHATemperatureState,
@@ -26,7 +25,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         IASZoneState,
         GenericXiaomiState,
         ZHAWaterState,
-        ZHAVibrationState
+        ZHAVibrationState,
+        ZHAConsumptionState
     {
         [JsonProperty("buttonevent")]
         public int? ButtonEvent { get; set; }
@@ -87,5 +87,11 @@ namespace InnerCore.Api.DeConz.Models.Sensors
 
         [JsonProperty("vibration")]
         public bool? Vibration { get; set; }
+
+        [JsonProperty("consumption")]
+        public int? Consumption { get; set; }
+
+        [JsonProperty("power")]
+        public int? Power { get; set; }
     }
 }
