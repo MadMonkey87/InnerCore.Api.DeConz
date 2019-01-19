@@ -21,7 +21,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         ZLLTemperatureConfig,
         ZLLPressureConfig,
         ZHAAlarmConfig,
-        ZHACarbonMonoxideConfig
+        ZHACarbonMonoxideConfig,
+        ZHAFireConfig
     {
         [JsonProperty("alert")]
         public string Alert { get; set; }
