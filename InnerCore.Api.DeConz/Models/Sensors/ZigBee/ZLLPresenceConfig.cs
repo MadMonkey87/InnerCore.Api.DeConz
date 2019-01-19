@@ -1,6 +1,6 @@
 ﻿namespace InnerCore.Api.DeConz.Models.Sensors.Zigbee
 {
-    public interface ZLLPresenceConfig : IGeneralSensorConfig
+    public interface ZHAPresenceConfig : IGeneralSensorConfig
     {
         int? Sensitivity { get; set; }
 

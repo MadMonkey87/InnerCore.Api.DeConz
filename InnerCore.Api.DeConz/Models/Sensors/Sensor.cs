@@ -15,7 +15,7 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         CLIPTemperature,
         DaylightSensor,
         IZGPSwitch,
-        ZLLPresence,
+        ZHAPresence,
         ZLLSwitch,
         ZLLTemperature,
         ZLLPressure,
