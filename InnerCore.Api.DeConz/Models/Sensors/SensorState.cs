@@ -9,7 +9,7 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         CLIPGenericFlagState,
         CLIPGenericStatusState,
         ZHAHumidityState,
-        CLIPLightlevelState,
+        ZHALightLevelState,
         CLIPOpenCloseState,
         CLIPPresenceState,
         CLIPSwitchState,
@@ -41,6 +41,9 @@ namespace InnerCore.Api.DeConz.Models.Sensors
 
         [JsonProperty("lastupdated")]
         public string Lastupdated { get; set; }
+
+        [JsonProperty("lux")]
+        public long? Lux { get; set; }
 
         [JsonProperty("lightlevel")]
         public long? LightLevel { get; set; }

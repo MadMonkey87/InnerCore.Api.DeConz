@@ -9,7 +9,7 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         CLIPGenericFlagConfig,
         CLIPGenericStatusConfig,
         ZHAHumidityConfig,
-        CLIPLightlevelConfig,
+        ZHALightLevelConfig,
         CLIPOpenCloseConfig,
         CLIPPresenceConfig,
         CLIPSwitchConfig,

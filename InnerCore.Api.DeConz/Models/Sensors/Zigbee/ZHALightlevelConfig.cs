@@ -1,6 +1,6 @@
-﻿namespace InnerCore.Api.DeConz.Models.Sensors.CLIP
+﻿namespace InnerCore.Api.DeConz.Models.Sensors.Zigbee
 {
-    public interface CLIPLightlevelConfig : IGeneralSensorConfig
+    public interface ZHALightLevelConfig : IGeneralSensorConfig
     {
         /// <summary>
         /// Threshold the user configured to be used in rules to determine insufficient lightlevel (ie below threshold). Default value 16000
