@@ -57,7 +57,7 @@ namespace InnerCore.Api.DeConz.Models.Bridge
         public bool? Unlock { get; set; }
 
         /// <summary>
-        /// Set the zigbeechannel of the gateway. Notify other ZigBee devices also to change their channel. It can take values of 11, 15, 20,25.
+        /// Set the zigbeechannel of the gateway. Notify other Zigbee devices also to change their channel. It can take values of 11, 15, 20,25.
         /// </summary>
         [DataMember(Name = "zigbeechannel")]
         public int? ZigbeeChannel { get; set; }

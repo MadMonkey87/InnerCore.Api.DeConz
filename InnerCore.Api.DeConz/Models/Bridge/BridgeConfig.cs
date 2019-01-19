@@ -67,7 +67,7 @@ namespace InnerCore.Api.DeConz.Models.Bridge
         public int ZigbeeChannel { get; set; }
 
         /// <summary>
-        /// Perform a touchlink action if set to true, setting to false is ignored. When set to true a touchlink procedure starts which adds the closet lamp (within range) to the ZigBee network.  You can then search for new lights and lamp will show up in the bridge.
+        /// Perform a touchlink action if set to true, setting to false is ignored. When set to true a touchlink procedure starts which adds the closet lamp (within range) to the Zigbee network.  You can then search for new lights and lamp will show up in the bridge.
         /// </summary>
         [DataMember(Name = "touchlink")]
         public bool TouchLink { get; set; }

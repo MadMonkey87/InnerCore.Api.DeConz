@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using InnerCore.Api.DeConz.Models.Sensors.CLIP;
-using InnerCore.Api.DeConz.Models.Sensors.ZigBee;
+using InnerCore.Api.DeConz.Models.Sensors.Zigbee;
 using Newtonsoft.Json;
 
 namespace InnerCore.Api.DeConz.Models.Sensors
@@ -19,7 +19,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         ZLLPresenceConfig,
         ZLLSwitchConfig,
         ZLLTemperatureConfig,
-        ZLLPressureConfig
+        ZLLPressureConfig,
+        ZHAAlarmConfig
     {
         [JsonProperty("alert")]
         public string Alert { get; set; }

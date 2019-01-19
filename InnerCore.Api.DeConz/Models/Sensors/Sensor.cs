@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using InnerCore.Api.DeConz.Models.Sensors.CLIP;
-using InnerCore.Api.DeConz.Models.Sensors.ZigBee;
+using InnerCore.Api.DeConz.Models.Sensors.Zigbee;
 
 namespace InnerCore.Api.DeConz.Models.Sensors
 {
@@ -18,7 +18,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         ZLLPresence,
         ZLLSwitch,
         ZLLTemperature,
-        ZLLPressure
+        ZLLPressure,
+        ZHAAlarm
     {
         [JsonProperty("state")]
         public SensorState State { get; set; }

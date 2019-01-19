@@ -1,6 +1,6 @@
 ﻿using InnerCore.Api.DeConz.Interfaces;
 using InnerCore.Api.DeConz.Models.Sensors.CLIP;
-using InnerCore.Api.DeConz.Models.Sensors.ZigBee;
+using InnerCore.Api.DeConz.Models.Sensors.Zigbee;
 using Newtonsoft.Json;
 
 namespace InnerCore.Api.DeConz.Models.Sensors
@@ -19,7 +19,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         ZLLPresenceState,
         ZLLSwitchState,
         ZLLTemperatureState,
-        ZLLPressureState
+        ZLLPressureState,
+        ZHAAlarmState
     {
         [JsonProperty("buttonevent")]
         public int? ButtonEvent { get; set; }
@@ -56,5 +57,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
 
         [JsonProperty("pressure")]
         public int? Pressure { get; set; }
+
+        [JsonProperty("alarm")]
+        public bool? Alarm { get; set; }
     }
 }

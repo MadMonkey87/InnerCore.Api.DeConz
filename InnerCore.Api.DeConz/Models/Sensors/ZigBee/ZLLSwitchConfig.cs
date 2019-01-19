@@ -1,4 +1,4 @@
-﻿namespace InnerCore.Api.DeConz.Models.Sensors.ZigBee
+﻿namespace InnerCore.Api.DeConz.Models.Sensors.Zigbee
 {
     public interface ZLLSwitchConfig : IGeneralSensorConfig
     {
