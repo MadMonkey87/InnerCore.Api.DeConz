@@ -8,7 +8,7 @@ namespace InnerCore.Api.DeConz.Models.Sensors
     public class SensorState : ICommandBody,
         CLIPGenericFlagState,
         CLIPGenericStatusState,
-        CLIPHumidityState,
+        ZHAHumidityState,
         CLIPLightlevelState,
         CLIPOpenCloseState,
         CLIPPresenceState,
