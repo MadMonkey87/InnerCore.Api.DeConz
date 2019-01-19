@@ -6,12 +6,12 @@ namespace InnerCore.Api.DeConz.Models.Bridge
     [DataContract]
     public class ChangePasswordRequest
     {
-        public ChangePasswordRequest(string usename, string oldPassword, string newPassword)
+        public ChangePasswordRequest(string username, string oldPassword, string newPassword)
         {
-            UserName = usename;
+            UserName = username;
 
-            OldPasswordHash = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"{usename}:{oldPassword}"));
-            NewPasswordHash = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"{usename}:{newPassword}"));
+            OldPasswordHash = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"{username}:{oldPassword}"));
+            NewPasswordHash = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"{username}:{newPassword}"));
         }
 
         public ChangePasswordRequest(string oldPassword, string newPassword) : this(Constants.DEFAULT_USERNAME, oldPassword, newPassword)

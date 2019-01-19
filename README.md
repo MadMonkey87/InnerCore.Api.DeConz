@@ -1,4 +1,4 @@
-InnerCore.Api.DeConz [![Build Status][azure build]][project]	[![NuGet][nuget badge]][nuget package]
+InnerCore.Api.DeConz [![Build Status][azure build]][project]	[![NuGet][nuget badge]][nuget package]	  [![.NET Standard][dotnet-standard badge]][dotnet-standard doc]
 ====================
 
 Open source library for communication with the Dresden Elektronik DeConz bridge.
@@ -10,10 +10,6 @@ Note however, that
  - not all features of the Philips Hue api are supported as they are not supported by DeConz either
  - some objects might be missing some properties/features if they are not supported by DeConz
  - some objects have additional properties/features specific to DeConz
-
- requirements:
-  - dotnet core 2.2
-  - DeConz 2.05.54 or later (earlier versions might work too)
 
 ## State
 The project is currently in it's alpha state:
@@ -122,3 +118,5 @@ Contributions are welcome. Fork this repository and send a pull request if you h
 [project]: https://github.com/MadMonkey87/InnerCore.Api.DeConz
 [nuget badge]: https://img.shields.io/nuget/v/InnerCore.Api.DeConz.svg
 [nuget package]: https://www.nuget.org/packages/InnerCore.Api.DeConz
+[dotnet-standard badge]: http://img.shields.io/badge/.NET_Standard-v2.0-green.svg
+[dotnet-standard doc]: https://docs.microsoft.com/da-dk/dotnet/articles/standard/library

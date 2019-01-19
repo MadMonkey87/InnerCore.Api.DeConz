@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+	<TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Philippe Wechsler</Authors>
     <Company>InnerCore</Company>
     <Description>A simple library to communicate with DeConz Zigbee Gateway</Description>

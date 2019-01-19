@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>InnerCore.Api.DeConz</id>
-    <version>0.5-beta</version>
+    <version>1.0</version>
     <title>InnerCore.Api.DeConz</title>
     <authors>Philippe Wechsler</authors>
     <owners>Philippe Wechsler</owners>
@@ -10,12 +10,12 @@
     <projectUrl>https://github.com/MadMonkey87/InnerCore.Api.DeConz</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A simple library to communicate with DeConz Zigbee Gateway</description>
-    <releaseNotes>password management, update firmware/software, scan/reset/identify devices</releaseNotes>
+    <releaseNotes>initial public release</releaseNotes>
     <copyright>Copyright 2019 Philippe Wechsler</copyright>
     <tags>deconz zigbee sensor</tags>
 	<repository type="GitHub" url="https://github.com/MadMonkey87/InnerCore.Api.DeConz" />
 	<dependencies>
-		<group targetFramework="netcoreapp2.2">
+		<group targetFramework="netstandard2.0">
 			<dependency id="Newtonsoft.Json" version="12.0.1" />
 		</group>
 	</dependencies>
