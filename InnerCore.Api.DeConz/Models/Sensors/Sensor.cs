@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using InnerCore.Api.DeConz.Models.Sensors.CLIP;
 using InnerCore.Api.DeConz.Models.Sensors.Zigbee;
+using InnerCore.Api.DeConz.Models.Sensors.Xiaomi;
 
 namespace InnerCore.Api.DeConz.Models.Sensors
 {
@@ -21,7 +22,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         ZHAAlarm,
         ZHACarbonMonoxide,
         ZHAFire,
-        IASZone
+        IASZone,
+        GenericXiaomi
     {
         [JsonProperty("state")]
         public SensorState State { get; set; }

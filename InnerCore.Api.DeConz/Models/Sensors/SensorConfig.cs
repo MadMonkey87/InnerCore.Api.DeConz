@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using InnerCore.Api.DeConz.Models.Sensors.CLIP;
+using InnerCore.Api.DeConz.Models.Sensors.Xiaomi;
 using InnerCore.Api.DeConz.Models.Sensors.Zigbee;
 using Newtonsoft.Json;
 
@@ -22,7 +23,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         ZHAAlarmConfig,
         ZHACarbonMonoxideConfig,
         ZHAFireConfig,
-        IASZoneConfig
+        IASZoneConfig,
+        GenericXiaomiConfig
     {
         [JsonProperty("alert")]
         public string Alert { get; set; }
@@ -77,5 +79,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
 
         [JsonProperty("group")]
         public int? Group { get; set; }
+
+        [JsonProperty("temperature")]
+        public int? Temperature { get; set; }
     }
 }
