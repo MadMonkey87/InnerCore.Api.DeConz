@@ -24,7 +24,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         ZHACarbonMonoxideConfig,
         ZHAFireConfig,
         IASZoneConfig,
-        GenericXiaomiConfig
+        GenericXiaomiConfig,
+        ZHAWaterConfig
     {
         [JsonProperty("alert")]
         public string Alert { get; set; }
