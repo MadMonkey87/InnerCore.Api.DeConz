@@ -76,5 +76,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
 
         [JsonProperty("lowbattery")]
         public bool? LowBattery { get; set; }
+
+        [JsonProperty("tampered")]
+        public bool? Tampered { get; set; }
     }
 }

@@ -3,5 +3,7 @@
     public interface IASZoneState : IGeneralSensorState
     {
         bool? LowBattery { get; set; }
+
+        bool? Tampered { get; set; }
     }
 }
