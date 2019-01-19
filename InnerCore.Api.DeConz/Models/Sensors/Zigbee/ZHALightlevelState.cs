@@ -13,11 +13,6 @@
         long? LightLevel { get; set; }
 
         /// <summary>
-        /// lightlevel is at or below given dark threshold
-        /// </summary>
-        bool? Dark { get; set; }
-
-        /// <summary>
         /// lightlevel is at or above light threshold (dark+offset).
         /// </summary>
         bool? Daylight { get; set; }
