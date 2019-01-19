@@ -9,7 +9,7 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         CLIPGenericStatus,
         ZHAHumidity,
         ZHALightLevel,
-        CLIPOpenClose,
+        ZHAOpenClose,
         CLIPPresence,
         CLIPSwitch,
         CLIPTemperature,
