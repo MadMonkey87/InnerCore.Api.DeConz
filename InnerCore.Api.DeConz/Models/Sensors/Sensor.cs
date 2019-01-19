@@ -19,7 +19,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         ZLLSwitch,
         ZLLTemperature,
         ZLLPressure,
-        ZHAAlarm
+        ZHAAlarm,
+        ZHACarbonMonoxide
     {
         [JsonProperty("state")]
         public SensorState State { get; set; }

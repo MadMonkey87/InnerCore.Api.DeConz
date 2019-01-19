@@ -20,7 +20,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         ZLLSwitchState,
         ZLLTemperatureState,
         ZLLPressureState,
-        ZHAAlarmState
+        ZHAAlarmState,
+        ZHACarbonMonoxideState
     {
         [JsonProperty("buttonevent")]
         public int? ButtonEvent { get; set; }
@@ -60,5 +61,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
 
         [JsonProperty("alarm")]
         public bool? Alarm { get; set; }
+
+        [JsonProperty("carbonmonoxide")]
+        public bool? CarbonMonoxide { get; set; }
     }
 }
