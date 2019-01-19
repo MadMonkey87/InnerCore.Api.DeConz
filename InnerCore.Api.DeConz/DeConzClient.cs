@@ -126,7 +126,9 @@ namespace InnerCore.Api.DeConz
         {
             // return per-thread HttpClient
             if (_httpClient == null)
-                _httpClient = new HttpClient();
+            {
+                _httpClient = new HttpClient() { Timeout = TimeSpan.FromSeconds(Constants.TIMEOUT_IN_SECONDS) };
+            }
 
             return Task.FromResult(_httpClient);
         }
