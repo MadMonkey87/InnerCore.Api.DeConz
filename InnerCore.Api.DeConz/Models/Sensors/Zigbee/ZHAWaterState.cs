@@ -1,6 +1,6 @@
 ﻿namespace InnerCore.Api.DeConz.Models.Sensors.Zigbee
 {
-    public interface ZHAWater : IGeneralSensorState
+    public interface ZHAWaterState : IGeneralSensorState
     {
         bool? Water { get; set; }
     }

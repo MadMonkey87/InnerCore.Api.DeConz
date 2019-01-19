@@ -24,7 +24,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         ZHAFire,
         IASZone,
         GenericXiaomi,
-        ZHAWater
+        ZHAWater,
+        ZHAVibration
     {
         [JsonProperty("state")]
         public SensorState State { get; set; }

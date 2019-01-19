@@ -25,7 +25,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         ZHAFireState,
         IASZoneState,
         GenericXiaomiState,
-        ZHAWaterState
+        ZHAWaterState,
+        ZHAVibrationState
     {
         [JsonProperty("buttonevent")]
         public int? ButtonEvent { get; set; }
@@ -83,5 +84,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
 
         [JsonProperty("water")]
         public bool? Water { get; set; }
+
+        [JsonProperty("vibration")]
+        public bool? Vibration { get; set; }
     }
 }
