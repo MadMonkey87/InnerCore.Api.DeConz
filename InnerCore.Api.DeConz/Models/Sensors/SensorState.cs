@@ -26,7 +26,9 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         GenericXiaomiState,
         ZHAWaterState,
         ZHAVibrationState,
-        ZHAConsumptionState
+        ZHAConsumptionState,
+        ZHAPowerState,
+        ZGPSwitchState
     {
         [JsonProperty("buttonevent")]
         public int? ButtonEvent { get; set; }
@@ -93,5 +95,11 @@ namespace InnerCore.Api.DeConz.Models.Sensors
 
         [JsonProperty("power")]
         public int? Power { get; set; }
+
+        [JsonProperty("voltage")]
+        public int? Voltage { get; set; }
+
+        [JsonProperty("current")]
+        public int? Current { get; set; }
     }
 }
