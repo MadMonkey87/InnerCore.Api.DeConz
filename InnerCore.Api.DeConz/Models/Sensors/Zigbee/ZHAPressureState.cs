@@ -1,6 +1,6 @@
 ﻿namespace InnerCore.Api.DeConz.Models.Sensors.Zigbee
 {
-    public interface ZLLPressureState : IGeneralSensorState
+    public interface ZHAPressureState : IGeneralSensorState
     {
         /// <summary>
         /// Pressure measured in hPa

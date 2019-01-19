@@ -17,7 +17,7 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         ZHAPresence,
         ZLLSwitch,
         ZHATemperature,
-        ZLLPressure,
+        ZHAPressure,
         ZHAAlarm,
         ZHACarbonMonoxide,
         ZHAFire,
