@@ -13,6 +13,7 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         string Alert { get; set; }
 
         bool? Usertest { get; set; }
+
         string Url { get; set; }
 
         List<string> Pending { get; set; }

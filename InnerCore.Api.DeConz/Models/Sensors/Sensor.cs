@@ -17,7 +17,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         IZGPSwitch,
         ZLLPresence,
         ZLLSwitch,
-        ZLLTemperature
+        ZLLTemperature,
+        ZLLPressure
     {
         [JsonProperty("state")]
         public SensorState State { get; set; }

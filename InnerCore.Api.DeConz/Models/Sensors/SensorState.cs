@@ -18,18 +18,21 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         ZGPSwitchState,
         ZLLPresenceState,
         ZLLSwitchState,
-        ZLLTemperatureState
+        ZLLTemperatureState,
+        ZLLPressureState
     {
         [JsonProperty("buttonevent")]
         public int? ButtonEvent { get; set; }
 
         [JsonProperty("dark")]
         public bool? Dark { get; set; }
+
         [JsonProperty("daylight")]
         public bool? Daylight { get; set; }
 
         [JsonProperty("flag")]
         public bool? Flag { get; set; }
+
         [JsonProperty("humidity")]
         public int? Humidity { get; set; }
 
@@ -50,5 +53,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
 
         [JsonProperty("temperature")]
         public int? Temperature { get; set; }
+
+        [JsonProperty("pressure")]
+        public int? Pressure { get; set; }
     }
 }

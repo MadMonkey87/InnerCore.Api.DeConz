@@ -18,7 +18,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         ZGPSwitchConfig,
         ZLLPresenceConfig,
         ZLLSwitchConfig,
-        ZLLTemperatureConfig
+        ZLLTemperatureConfig,
+        ZLLPressureConfig
     {
         [JsonProperty("alert")]
         public string Alert { get; set; }
