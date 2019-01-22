@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 using InnerCore.Api.DeConz.Models.Sensors.CLIP;
 using InnerCore.Api.DeConz.Models.Sensors.Xiaomi;
 using InnerCore.Api.DeConz.Models.Sensors.Zigbee;
@@ -6,6 +7,7 @@ using Newtonsoft.Json;
 
 namespace InnerCore.Api.DeConz.Models.Sensors
 {
+    [DataContract]
     public class SensorConfig :
         CLIPGenericFlagConfig,
         CLIPGenericStatusConfig,

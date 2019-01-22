@@ -1,7 +1,9 @@
-﻿namespace InnerCore.Api.DeConz.Models.Sensors
+﻿using System;
+
+namespace InnerCore.Api.DeConz.Models.Sensors
 {
     public interface IGeneralSensorState
     {
-        string Lastupdated { get; set; }
+        DateTime? Lastupdated { get; set; }
     }
 }

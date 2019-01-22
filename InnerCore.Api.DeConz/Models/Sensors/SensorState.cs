@@ -1,4 +1,7 @@
-﻿using InnerCore.Api.DeConz.Interfaces;
+﻿using System;
+using System.Runtime.Serialization;
+using InnerCore.Api.DeConz.Converters;
+using InnerCore.Api.DeConz.Interfaces;
 using InnerCore.Api.DeConz.Models.Sensors.CLIP;
 using InnerCore.Api.DeConz.Models.Sensors.Xiaomi;
 using InnerCore.Api.DeConz.Models.Sensors.Zigbee;
@@ -6,6 +9,7 @@ using Newtonsoft.Json;
 
 namespace InnerCore.Api.DeConz.Models.Sensors
 {
+    [DataContract]
     public class SensorState : ICommandBody,
         CLIPGenericFlagState,
         CLIPGenericStatusState,
@@ -46,7 +50,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         public int? Humidity { get; set; }
 
         [JsonProperty("lastupdated")]
-        public string Lastupdated { get; set; }
+        [JsonConverter(typeof(NullableDateTimeConverter))]
+        public DateTime? Lastupdated { get; set; }
 
         [JsonProperty("lux")]
         public long? Lux { get; set; }

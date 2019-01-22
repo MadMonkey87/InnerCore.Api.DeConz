@@ -1,4 +1,6 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
+using InnerCore.Api.DeConz.Converters;
 using InnerCore.Api.DeConz.Models.Sensors;
 using Newtonsoft.Json;
 
@@ -10,7 +12,8 @@ namespace InnerCore.Api.DeConz.Models.Groups
         public SensorState State { get; set; }
 
         [JsonProperty("lastupdated")]
-        public string Lastupdated { get; set; }
+        [JsonConverter(typeof(NullableDateTimeConverter))]
+        public DateTime? Lastupdated { get; set; }
 
         [JsonProperty("dark")]
         public bool Dark { get; set; }

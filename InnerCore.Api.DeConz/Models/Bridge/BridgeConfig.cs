@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
+using InnerCore.Api.DeConz.Converters;
+using Newtonsoft.Json;
 
 namespace InnerCore.Api.DeConz.Models.Bridge
 {
@@ -29,10 +32,9 @@ namespace InnerCore.Api.DeConz.Models.Bridge
         [DataMember(Name = "gateway")]
         public string Gateway { get; set; }
 
-        //Cant be a DateTime? because when value is not available, DeConzBridge sends value "none"
-        //TODO: Create custom json deserializer
         [DataMember(Name = "UTC")]
-        public string Utc { get; set; }
+        [JsonConverter(typeof(NullableDateTimeConverter))]
+        public DateTime? Utc { get; set; }
 
         [DataMember(Name = "swversion")]
         public string SoftwareVersion { get; set; }
@@ -52,9 +54,8 @@ namespace InnerCore.Api.DeConz.Models.Bridge
         [DataMember(Name = "apiversion")]
         public string ApiVersion { get; set; }
 
-        //Cant be a DateTime? because when value is not available, DeConzBridge sends value "none"
-        //TODO: Create custom json deserializer
         [DataMember(Name = "localtime")]
+        [JsonConverter(typeof(NullableDateTimeConverter))]
         public string LocalTime { get; set; }
 
         [DataMember(Name = "timezone")]

@@ -1,4 +1,6 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
+using InnerCore.Api.DeConz.Converters;
 using Newtonsoft.Json;
 
 namespace InnerCore.Api.DeConz.Models.Groups
@@ -9,7 +11,8 @@ namespace InnerCore.Api.DeConz.Models.Groups
         public State State { get; set; }
 
         [JsonProperty("lastupdated")]
-        public string Lastupdated { get; set; }
+        [JsonConverter(typeof(NullableDateTimeConverter))]
+        public DateTime? Lastupdated { get; set; }
 
         [JsonProperty("presence")]
         public bool Presence { get; set; }

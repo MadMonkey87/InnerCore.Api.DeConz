@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using InnerCore.Api.DeConz.Converters;
 
 namespace InnerCore.Api.DeConz.Models.Touchlink
 {
@@ -13,7 +15,8 @@ namespace InnerCore.Api.DeConz.Models.Touchlink
         public ScanState State { get; set; }
 
         [JsonProperty("lastscan")]
-        public string LastScanned { get; set; }
+        [JsonConverter(typeof(NullableDateTimeConverter))]
+        public DateTime? LastScanned { get; set; }
 
         [JsonProperty("result")]
         public Dictionary<string, DiscoveredDevice> DiscoveredDevices { get; set; }

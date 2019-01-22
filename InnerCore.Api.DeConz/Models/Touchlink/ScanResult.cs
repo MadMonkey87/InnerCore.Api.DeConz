@@ -23,7 +23,7 @@ namespace InnerCore.Api.DeConz.Models.Touchlink
 
         public ScanState State { get; set; }
 
-        public string LastScanned { get; set; }
+        public DateTime? LastScanned { get; set; }
 
         public IEnumerable<DiscoveredDevice> DiscoveredDevices { get; private set; }
     }

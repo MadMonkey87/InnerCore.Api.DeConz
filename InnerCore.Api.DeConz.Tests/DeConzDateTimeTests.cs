@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using InnerCore.Api.DeConz.Converters;
 using InnerCore.Api.DeConz.Models;
 using InnerCore.Api.DeConz.Models.Schedule;

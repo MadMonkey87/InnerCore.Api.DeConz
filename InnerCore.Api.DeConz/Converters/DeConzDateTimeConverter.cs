@@ -31,59 +31,64 @@ namespace InnerCore.Api.DeConz.Converters
                 return;
             }
 
-            DeConzDateTime DeConzDateTime = value as DeConzDateTime;
-            if (DeConzDateTime == null)
+            if (!(value is DeConzDateTime deConzDateTime))
             {
                 return;
             }
 
             //DateTime
-            if (DeConzDateTime.DateTime != null && DeConzDateTime.DateTime.HasValue)
+            if (deConzDateTime.DateTime != null)
             {
-                dateTimeValue = DeConzDateTime.DateTime.Value.ToString("yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
+                dateTimeValue = deConzDateTime.DateTime.Value.ToString("yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
             }
+
             //RandomTime
-            if (DeConzDateTime.RandomizedTime != null && DeConzDateTime.RandomizedTime.HasValue)
+            if (deConzDateTime.RandomizedTime != null)
             {
-                randomTimeValue = "A" + DeConzDateTime.RandomizedTime.Value.ToString("hh\\:mm\\:ss");
+                randomTimeValue = "A" + deConzDateTime.RandomizedTime.Value.ToString("hh\\:mm\\:ss");
             }
+
             //TimerTime
-            if (DeConzDateTime.TimerTime != null && DeConzDateTime.TimerTime.HasValue)
+            if (deConzDateTime.TimerTime != null)
             {
-                timerTimeValue = "T" + DeConzDateTime.TimerTime.Value.ToString("hh\\:mm\\:ss");
+                timerTimeValue = "T" + deConzDateTime.TimerTime.Value.ToString("hh\\:mm\\:ss");
             }
+
             //Days recurring
-            if (DeConzDateTime.RecurringDay != RecurringDay.RecurringNone)
+            if (deConzDateTime.RecurringDay != RecurringDay.RecurringNone)
             {
-                daysRecurring = string.Format("W{0}", Convert.ToString((int)DeConzDateTime.RecurringDay));
+                daysRecurring = $"W{Convert.ToString((int) deConzDateTime.RecurringDay)}";
             }
+
             //Recurrences
-            if (DeConzDateTime.NumberOfRecurrences != null && DeConzDateTime.NumberOfRecurrences.HasValue)
+            if (deConzDateTime.NumberOfRecurrences != null)
             {
-                recurrences = string.Format("R{0}", Convert.ToString(DeConzDateTime.NumberOfRecurrences.Value));
+                recurrences = $"R{Convert.ToString(deConzDateTime.NumberOfRecurrences.Value)}";
             }
 
             if (!string.IsNullOrEmpty(daysRecurring) && !string.IsNullOrEmpty(timerTimeValue))//recurrenceday with a timerTime
             {
-                returnValue = string.Format("{0}/{1}{2}", daysRecurring, timerTimeValue, randomTimeValue);
+                returnValue = $"{daysRecurring}/{timerTimeValue}{randomTimeValue}";
             }
+
             else if (!string.IsNullOrEmpty(daysRecurring) && !string.IsNullOrEmpty(dateTimeValue))//recurrenceday with a dateTimeValue
             {
                 throw new Exception("Please set TimerTime when using RecurringDay");
             }
+
             else if (!string.IsNullOrEmpty(timerTimeValue))// (timertime only when in timers and weekdays)
             {
-                returnValue = string.Format("P{0}{1}", timerTimeValue, randomTimeValue);
+                returnValue = $"P{timerTimeValue}{randomTimeValue}";
 
                 //Recurrences (only with timers)
                 if (!string.IsNullOrEmpty(recurrences))
                 {
-                    returnValue = string.Format("{0}/{1}", recurrences, returnValue);
+                    returnValue = $"{recurrences}/{returnValue}";
                 }
             }
             else
             {
-                returnValue = string.Format("{0}{1}{2}", daysRecurring, dateTimeValue, randomTimeValue);
+                returnValue = $"{daysRecurring}{dateTimeValue}{randomTimeValue}";
             }
 
             writer.WriteValue(returnValue);
@@ -108,10 +113,10 @@ namespace InnerCore.Api.DeConz.Converters
                 var groups = Regex.Match(rawValue, @"(?<date>[0-9\-]+)T(?<time>[0-9:]+)(A(?<randomtime>[0-9:]+))?").Groups;
                 if (groups.Count != 1)
                 {
-                    deconzValueDate.DateTime = DateTime.ParseExact(groups["date"].Value + "T" + groups["time"].Value, "yyyy-MM-ddTHH:mm:ss", (IFormatProvider)base.Culture, base.DateTimeStyles);
+                    deconzValueDate.DateTime = DateTime.ParseExact(groups["date"].Value + "T" + groups["time"].Value, "yyyy-MM-ddTHH:mm:ss", Culture, DateTimeStyles);
                     if (groups["randomtime"].Success)
                     {
-                        deconzValueDate.RandomizedTime = TimeSpan.ParseExact(groups["randomtime"].Value, "hh\\:mm\\:ss", (IFormatProvider)base.Culture);
+                        deconzValueDate.RandomizedTime = TimeSpan.ParseExact(groups["randomtime"].Value, "hh\\:mm\\:ss", Culture);
                     }
 
                     return deconzValueDate;
@@ -124,11 +129,11 @@ namespace InnerCore.Api.DeConz.Converters
                 if (groups.Count != 1)
                 {
                     deconzValueDate.RecurringDay = (RecurringDay)Convert.ToInt32(groups["daysrecurring"].Value);
-                    deconzValueDate.TimerTime = TimeSpan.ParseExact(groups["time"].Value, "hh\\:mm\\:ss", (IFormatProvider)base.Culture);
+                    deconzValueDate.TimerTime = TimeSpan.ParseExact(groups["time"].Value, "hh\\:mm\\:ss", Culture);
 
                     if (groups["randomtime"].Success)
                     {
-                        deconzValueDate.RandomizedTime = TimeSpan.ParseExact(groups["randomtime"].Value, "hh\\:mm\\:ss", (IFormatProvider)base.Culture);
+                        deconzValueDate.RandomizedTime = TimeSpan.ParseExact(groups["randomtime"].Value, "hh\\:mm\\:ss", Culture);
                     }
 
                     return deconzValueDate;
@@ -138,11 +143,11 @@ namespace InnerCore.Api.DeConz.Converters
             //timers (optional recurrences and random time)
             {
                 var groups = Regex.Match(rawValue, @"(R(?<recurrence>\d{2})/)?PT(?<timertime>[0-9:]+)(A(?<randomtime>[0-9:]+))?").Groups;
-                deconzValueDate.TimerTime = TimeSpan.ParseExact(groups["timertime"].Value, "hh\\:mm\\:ss", (IFormatProvider)base.Culture);
+                deconzValueDate.TimerTime = TimeSpan.ParseExact(groups["timertime"].Value, "hh\\:mm\\:ss", Culture);
 
                 if (groups["randomtime"].Success)
                 {
-                    deconzValueDate.RandomizedTime = TimeSpan.ParseExact(groups["randomtime"].Value, "hh\\:mm\\:ss", (IFormatProvider)base.Culture);
+                    deconzValueDate.RandomizedTime = TimeSpan.ParseExact(groups["randomtime"].Value, "hh\\:mm\\:ss", Culture);
                 }
                 if (groups["recurrence"].Success)
                 {

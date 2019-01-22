@@ -26,6 +26,5 @@ namespace InnerCore.Api.DeConz.Converters
         {
             return (t.GetTypeInfo().IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>));
         }
-
     }
 }

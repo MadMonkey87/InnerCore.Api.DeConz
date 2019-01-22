@@ -1,4 +1,7 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
+using InnerCore.Api.DeConz.Converters;
+using Newtonsoft.Json;
 
 namespace InnerCore.Api.DeConz.Models.Bridge
 {
@@ -72,7 +75,8 @@ namespace InnerCore.Api.DeConz.Models.Bridge
         /// Set the UTC time of the gateway (only on Raspbery Pi) in ISO 8601 format (yyyy-MM-ddTHH:mm:ss).
         /// </summary>
         [DataMember(Name = "utc")]
-        public string Utc { get; set; }
+        [JsonConverter(typeof(NullableDateTimeConverter))]
+        public DateTime? Utc { get; set; }
 
         /// <summary>
         /// Can be used to store the timeformat permanently.

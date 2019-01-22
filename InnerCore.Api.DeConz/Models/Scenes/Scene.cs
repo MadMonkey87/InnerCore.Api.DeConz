@@ -42,7 +42,6 @@ namespace InnerCore.Api.DeConz.Models.Scenes
         [DataMember(Name = "recycle")]
         public bool? Recycle { get; set; }
 
-
         /// <summary>
         /// Indicates that the scene is locked by a rule or a schedule and cannot be deleted until all resources requiring or that reference the scene are deleted.
         /// </summary>
@@ -53,6 +52,7 @@ namespace InnerCore.Api.DeConz.Models.Scenes
         public int? Version { get; set; }
 
         [DataMember(Name = "lastupdated")]
+        [JsonConverter(typeof(NullableDateTimeConverter))]
         public DateTime? LastUpdated { get; set; }
 
         [DataMember(Name = "storelightstate")]
@@ -76,7 +76,5 @@ namespace InnerCore.Api.DeConz.Models.Scenes
         /// </summary>
         [DataMember(Name = "group")]
         public string Group { get; set; }
-
-
     }
 }

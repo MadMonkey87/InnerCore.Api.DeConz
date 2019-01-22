@@ -27,6 +27,5 @@ namespace InnerCore.Api.DeConz.Models.Scenes
 
         [DataMember(Name = "storelightstate")]
         public bool? StoreLightState { get; set; }
-
     }
 }

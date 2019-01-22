@@ -6,17 +6,6 @@ Open source library for communication with the Dresden Elektronik DeConz bridge.
 As the DeConz api is very similar to the Philips Hue api, its usage should be similar too.
 This library is therefore adapted from the Q42.HueApi so the usage is also very simlar.
 
-Note however, that
- - not all features of the Philips Hue api are supported as they are not supported by DeConz either
- - some objects might be missing some properties/features if they are not supported by DeConz
- - some objects have additional properties/features specific to DeConz
-
-## State
-The project is currently in it's alpha state:
- - not all features have been tested (especially scenes, rules and schedules)
- - there might be further missing features/properties and some properties that are not supported by DeConz might still be there
- - touch-link is currently not supported
-
 ## How to use?
 Some basic usage examples -> you might also check [Q42.HueApi on GitHub](https://github.com/Q42/Q42.HueApi).
 

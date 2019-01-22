@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using InnerCore.Api.DeConz.Converters;
 using InnerCore.Api.DeConz.Models.Schedule;
+using Newtonsoft.Json;
 
 namespace InnerCore.Api.DeConz.Models.Rules
 {
@@ -14,9 +16,11 @@ namespace InnerCore.Api.DeConz.Models.Rules
         public string Name { get; set; }
 
         [DataMember(Name = "Lasttriggered")]
-        public string LastTriggered { get; set; } //Can be "none", so don't convert to DateTime
+        [JsonConverter(typeof(NullableDateTimeConverter))]
+        public DateTime? LastTriggered { get; set; }
 
         [DataMember(Name = "creationtime")]
+        [JsonConverter(typeof(NullableDateTimeConverter))]
         public DateTime? CreationTime { get; set; }
 
         [DataMember(Name = "timestriggered")]
