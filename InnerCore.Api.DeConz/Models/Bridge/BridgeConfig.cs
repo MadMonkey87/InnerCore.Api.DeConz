@@ -56,7 +56,7 @@ namespace InnerCore.Api.DeConz.Models.Bridge
 
         [DataMember(Name = "localtime")]
         [JsonConverter(typeof(NullableDateTimeConverter))]
-        public string LocalTime { get; set; }
+        public DateTime? LocalTime { get; set; }
 
         [DataMember(Name = "timezone")]
         public string TimeZone { get; set; }
