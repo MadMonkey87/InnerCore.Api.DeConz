@@ -6,7 +6,7 @@
 
         string Name { get; set; }
 
-        string Type { get; set; }
+        SensorType? Type { get; set; }
 
         string ModelId { get; set; }
 

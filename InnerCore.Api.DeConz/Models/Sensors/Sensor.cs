@@ -2,6 +2,7 @@
 using InnerCore.Api.DeConz.Models.Sensors.CLIP;
 using InnerCore.Api.DeConz.Models.Sensors.Zigbee;
 using InnerCore.Api.DeConz.Models.Sensors.Xiaomi;
+using InnerCore.Api.DeConz.Converters;
 
 namespace InnerCore.Api.DeConz.Models.Sensors
 {
@@ -51,7 +52,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         public string SwVersion { get; set; }
 
         [JsonProperty("type")]
-        public string Type { get; set; }
+        [JsonConverter(typeof(StringNullableEnumConverter))]
+        public SensorType? Type { get; set; }
 
         [JsonProperty("uniqueid")]
         public string UniqueId { get; set; }
