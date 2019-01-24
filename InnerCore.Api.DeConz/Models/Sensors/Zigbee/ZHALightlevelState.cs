@@ -17,5 +17,9 @@
         /// </summary>
         bool? Daylight { get; set; }
 
+        /// <summary>
+        /// lightlevel is at or below given dark threshold
+        /// </summary>
+        bool? Dark { get; set; }
     }
 }
