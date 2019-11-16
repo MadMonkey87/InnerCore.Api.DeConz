@@ -3,5 +3,7 @@
     public interface ZHASwitchState : IGeneralSensorState
     {
         int? ButtonEvent { get; set; }
+
+        int? Gesture { get; set; }
     }
 }

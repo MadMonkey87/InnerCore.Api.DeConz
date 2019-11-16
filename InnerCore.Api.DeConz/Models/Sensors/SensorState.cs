@@ -38,6 +38,9 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         [JsonProperty("buttonevent")]
         public int? ButtonEvent { get; set; }
 
+        [JsonProperty("gesture")]
+        public int? Gesture { get; set; }
+
         [JsonProperty("dark")]
         public bool? Dark { get; set; }
 
