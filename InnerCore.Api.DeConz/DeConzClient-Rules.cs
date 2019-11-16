@@ -33,7 +33,7 @@ namespace InnerCore.Api.DeConz
             JToken token = JToken.Parse(stringResult);
             if (token.Type == JTokenType.Object)
             {
-                //Each property is a scene
+                //Each property is a rule
                 var jsonResult = (JObject)token;
 
                 foreach (var prop in jsonResult.Properties())
