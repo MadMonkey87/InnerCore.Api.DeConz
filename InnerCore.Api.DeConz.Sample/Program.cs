@@ -41,7 +41,8 @@ namespace InnerCore.Api.DeConz.Sample
             var client = new DeConzClient(locatedBridge.InternalIpAddress, locatedBridge.InternalPort);
 
             // retrieve an appkey
-
+            // note: if you already have an appkey you can either supply it in the constructor of the client or call client.Initialize(appkey)
+   
             var appkey = string.Empty;
 
             while(appkey == string.Empty)
