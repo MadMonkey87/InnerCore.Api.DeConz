@@ -2,5 +2,8 @@
 {
     public interface ZHAVibrationConfig : IGeneralSensorConfig
     {
+        int? Sensitivity { get; set; }
+
+        int? SensitivityMax { get; set; }
     }
 }

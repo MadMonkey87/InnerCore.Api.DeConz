@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using InnerCore.Api.DeConz.Converters;
 using InnerCore.Api.DeConz.Interfaces;
@@ -36,6 +37,9 @@ namespace InnerCore.Api.DeConz.Models.Sensors
     {
         [JsonProperty("buttonevent")]
         public int? ButtonEvent { get; set; }
+
+        [JsonProperty("gesture")]
+        public int? Gesture { get; set; }
 
         [JsonProperty("dark")]
         public bool? Dark { get; set; }
@@ -94,6 +98,15 @@ namespace InnerCore.Api.DeConz.Models.Sensors
 
         [JsonProperty("vibration")]
         public bool? Vibration { get; set; }
+
+        [JsonProperty("vibrationstrength")]
+        public int? VibrationStrength { get; set; }
+
+        [JsonProperty("tiltangle")]
+        public int? TiltAngle { get; set; }
+
+        [JsonProperty("orientation")]
+        public IEnumerable<int> Orientation { get; set; }
 
         [JsonProperty("consumption")]
         public int? Consumption { get; set; }
