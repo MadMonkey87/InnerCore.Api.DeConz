@@ -20,6 +20,7 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         ZHAPresenceConfig,
         ZHASwitchConfig,
         ZHATemperatureConfig,
+        ZHAThermostatConfig,
         ZHAPressureConfig,
         ZHAAlarmConfig,
         ZHACarbonMonoxideConfig,
@@ -88,5 +89,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
 
         [JsonProperty("temperature")]
         public int? Temperature { get; set; }
+
+        [JsonProperty("heatsetpoint")]
+        public int? HeatSetPoint { get; set; }
     }
 }

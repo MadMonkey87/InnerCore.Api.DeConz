@@ -23,6 +23,7 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         ZHAPresenceState,
         ZHASwitchState,
         ZHATemperatureState,
+        ZHAThermostatState,
         ZHAPressureState,
         ZHAAlarmState,
         ZHACarbonMonoxideState,
@@ -119,5 +120,8 @@ namespace InnerCore.Api.DeConz.Models.Sensors
 
         [JsonProperty("current")]
         public int? Current { get; set; }
+
+        [JsonProperty("on")]
+        public bool? On { get; set; }
     }
 }
