@@ -57,7 +57,7 @@ namespace InnerCore.Api.DeConz
                 {
                     try
                     {
-                        var buffer = WebSocket.CreateClientBuffer(Constants.WEB_SOCKET_BUFFER_SIZE, 1);
+                        var buffer = WebSocket.CreateClientBuffer(Constants.WEB_SOCKET_BUFFER_SIZE, Constants.WEB_SOCKET_BUFFER_SIZE);
                         var result = await webSocket.ReceiveAsync(buffer, CancellationToken.None);
 
                         if (result.MessageType == WebSocketMessageType.Close)
