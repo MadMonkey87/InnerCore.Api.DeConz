@@ -56,7 +56,9 @@ namespace InnerCore.Api.DeConz.Models
         /// </summary>
         [DataMember(Name = "colorloopspeed")]
         public int ColorLoopSpeed { get; set; }
-
+        
+        [DataMember(Name = "scene")]
+        public string Scene { get; set; }
         #endregion
     }
 }

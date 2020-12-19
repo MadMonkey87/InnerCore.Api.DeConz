@@ -1,4 +1,5 @@
 ﻿using InnerCore.Api.DeConz.Converters;
+using InnerCore.Api.DeConz.Models.Scenes;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -35,6 +36,9 @@ namespace InnerCore.Api.DeConz.Models.Groups
 
         [DataMember(Name = "state")]
         public GroupState State { get; set; }
+
+        [DataMember(Name = "scenes")]
+        public List<Scene> Scenes { get; set; }
 
         #region DeConz specific
 
