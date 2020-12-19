@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{88C4C684-92D6-4FD8-922E-F942DB2D615A}</ProjectGuid>
+    <ProjectGuid>{B4B69965-2C54-4D0B-B352-9AC733893381}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>DeconzTestConsole</RootNamespace>
-    <AssemblyName>DeconzTestConsole</AssemblyName>
+    <RootNamespace>InnerCore.Api.DeConz.TestConsole</RootNamespace>
+    <AssemblyName>InnerCore.Api.DeConz.TestConsole</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

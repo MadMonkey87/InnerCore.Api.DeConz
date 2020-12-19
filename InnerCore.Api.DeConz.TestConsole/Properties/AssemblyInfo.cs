@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Allgemeine Informationen über eine Assembly werden über die folgenden
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyTitle("DeconzTestConsole")]
+[assembly: AssemblyTitle("InnerCore.Api.DeConz.TestConsole")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DeconzTestConsole")]
+[assembly: AssemblyProduct("InnerCore.Api.DeConz.TestConsole")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Die folgende GUID bestimmt die ID der Typbibliothek, wenn dieses Projekt für COM verfügbar gemacht wird
-[assembly: Guid("88c4c684-92d6-4fd8-922e-f942db2d615a")]
+[assembly: Guid("b4b69965-2c54-4d0b-b352-9ac733893381")]
 
 // Versionsinformationen für eine Assembly bestehen aus den folgenden vier Werten:
 //

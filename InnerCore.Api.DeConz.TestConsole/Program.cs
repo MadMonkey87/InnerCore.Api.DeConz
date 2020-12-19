@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeconzTestConsole
+namespace InnerCore.Api.DeConz.TestConsole
 {
     class Program
     {
