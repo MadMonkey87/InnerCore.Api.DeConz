@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,6 +51,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InnerCore.Api.DeConz.ColorConverters\InnerCore.Api.DeConz.ColorConverters.csproj">
+      <Project>{9dc3c64c-8c3b-4969-b47b-ba64d77627f8}</Project>
+      <Name>InnerCore.Api.DeConz.ColorConverters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InnerCore.Api.deConz\InnerCore.Api.DeConz.csproj">
+      <Project>{f3b5930e-f106-429a-9343-9ce27ec6e0b2}</Project>
+      <Name>InnerCore.Api.DeConz</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
