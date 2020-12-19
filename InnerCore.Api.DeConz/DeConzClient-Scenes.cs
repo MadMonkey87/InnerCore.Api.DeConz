@@ -16,18 +16,27 @@ namespace InnerCore.Api.DeConz
     /// </summary>
     public partial class DeConzClient
     {
-
+        /// <summary>
+        /// Asynchronously gets all scenes by Group Id
+        /// </summary>
+        /// <param name="groupId"></param>
+        /// <returns>An enumerable of <see cref="Scene"/>s registered with the bridge.</returns>
+        public async Task<IReadOnlyCollection<Scene>> GetScenesAsync(int groupId)
+        {
+            return await GetScenesAsync(groupId.ToString());
+        }
 
         /// <summary>
-        /// Asynchronously gets all scenes registered with the bridge.
+        /// Asynchronously gets all scenes by Group Id
         /// </summary>
+        /// <param name="roomId"></param>
         /// <returns>An enumerable of <see cref="Scene"/>s registered with the bridge.</returns>
-        public async Task<IReadOnlyCollection<Scene>> GetScenesAsync()
+        public async Task<IReadOnlyCollection<Scene>> GetScenesAsync(string groupId)
         {
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}scenes", ApiBase))).ConfigureAwait(false);
+            string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}groups/{1}/scenes", ApiBase, groupId))).ConfigureAwait(false);
 
             List<Scene> results = new List<Scene>();
 
@@ -219,8 +228,8 @@ namespace InnerCore.Api.DeConz
                 throw new ArgumentNullException(nameof(sceneId));
 
             var groupCommand = new SceneCommand() { Scene = sceneId };
-
-            return this.SendGroupCommandAsync(groupCommand, groupId);
+            
+            return this.SendGroupCommandForScenesAsync(groupCommand, groupId);
 
         }
 
@@ -228,14 +237,14 @@ namespace InnerCore.Api.DeConz
         /// Deletes a scene
         /// </summary>
         /// <param name="sceneId"></param>
+        /// <param name="groupid"></param>
         /// <returns></returns>
-        public async Task<DeConzResults> DeleteSceneAsync(string sceneId)
+        public async Task<DeConzResults> DeleteSceneAsync(string sceneId, string groupid)
         {
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var result = await client.DeleteAsync(new Uri(String.Format("{0}scenes/{1}", ApiBase, sceneId))).ConfigureAwait(false);
-
+            var result = await client.DeleteAsync(new Uri(String.Format("{0}groups/{1}/scenes/{2}", ApiBase,groupid, sceneId))).ConfigureAwait(false);
             string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return DeserializeDefaultDeConzResult(jsonResult);

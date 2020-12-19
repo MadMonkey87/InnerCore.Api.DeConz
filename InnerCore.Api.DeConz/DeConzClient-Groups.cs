@@ -1,6 +1,7 @@
 ﻿using InnerCore.Api.DeConz.Interfaces;
 using InnerCore.Api.DeConz.Models;
 using InnerCore.Api.DeConz.Models.Groups;
+using InnerCore.Api.DeConz.Models.Scenes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -85,6 +86,27 @@ namespace InnerCore.Api.DeConz
             string jsonCommand = JsonConvert.SerializeObject(command, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
 
             return SendGroupCommandAsync(jsonCommand, group);
+        }
+        /// <summary>
+        /// Send Scene command to a group
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="group"></param>
+        /// <returns></returns>
+        private async Task<DeConzResults> SendGroupCommandForScenesAsync(SceneCommand command, string group = "0") //Group 0 contains all the lights
+        {
+            if (command == null)
+                throw new ArgumentNullException(nameof(command));
+
+            CheckInitialized();
+
+            HttpClient client = await GetHttpClient().ConfigureAwait(false);
+            var result = await client.PutAsync(new Uri(ApiBase + string.Format("groups/{0}/scenes/{1}/recall", group, command.Scene)), null).ConfigureAwait(false);
+
+            string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+            return DeserializeDefaultDeConzResult(jsonResult);
+
         }
 
         /// <summary>
