@@ -25,11 +25,33 @@ namespace InnerCore.Api.DeConz
         {
             return await GetScenesAsync(groupId.ToString());
         }
+        /// <summary>
+        /// Asynchronously gets all scenes by Group Name
+        /// </summary>
+        /// <param name="groupId"></param>
+        /// <param name="asStartWith">true = startWith / False = 1:1</param>
+        /// <returns>An enumerable of <see cref="Scene"/>s registered with the bridge.</returns>
+        public async Task<IReadOnlyCollection<Scene>> GetScenesByGroupNameAsync(string groupName, bool asStartWith = false)
+        {
+            var groups = await GetGroupsAsync();
+            Models.Groups.Group group;
+            if (asStartWith)
+            {
+                group = groups.FirstOrDefault(x => x.Name.StartsWith(groupName));
+            }
+            else
+            {
+                group = groups.FirstOrDefault(x => x.Name == groupName);
+            }
+            if (group == null)
+                throw new NullReferenceException("No Group with this Name was found");
 
+            return await GetScenesAsync(group.Id);
+        }
         /// <summary>
         /// Asynchronously gets all scenes by Group Id
         /// </summary>
-        /// <param name="roomId"></param>
+        /// <param name="groupId"></param>
         /// <returns>An enumerable of <see cref="Scene"/>s registered with the bridge.</returns>
         public async Task<IReadOnlyCollection<Scene>> GetScenesAsync(string groupId)
         {
@@ -60,22 +82,16 @@ namespace InnerCore.Api.DeConz
 
         }
 
-        public async Task<string> CreateSceneAsync(Scene scene)
+        /// <summary>
+        /// Creates a new scene for a group. The actual state of each light will become the lights scene state.
+        /// </summary>
+        /// <param name="scene"></param>
+        /// <param name="groupid"></param>
+        /// <returns></returns>
+        public async Task<string> CreateSceneAsync(string sceneName, string groupid)
         {
             CheckInitialized();
-
-            if (scene == null)
-                throw new ArgumentNullException(nameof(scene));
-            if (scene.Lights == null)
-                throw new ArgumentNullException(nameof(scene.Lights));
-            if (scene.Name == null)
-                throw new ArgumentNullException(nameof(scene.Name));
-
-            //It defaults to false, but fails when omitted
-            //https://github.com/Q42/Q42.HueApi/issues/56
-            if (!scene.Recycle.HasValue)
-                scene.Recycle = false;
-
+            Scene scene = new Scene() { Name = sceneName };
             //Filter non updatable properties
             //Set these fields to null
             var sceneJson = JObject.FromObject(scene, new JsonSerializer() { NullValueHandling = NullValueHandling.Ignore });
@@ -89,7 +105,7 @@ namespace InnerCore.Api.DeConz
             string jsonString = JsonConvert.SerializeObject(sceneJson, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var response = await client.PostAsync(new Uri(String.Format("{0}scenes", ApiBase)), new JsonContent(jsonString)).ConfigureAwait(false);
+            var response = await client.PostAsync(new Uri(String.Format("{0}/groups/{1}/scenes", ApiBase,groupid)), new JsonContent(jsonString)).ConfigureAwait(false);
 
             var jsonResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
@@ -107,6 +123,7 @@ namespace InnerCore.Api.DeConz
 
         }
 
+
         /// <summary>
         /// UpdateSceneAsync
         /// </summary>
@@ -116,6 +133,7 @@ namespace InnerCore.Api.DeConz
         /// <param name="storeLightState">If set, the lightstates of the lights in the scene will be overwritten by the current state of the lights. Can also be used in combination with transitiontime to update the transition time of a scene.</param>
         /// <param name="transitionTime">Can be used in combination with storeLightState</param>
         /// <returns></returns>
+        [ObsoleteAttribute("This Method is obsolete.", true)]
         public async Task<DeConzResults> UpdateSceneAsync(string id, string name, IEnumerable<string> lights, bool? storeLightState = null, TimeSpan? transitionTime = null)
         {
             CheckInitialized();
@@ -162,6 +180,7 @@ namespace InnerCore.Api.DeConz
         /// <param name="id"></param>
         /// <param name="scene"></param>
         /// <returns></returns>
+        [ObsoleteAttribute("This Method is obsolete.", true)]
         public async Task<DeConzResults> UpdateSceneAsync(string id, Scene scene)
         {
             CheckInitialized();
@@ -195,7 +214,7 @@ namespace InnerCore.Api.DeConz
         }
 
 
-        public async Task<DeConzResults> ModifySceneAsync(string sceneId, string lightId, LightCommand command)
+        public async Task<DeConzResults> ModifySceneAsync(string sceneId, string groupId, string lightId, LightCommand command)
         {
             CheckInitialized();
 
@@ -203,6 +222,10 @@ namespace InnerCore.Api.DeConz
                 throw new ArgumentNullException(nameof(sceneId));
             if (sceneId.Trim() == String.Empty)
                 throw new ArgumentException("sceneId must not be empty", nameof(sceneId));
+            if (groupId == null)
+                throw new ArgumentNullException(nameof(groupId));
+            if (groupId.Trim() == String.Empty)
+                throw new ArgumentException("groupId must not be empty", nameof(groupId));
             if (lightId == null)
                 throw new ArgumentNullException(nameof(lightId));
             if (lightId.Trim() == String.Empty)
@@ -212,12 +235,9 @@ namespace InnerCore.Api.DeConz
                 throw new ArgumentNullException(nameof(command));
 
             string jsonCommand = JsonConvert.SerializeObject(command, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
-
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var response = await client.PutAsync(new Uri(String.Format("{0}scenes/{1}/lights/{2}/state", ApiBase, sceneId, lightId)), new JsonContent(jsonCommand)).ConfigureAwait(false);
-
+            var response = await client.PutAsync(new Uri(String.Format("{0}/groups/{1}/scenes/{2}/lights/{3}/state", ApiBase,groupId, sceneId, lightId)), new JsonContent(jsonCommand)).ConfigureAwait(false);
             var jsonResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
             return DeserializeDefaultDeConzResult(jsonResult);
         }
 
@@ -228,7 +248,7 @@ namespace InnerCore.Api.DeConz
                 throw new ArgumentNullException(nameof(sceneId));
 
             var groupCommand = new SceneCommand() { Scene = sceneId };
-            
+
             return this.SendGroupCommandForScenesAsync(groupCommand, groupId);
 
         }
@@ -244,7 +264,7 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var result = await client.DeleteAsync(new Uri(String.Format("{0}groups/{1}/scenes/{2}", ApiBase,groupid, sceneId))).ConfigureAwait(false);
+            var result = await client.DeleteAsync(new Uri(String.Format("{0}groups/{1}/scenes/{2}", ApiBase, groupid, sceneId))).ConfigureAwait(false);
             string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return DeserializeDefaultDeConzResult(jsonResult);
