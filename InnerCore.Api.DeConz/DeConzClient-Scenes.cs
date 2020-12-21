@@ -16,6 +16,7 @@ namespace InnerCore.Api.DeConz
     /// </summary>
     public partial class DeConzClient
     {
+        #region Public Methods
         /// <summary>
         /// Asynchronously gets all scenes by Group Id
         /// </summary>
@@ -122,7 +123,6 @@ namespace InnerCore.Api.DeConz
             return null;
 
         }
-
 
         /// <summary>
         /// UpdateSceneAsync
@@ -241,7 +241,12 @@ namespace InnerCore.Api.DeConz
             return DeserializeDefaultDeConzResult(jsonResult);
         }
 
-
+        /// <summary>
+        /// Recalls a scene. The actual state of each light in the group will become the lights scene state stored in each light.
+        /// </summary>
+        /// <param name="sceneId"></param>
+        /// <param name="groupId"></param>
+        /// <returns></returns>
         public Task<DeConzResults> RecallSceneAsync(string sceneId, string groupId = "0")
         {
             if (sceneId == null)
@@ -291,5 +296,29 @@ namespace InnerCore.Api.DeConz
             return scene;
 
         }
+        #endregion Public Methods
+        #region Private Methods
+        /// <summary>
+        /// Send Scene command to a group
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="group"></param>
+        /// <returns></returns>
+        private async Task<DeConzResults> SendGroupCommandForScenesAsync(SceneCommand command, string group = "0") //Group 0 contains all the lights
+        {
+            if (command == null)
+                throw new ArgumentNullException(nameof(command));
+
+            CheckInitialized();
+
+            HttpClient client = await GetHttpClient().ConfigureAwait(false);
+            var result = await client.PutAsync(new Uri(ApiBase + string.Format("groups/{0}/scenes/{1}/recall", group, command.Scene)), null).ConfigureAwait(false);
+
+            string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+            return DeserializeDefaultDeConzResult(jsonResult);
+
+        }
+        #endregion Private Methods
     }
 }
