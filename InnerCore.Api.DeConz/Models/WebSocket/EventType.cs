@@ -12,5 +12,7 @@ namespace InnerCore.Api.DeConz.Models.WebSocket
         /// </summary>
         [EnumMember(Value = "changed")]
         Changed,
+        [EnumMember(Value = "scene-called")]
+        Scenecalled
     }
 }

@@ -10,5 +10,9 @@ namespace InnerCore.Api.DeConz.Models.WebSocket
         public SensorState State { get; set; }
 
         public SensorConfig Config { get; set; }
+        /// <summary>
+        /// Type of Sender
+        /// </summary>
+        public ResourceType Type { get; set; }
     }
 }

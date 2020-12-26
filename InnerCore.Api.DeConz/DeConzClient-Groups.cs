@@ -1,6 +1,7 @@
 ﻿using InnerCore.Api.DeConz.Interfaces;
 using InnerCore.Api.DeConz.Models;
 using InnerCore.Api.DeConz.Models.Groups;
+using InnerCore.Api.DeConz.Models.Scenes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;

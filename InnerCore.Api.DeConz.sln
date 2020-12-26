@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2035
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InnerCore.Api.DeConz", "InnerCore.Api.deConz\InnerCore.Api.DeConz.csproj", "{F3B5930E-F106-429A-9343-9CE27EC6E0B2}"
 EndProject
@@ -24,6 +24,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4C9FC2AC-29E8-4B22-8C21-37C96996BA54}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{BE57B81B-9A3B-4C46-BA91-908503D7992C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnerCore.Api.DeConz.TestConsole", "InnerCore.Api.DeConz.TestConsole\InnerCore.Api.DeConz.TestConsole.csproj", "{B4B69965-2C54-4D0B-B352-9AC733893381}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{A0E9D8A6-EFF6-417C-928A-1B000BBA8B95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0E9D8A6-EFF6-417C-928A-1B000BBA8B95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0E9D8A6-EFF6-417C-928A-1B000BBA8B95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4B69965-2C54-4D0B-B352-9AC733893381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4B69965-2C54-4D0B-B352-9AC733893381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4B69965-2C54-4D0B-B352-9AC733893381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4B69965-2C54-4D0B-B352-9AC733893381}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
