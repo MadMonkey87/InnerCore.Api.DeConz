@@ -42,46 +42,53 @@ namespace InnerCore.Api.DeConz
 
         public async Task ListenToEvents(string ip, int port, CancellationToken cancellationToken)
         {
-            Uri uri;
-            if (!Uri.TryCreate(string.Format("ws://{0}:{1}", ip, port), UriKind.Absolute, out uri))
+            try
             {
-                //Invalid ip or hostname caused Uri creation to fail
-                throw new Exception(string.Format("The supplied ip to the DeConzClient is not a valid ip: {0}:{1}", ip, port));
-            }
-
-            using (var webSocket = new ClientWebSocket())
-            {
-                await webSocket.ConnectAsync(uri, cancellationToken);
-
-                while (webSocket.State == WebSocketState.Open && !cancellationToken.IsCancellationRequested)
+                Uri uri;
+                if (!Uri.TryCreate(string.Format("ws://{0}:{1}", ip, port), UriKind.Absolute, out uri))
                 {
-                    try
-                    {
-                        var buffer = WebSocket.CreateClientBuffer(Constants.WEB_SOCKET_BUFFER_SIZE, Constants.WEB_SOCKET_BUFFER_SIZE);
-                        var result = await webSocket.ReceiveAsync(buffer, CancellationToken.None);
+                    //Invalid ip or hostname caused Uri creation to fail
+                    throw new Exception(string.Format("The supplied ip to the DeConzClient is not a valid ip: {0}:{1}", ip, port));
+                }
 
-                        if (result.MessageType == WebSocketMessageType.Close)
-                        {
-                            await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, string.Empty, CancellationToken.None);
-                        }
-                        if (result.MessageType != WebSocketMessageType.Text)
-                        {
-                            throw new NotSupportedException($"unsupported message type: {result.MessageType}");
-                        }
-                        else if (!result.EndOfMessage)
-                        {
-                            throw new NotSupportedException($"the message appears to be sent in chunks which is not supported");
-                        }
-                        else
-                        {
-                            HandleResult(Encoding.UTF8.GetString(buffer.Array).TrimEnd((char)0));
-                        }
-                    }
-                    catch (Exception ex)
+                using (var webSocket = new ClientWebSocket())
+                {
+                    await webSocket.ConnectAsync(uri, cancellationToken);
+
+                    while (webSocket.State == WebSocketState.Open && !cancellationToken.IsCancellationRequested)
                     {
-                        ErrorEvent?.Invoke(this, new ErrorEvent(ex));
+                        try
+                        {
+                            var buffer = WebSocket.CreateClientBuffer(Constants.WEB_SOCKET_BUFFER_SIZE, Constants.WEB_SOCKET_BUFFER_SIZE);
+                            var result = await webSocket.ReceiveAsync(buffer, CancellationToken.None);
+
+                            if (result.MessageType == WebSocketMessageType.Close)
+                            {
+                                await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, string.Empty, CancellationToken.None);
+                            }
+                            if (result.MessageType != WebSocketMessageType.Text)
+                            {
+                                throw new NotSupportedException($"unsupported message type: {result.MessageType}");
+                            }
+                            else if (!result.EndOfMessage)
+                            {
+                                throw new NotSupportedException($"the message appears to be sent in chunks which is not supported");
+                            }
+                            else
+                            {
+                                HandleResult(Encoding.UTF8.GetString(buffer.Array).TrimEnd((char)0));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            ErrorEvent?.Invoke(this, new ErrorEvent(ex));
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                ErrorEvent?.Invoke(this, new ErrorEvent(ex));
             }
         }
 
