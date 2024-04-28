@@ -107,5 +107,5 @@ Contributions are welcome. Fork this repository and send a pull request if you h
 [project]: https://github.com/MadMonkey87/InnerCore.Api.DeConz
 [nuget badge]: https://img.shields.io/nuget/v/InnerCore.Api.DeConz.svg
 [nuget package]: https://www.nuget.org/packages/InnerCore.Api.DeConz
-[dotnet-standard badge]: http://img.shields.io/badge/.NET_Standard-v2.0-green.svg
+[dotnet-standard badge]: http://img.shields.io/badge/.NET_Standard-v2.1-green.svg
 [dotnet-standard doc]: https://docs.microsoft.com/da-dk/dotnet/articles/standard/library
