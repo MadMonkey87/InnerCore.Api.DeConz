@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<TargetFramework>netstandard2.0</TargetFramework>
+	<TargetFramework>netstandard2.1</TargetFramework>
     <Authors>Philippe Wechsler</Authors>
     <Company>InnerCore</Company>
     <Description>A simple library to communicate with DeConz Zigbee Gateway</Description>
-    <Copyright>Copyright © 2019 Philippe Wechsler</Copyright>
+    <Copyright>Copyright © 2024 Philippe Wechsler</Copyright>
     <PackageLicenseUrl>https://github.com/MadMonkey87/InnerCore.Api.DeConz/blob/master/LICENSE.txt</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/MadMonkey87/InnerCore.Api.DeConz</PackageProjectUrl>
     <RepositoryUrl>https://github.com/MadMonkey87/InnerCore.Api.DeConz</RepositoryUrl>

@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <Authors>Philippe Wechsler</Authors>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Company>InnerCore</Company>
-    <Version>1.2.2</Version>
+    <Version>1.3.0</Version>
     <RepositoryUrl>https://github.com/MadMonkey87/InnerCore.Api.DeConz</RepositoryUrl>
     <PackageProjectUrl>https://github.com/MadMonkey87/InnerCore.Api.DeConz</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/MadMonkey87/InnerCore.Api.DeConz/blob/master/LICENSE.txt</PackageLicenseUrl>
-    <Copyright>Copyright © 2019 Philippe Wechsler</Copyright>
+    <Copyright>Copyright © 2024 Philippe Wechsler</Copyright>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>DeConz Zigbee sensor light smarthome</PackageTags>
     <Description>A simple library to communicate with DeConz Zigbee Gateway</Description>
@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>

@@ -7,15 +7,20 @@ namespace InnerCore.Api.DeConz.Sample.RealTimeEvents
     {
         public static async Task Main()
         {
-            // Initialize the client
+			// Initialize the client
 
-            Console.WriteLine("ip (without port):");
-            var ip = Console.ReadLine();
+			Console.WriteLine("ip address:");
+			var ip = Console.ReadLine();
 
-            Console.WriteLine("appkey:");
+			Console.WriteLine("port (defaults to 80):");
+            int port = 80;
+            var portAsString = Console.ReadLine();
+            int.TryParse(portAsString, out port);
+
+			Console.WriteLine("appkey:");
             var appKey = Console.ReadLine();
 
-            var client = new DeConzClient(ip, appKey);
+            var client = new DeConzClient(ip, port, appKey);
 
             // test the connection
 
