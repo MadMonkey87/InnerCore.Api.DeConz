@@ -8,7 +8,7 @@ using InnerCore.Api.DeConz.Models.Lights;
 namespace InnerCore.Api.DeConz.Models
 {
     [DataContract]
-    public class State
+    public class LightState
     {
         [DataMember(Name = "on")]
         public bool On { get; set; }

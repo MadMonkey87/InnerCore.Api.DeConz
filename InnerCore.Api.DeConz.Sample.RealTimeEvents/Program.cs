@@ -40,6 +40,8 @@ namespace InnerCore.Api.DeConz.Sample.RealTimeEvents
             // setup the events
 
             client.SensorChanged += Client_SensorChanged;
+			client.LightChanged += Client_LightChanged;
+			client.GroupChanged += Client_GroupChanged;
             client.ErrorEvent += Client_ErrorEvent;
 
             // start listening to events (infinite as long as the server does not close the connection)
@@ -48,20 +50,46 @@ namespace InnerCore.Api.DeConz.Sample.RealTimeEvents
             await client.ListenToEvents();
         }
 
-        private static void Client_SensorChanged(object sender, Models.WebSocket.SensorChangedEvent e)
+		private static void Client_SensorChanged(object sender, Models.WebSocket.SensorChangedEvent e)
         {
             if (e.Config != null)
             {
                 Console.WriteLine($"Sensor {e.Id} has changed it's config");
             }
-
-            if (e.State != null)
+            else if (e.State != null)
             {
                 Console.WriteLine($"Sensor {e.Id} has changed it's state");
-            }
+            } else
+            {
+				Console.WriteLine($"Empty message from sensor {e.Id}");
+			}
         }
 
-        private static void Client_ErrorEvent(object sender, Models.WebSocket.ErrorEvent e)
+		private static void Client_LightChanged(object sender, Models.WebSocket.LightChangedEvent e)
+		{
+			if (e.State != null)
+			{
+				Console.WriteLine($"Light {e.Id} has changed it's state");
+			}
+			else
+			{
+				Console.WriteLine($"Empty message from light {e.Id}");
+			}
+		}
+
+		private static void Client_GroupChanged(object sender, Models.WebSocket.GroupChangedEvent e)
+		{
+			if (e.State != null)
+			{
+				Console.WriteLine($"Group {e.Id} has changed it's state");
+			}
+			else
+			{
+				Console.WriteLine($"Empty message from group {e.Id}");
+			}
+		}
+
+		private static void Client_ErrorEvent(object sender, Models.WebSocket.ErrorEvent e)
         {
             var originalColor = Console.BackgroundColor;
             Console.BackgroundColor = ConsoleColor.Red;

@@ -31,7 +31,7 @@ namespace InnerCore.Api.DeConz.Models.Groups
         /// The light state of one of the lamps in the group.
         /// </summary>
         [DataMember(Name = "action")]
-        public State Action { get; set; }
+        public LightState Action { get; set; }
 
         [DataMember(Name = "state")]
         public GroupState State { get; set; }

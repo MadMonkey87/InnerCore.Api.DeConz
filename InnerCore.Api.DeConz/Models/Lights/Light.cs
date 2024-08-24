@@ -9,7 +9,7 @@ namespace InnerCore.Api.DeConz.Models.Lights
         public string Id { get; set; }
 
         [DataMember(Name = "state")]
-        public State State { get; set; }
+        public LightState State { get; set; }
 
         [DataMember(Name = "type")]
         public string Type { get; set; }
