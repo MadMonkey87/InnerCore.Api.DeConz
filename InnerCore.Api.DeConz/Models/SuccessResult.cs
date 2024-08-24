@@ -9,6 +9,8 @@ namespace InnerCore.Api.DeConz.Models
         public string Id { get; set; }
 
         [JsonExtensionData]
-        private IDictionary<string, JToken> OtherData;
-    }
+#pragma warning disable CS0169
+		private IDictionary<string, JToken> OtherData;
+#pragma warning restore CS0169
+	}
 }
