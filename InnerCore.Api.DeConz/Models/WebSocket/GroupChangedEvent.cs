@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InnerCore.Api.DeConz.Models.Groups;
+using System;
 
 namespace InnerCore.Api.DeConz.Models.WebSocket
 {
@@ -6,6 +7,6 @@ namespace InnerCore.Api.DeConz.Models.WebSocket
 	{
 		public string Id { get; set; }
 
-		public LightState State { get; set; }
+		public GroupState State { get; set; }
 	}
 }

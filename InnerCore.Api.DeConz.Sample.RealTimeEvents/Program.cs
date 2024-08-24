@@ -56,10 +56,12 @@ namespace InnerCore.Api.DeConz.Sample.RealTimeEvents
             {
                 Console.WriteLine($"Sensor {e.Id} has changed it's config");
             }
-            else if (e.State != null)
+            if (e.State != null)
             {
                 Console.WriteLine($"Sensor {e.Id} has changed it's state");
-            } else
+            }
+
+            if(e.Config == null && e.State == null)
             {
 				Console.WriteLine($"Empty message from sensor {e.Id}");
 			}

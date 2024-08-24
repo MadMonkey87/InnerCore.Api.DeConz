@@ -1,4 +1,7 @@
-﻿using InnerCore.Api.DeConz.Models.WebSocket;
+﻿using InnerCore.Api.DeConz.Models;
+using InnerCore.Api.DeConz.Models.Groups;
+using InnerCore.Api.DeConz.Models.Sensors;
+using InnerCore.Api.DeConz.Models.WebSocket;
 using Newtonsoft.Json;
 using System;
 using System.Net.WebSockets;
@@ -91,52 +94,49 @@ namespace InnerCore.Api.DeConz
 
 		private void HandleResult(string result)
 		{
-			//if (SensorChanged != null)
-			{
-				var message = JsonConvert.DeserializeObject<Message>(result);
+			var message = JsonConvert.DeserializeObject<Message>(result);
 
-				if (message.Event == EventType.Changed && message.Type == MessageType.Event && message.ResourceType == ResourceType.Sensor)
+			if (message.Event == EventType.Changed && message.Type == MessageType.Event && message.ResourceType == ResourceType.Sensor)
+			{
+				if (SensorChanged != null)
 				{
-					if (SensorChanged != null)
+					SensorChanged(this, new SensorChangedEvent()
 					{
-						SensorChanged(this, new SensorChangedEvent()
-						{
-							Id = message.Id,
-							Config = message.Config,
-							State = message.State
-						});
-					}
+						Id = message.Id,
+						Config = message.SensorConfig,
+						State = message.State!=null? message.State.ToObject<SensorState>():null
+					});
 				}
-				else if (message.ResourceType == ResourceType.Light)
+			}
+			else if (message.ResourceType == ResourceType.Light)
+			{
+				if (LightChanged != null)
 				{
-					if (LightChanged != null)
+					LightChanged(this, new LightChangedEvent()
 					{
-						LightChanged(this, new LightChangedEvent()
-						{
-							Id = message.Id,
-							//State = message.State
-						});
-					}
+						Id = message.Id,
+						State = message.State != null ? message.State.ToObject<LightState>() : null
+					});
 				}
-				else if (message.ResourceType == ResourceType.Group)
+			}
+			else if (message.ResourceType == ResourceType.Group)
+			{
+				if (GroupChanged != null)
 				{
-					if (GroupChanged != null)
+					GroupChanged(this, new GroupChangedEvent()
 					{
-						GroupChanged(this, new GroupChangedEvent()
-						{
-							Id = message.Id,
-							//State = message.State
-						});
-					}
+						Id = message.Id,
+						State = message.State != null ? message.State.ToObject<GroupState>() : null
+					});
 				}
-				else if (message.ResourceType == ResourceType.Scene)
-				{
-					// currently not supported
-				}
-				else
-				{
-					throw new NotSupportedException($"not supported message (event: {message.Event}, type: {message.Type}, resource: {message.ResourceType})");
-				}
+			}
+			else if (message.ResourceType == ResourceType.Scene)
+			{
+				// currently not supported
+			}
+			else
+			{
+				throw new NotSupportedException($"not supported message (event: {message.Event}, type: {message.Type}, resource: {message.ResourceType})");
 			}
 		}
 	}
