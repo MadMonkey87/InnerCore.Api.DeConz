@@ -104,6 +104,5 @@ namespace InnerCore.Api.DeConz.Models.Lights
         /// </summary>
         [DataMember(Name = "xy_inc")]
         public decimal? ColorCoordinatesIncrement { get; set; }
-
     }
 }

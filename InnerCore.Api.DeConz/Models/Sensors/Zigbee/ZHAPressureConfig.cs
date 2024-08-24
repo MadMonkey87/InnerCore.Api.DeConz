@@ -1,7 +1,4 @@
 ﻿namespace InnerCore.Api.DeConz.Models.Sensors.Zigbee
 {
-    public interface ZHAPressureConfig : IGeneralSensorConfig
-    {
-
-    }
+    public interface ZHAPressureConfig : IGeneralSensorConfig { }
 }

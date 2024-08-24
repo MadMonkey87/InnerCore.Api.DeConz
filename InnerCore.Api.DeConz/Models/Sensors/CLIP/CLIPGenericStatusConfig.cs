@@ -1,6 +1,4 @@
 ﻿namespace InnerCore.Api.DeConz.Models.Sensors.CLIP
 {
-    public interface CLIPGenericStatusConfig : IGeneralSensorConfig
-    {
-    }
+    public interface CLIPGenericStatusConfig : IGeneralSensorConfig { }
 }

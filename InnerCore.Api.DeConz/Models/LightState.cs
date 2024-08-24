@@ -1,9 +1,9 @@
-﻿using InnerCore.Api.DeConz.Converters;
+﻿using System;
+using System.Runtime.Serialization;
+using InnerCore.Api.DeConz.Converters;
+using InnerCore.Api.DeConz.Models.Lights;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System;
-using System.Runtime.Serialization;
-using InnerCore.Api.DeConz.Models.Lights;
 
 namespace InnerCore.Api.DeConz.Models
 {

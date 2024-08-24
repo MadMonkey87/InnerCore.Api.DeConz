@@ -1,10 +1,10 @@
-﻿using InnerCore.Api.DeConz.Models.Groups;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using InnerCore.Api.DeConz.Models.Groups;
 using InnerCore.Api.DeConz.Models.Lights;
-using InnerCore.Api.DeConz.Models.Sensors;
 using InnerCore.Api.DeConz.Models.Rules;
+using InnerCore.Api.DeConz.Models.Sensors;
 
 namespace InnerCore.Api.DeConz.Models.Bridge
 {
@@ -38,11 +38,6 @@ namespace InnerCore.Api.DeConz.Models.Bridge
             }
             Groups = bridge.Groups.Select(l => l.Value).ToList();
 
-
-
-
-
-
             foreach (var scene in bridge.Scenes)
             {
                 scene.Value.Id = scene.Key;
@@ -60,13 +55,6 @@ namespace InnerCore.Api.DeConz.Models.Bridge
                 schedule.Value.Id = schedule.Key;
             }
             Schedules = bridge.Schedules.Select(s => s.Value).ToList();
-
-
-
-
-
-
-
 
             foreach (var whitelist in bridge.Config.WhiteList)
             {

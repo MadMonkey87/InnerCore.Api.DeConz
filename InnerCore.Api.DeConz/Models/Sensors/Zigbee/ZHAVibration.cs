@@ -1,6 +1,4 @@
 ﻿namespace InnerCore.Api.DeConz.Models.Sensors.Zigbee
 {
-	public interface ZHAVibration : IGeneralSensor
-	{
-	}
+    public interface ZHAVibration : IGeneralSensor { }
 }

@@ -15,6 +15,6 @@ namespace InnerCore.Api.DeConz.Models.Touchlink
         /// Scan is in progress
         /// </summary>
         [EnumMember(Value = "scanning")]
-        Scanning
+        Scanning,
     }
 }

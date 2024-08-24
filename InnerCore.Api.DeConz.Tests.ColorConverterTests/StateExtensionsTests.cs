@@ -16,7 +16,7 @@ namespace InnerCore.Api.DeConz.Tests.ColorConverterTests
             {
                 Hue = 0,
                 Brightness = 0,
-                Saturation = 0
+                Saturation = 0,
             };
 
             var rgb = state.ToRgb();
@@ -37,7 +37,7 @@ namespace InnerCore.Api.DeConz.Tests.ColorConverterTests
             {
                 Hue = hsb.Hue,
                 Brightness = (byte)hsb.Brightness,
-                Saturation = hsb.Saturation
+                Saturation = hsb.Saturation,
             };
 
             var rgb = state.ToRgb();
@@ -58,7 +58,7 @@ namespace InnerCore.Api.DeConz.Tests.ColorConverterTests
             {
                 Hue = hsb.Hue,
                 Brightness = (byte)hsb.Brightness,
-                Saturation = hsb.Saturation
+                Saturation = hsb.Saturation,
             };
 
             var rgb = state.ToRgb();
@@ -79,7 +79,7 @@ namespace InnerCore.Api.DeConz.Tests.ColorConverterTests
             {
                 Hue = hsb.Hue,
                 Brightness = (byte)hsb.Brightness,
-                Saturation = hsb.Saturation
+                Saturation = hsb.Saturation,
             };
 
             var rgb = state.ToRgb();

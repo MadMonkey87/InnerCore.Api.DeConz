@@ -1,35 +1,35 @@
-﻿using Newtonsoft.Json;
+﻿using InnerCore.Api.DeConz.Converters;
 using InnerCore.Api.DeConz.Models.Sensors.CLIP;
-using InnerCore.Api.DeConz.Models.Sensors.Zigbee;
 using InnerCore.Api.DeConz.Models.Sensors.Xiaomi;
-using InnerCore.Api.DeConz.Converters;
+using InnerCore.Api.DeConz.Models.Sensors.Zigbee;
+using Newtonsoft.Json;
 
 namespace InnerCore.Api.DeConz.Models.Sensors
 {
-    public class Sensor :
-        CLIPGenericFlag,
-        CLIPGenericStatus,
-        ZHAHumidity,
-        ZHALightLevel,
-        ZHAOpenClose,
-        CLIPPresence,
-        CLIPSwitch,
-        DaylightSensor,
-        ZHAPresence,
-        ZHASwitch,
-        ZHATemperature,
-        ZHAThermostat,
-        ZHAPressure,
-        ZHAAlarm,
-        ZHACarbonMonoxide,
-        ZHAFire,
-        IASZone,
-        GenericXiaomi,
-        ZHAWater,
-        ZHAVibration,
-        ZHAConsumption,
-        ZHAPower,
-        ZGPSwitch
+    public class Sensor
+        : CLIPGenericFlag,
+            CLIPGenericStatus,
+            ZHAHumidity,
+            ZHALightLevel,
+            ZHAOpenClose,
+            CLIPPresence,
+            CLIPSwitch,
+            DaylightSensor,
+            ZHAPresence,
+            ZHASwitch,
+            ZHATemperature,
+            ZHAThermostat,
+            ZHAPressure,
+            ZHAAlarm,
+            ZHACarbonMonoxide,
+            ZHAFire,
+            IASZone,
+            GenericXiaomi,
+            ZHAWater,
+            ZHAVibration,
+            ZHAConsumption,
+            ZHAPower,
+            ZGPSwitch
     {
         [JsonProperty("state")]
         public SensorState State { get; set; }

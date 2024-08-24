@@ -1,7 +1,7 @@
-﻿using InnerCore.Api.DeConz.Converters;
-using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using InnerCore.Api.DeConz.Converters;
+using Newtonsoft.Json;
 
 namespace InnerCore.Api.DeConz.Models.Groups
 {

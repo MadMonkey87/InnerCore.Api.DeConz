@@ -6,6 +6,7 @@ namespace InnerCore.Api.DeConz.Models.Bridge
     {
         [EnumMember(Value = "12h")]
         Hours12,
+
         [EnumMember(Value = "24h")]
         Hours24,
     }

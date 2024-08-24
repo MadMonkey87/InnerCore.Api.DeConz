@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System;
 
 namespace InnerCore.Api.DeConz.Converters
 {
@@ -12,10 +12,19 @@ namespace InnerCore.Api.DeConz.Converters
     {
         private const string None = "none";
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(
+            JsonReader reader,
+            Type objectType,
+            object existingValue,
+            JsonSerializer serializer
+        )
         {
-            if (reader.TokenType == JsonToken.String &&
-                reader.Value?.ToString().Equals(None, StringComparison.InvariantCultureIgnoreCase) == true)
+            if (
+                reader.TokenType == JsonToken.String
+                && reader
+                    .Value?.ToString()
+                    .Equals(None, StringComparison.InvariantCultureIgnoreCase) == true
+            )
             {
                 return null;
             }

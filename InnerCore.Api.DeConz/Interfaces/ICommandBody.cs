@@ -3,7 +3,5 @@
     /// <summary>
     /// Indicates this object can be used as a scheduled command
     /// </summary>
-    public interface ICommandBody
-    {
-    }
+    public interface ICommandBody { }
 }

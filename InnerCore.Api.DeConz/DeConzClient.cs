@@ -1,10 +1,10 @@
-﻿using InnerCore.Api.DeConz.Models;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using InnerCore.Api.DeConz.Models;
+using Newtonsoft.Json;
 
 namespace InnerCore.Api.DeConz
 {
@@ -40,7 +40,6 @@ namespace InnerCore.Api.DeConz
                     return string.Format("http://{0}:{1}/api/{2}/", _ip, _port, _appKey);
                 else
                     return string.Format("http://{0}:{1}/api/", _ip, _port);
-
             }
         }
 
@@ -87,10 +86,8 @@ namespace InnerCore.Api.DeConz
         /// </summary>
         /// <param name="appKey"></param>
         /// <param name="ip"></param>
-        public DeConzClient(string ip, string appKey) : this(ip, 80, appKey)
-        {
-
-        }
+        public DeConzClient(string ip, string appKey)
+            : this(ip, 80, appKey) { }
 
         /// <summary>
         /// Check if the provided IP/Port is valid by using it in an URI to the DeConz Bridge
@@ -101,10 +98,22 @@ namespace InnerCore.Api.DeConz
         {
             Uri uri;
 
-            if (!Uri.TryCreate(string.Format("http://{0}:{1}/description.xml", ip, port), UriKind.Absolute, out uri))
+            if (
+                !Uri.TryCreate(
+                    string.Format("http://{0}:{1}/description.xml", ip, port),
+                    UriKind.Absolute,
+                    out uri
+                )
+            )
             {
                 //Invalid ip or hostname caused Uri creation to fail
-                throw new Exception(string.Format("The supplied ip to the DeConzClient is not a valid ip: {0}:{1}", ip, port));
+                throw new Exception(
+                    string.Format(
+                        "The supplied ip to the DeConzClient is not a valid ip: {0}:{1}",
+                        ip,
+                        port
+                    )
+                );
             }
         }
 
@@ -127,7 +136,10 @@ namespace InnerCore.Api.DeConz
             // return per-thread HttpClient
             if (_httpClient == null)
             {
-                _httpClient = new HttpClient() { Timeout = TimeSpan.FromSeconds(Constants.TIMEOUT_IN_SECONDS) };
+                _httpClient = new HttpClient()
+                {
+                    Timeout = TimeSpan.FromSeconds(Constants.TIMEOUT_IN_SECONDS),
+                };
             }
 
             return Task.FromResult(_httpClient);
@@ -139,7 +151,9 @@ namespace InnerCore.Api.DeConz
         protected void CheckInitialized()
         {
             if (!IsInitialized)
-                throw new InvalidOperationException("DeConzClient is not initialized. First call RegisterAsync or Initialize.");
+                throw new InvalidOperationException(
+                    "DeConzClient is not initialized. First call RegisterAsync or Initialize."
+                );
         }
 
         /// <summary>
@@ -148,7 +162,8 @@ namespace InnerCore.Api.DeConz
         /// <typeparam name="T"></typeparam>
         /// <param name="json"></param>
         /// <returns></returns>
-        protected static T DeserializeResult<T>(string json) where T : class
+        protected static T DeserializeResult<T>(string json)
+            where T : class
         {
             try
             {
@@ -156,7 +171,6 @@ namespace InnerCore.Api.DeConz
 
                 return objResult;
             }
-
             catch
             {
                 var defaultResult = DeserializeDefaultDeConzResult(json);
@@ -164,7 +178,6 @@ namespace InnerCore.Api.DeConz
                 //We expect an actual object, it was unsuccesful, show error why
                 if (defaultResult.HasErrors())
                     throw new Exception(defaultResult.Errors.First().Error.Description);
-
             }
             return null;
         }
@@ -181,7 +194,6 @@ namespace InnerCore.Api.DeConz
             {
                 result = JsonConvert.DeserializeObject<DeConzResults>(json);
             }
-
             catch (JsonSerializationException)
             {
                 //Ignore JsonSerializationException

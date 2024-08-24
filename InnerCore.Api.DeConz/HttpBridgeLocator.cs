@@ -1,9 +1,9 @@
-﻿using InnerCore.Api.DeConz.Models.Bridge;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using InnerCore.Api.DeConz.Models.Bridge;
+using Newtonsoft.Json;
 
 namespace InnerCore.Api.DeConz
 {
@@ -25,9 +25,11 @@ namespace InnerCore.Api.DeConz
 
             try
             {
-                string response = await client.GetStringAsync(new Uri(Constants.DISCOVERY_URL)).ConfigureAwait(false);
-				return JsonConvert.DeserializeObject<LocatedBridge[]>(response);
-			}
+                string response = await client
+                    .GetStringAsync(new Uri(Constants.DISCOVERY_URL))
+                    .ConfigureAwait(false);
+                return JsonConvert.DeserializeObject<LocatedBridge[]>(response);
+            }
             catch
             {
                 return new List<LocatedBridge>();

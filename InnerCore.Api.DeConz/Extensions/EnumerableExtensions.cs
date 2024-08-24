@@ -11,7 +11,6 @@ namespace InnerCore.Api.DeConz.Extensions
     /// </summary>
     internal static class EnumerableExtensions
     {
-
         /// <summary>
         /// http://blogs.msdn.com/b/pfxteam/archive/2012/03/04/10277325.aspx
         /// </summary>
@@ -24,12 +23,14 @@ namespace InnerCore.Api.DeConz.Extensions
         {
             var semaphore = new SemaphoreSlim(initialCount: dop, maxCount: dop);
 
-            return Task.WhenAll(
-                    from item in source
-                    select ProcessAsync(item, body, semaphore));
+            return Task.WhenAll(from item in source select ProcessAsync(item, body, semaphore));
         }
 
-        private static async Task ProcessAsync<T>(T item, Func<T, Task> body, SemaphoreSlim semaphore)
+        private static async Task ProcessAsync<T>(
+            T item,
+            Func<T, Task> body,
+            SemaphoreSlim semaphore
+        )
         {
             //Wait untill we are allowed to start
             await semaphore.WaitAsync().ConfigureAwait(false);
@@ -39,7 +40,6 @@ namespace InnerCore.Api.DeConz.Extensions
                 //Do the processing
                 await body(item).ConfigureAwait(false);
             }
-
             finally
             {
                 //Release for others

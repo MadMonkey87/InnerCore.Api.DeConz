@@ -1,9 +1,9 @@
-﻿using InnerCore.Api.DeConz.Models;
-using InnerCore.Api.DeConz.Models.Touchlink;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using InnerCore.Api.DeConz.Models;
+using InnerCore.Api.DeConz.Models.Touchlink;
+using Newtonsoft.Json;
 
 namespace InnerCore.Api.DeConz
 {
@@ -20,7 +20,9 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}touchlink/scan", ApiBase))).ConfigureAwait(false);
+            string stringResult = await client
+                .GetStringAsync(new Uri(String.Format("{0}touchlink/scan", ApiBase)))
+                .ConfigureAwait(false);
 
             var result = DeserializeResult<RawScanResult>(stringResult);
 
@@ -41,10 +43,18 @@ namespace InnerCore.Api.DeConz
 
             CheckInitialized();
 
-            string command = JsonConvert.SerializeObject(new { }, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string command = JsonConvert.SerializeObject(
+                new { },
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var result = await client.PostAsync(new Uri(string.Format("{0}touchlink/{1}/identify", ApiBase, id)), new JsonContent(command)).ConfigureAwait(false);
+            var result = await client
+                .PostAsync(
+                    new Uri(string.Format("{0}touchlink/{1}/identify", ApiBase, id)),
+                    new JsonContent(command)
+                )
+                .ConfigureAwait(false);
 
             string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
@@ -65,10 +75,18 @@ namespace InnerCore.Api.DeConz
 
             CheckInitialized();
 
-            string command = JsonConvert.SerializeObject(new { }, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string command = JsonConvert.SerializeObject(
+                new { },
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var result = await client.PostAsync(new Uri(string.Format("{0}touchlink/{1}/reset", ApiBase, id)), new JsonContent(command)).ConfigureAwait(false);
+            var result = await client
+                .PostAsync(
+                    new Uri(string.Format("{0}touchlink/{1}/reset", ApiBase, id)),
+                    new JsonContent(command)
+                )
+                .ConfigureAwait(false);
 
             string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 

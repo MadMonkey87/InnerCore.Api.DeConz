@@ -1,5 +1,5 @@
-﻿using InnerCore.Api.DeConz.Models.Sensors;
-using System;
+﻿using System;
+using InnerCore.Api.DeConz.Models.Sensors;
 
 namespace InnerCore.Api.DeConz.Models.WebSocket
 {

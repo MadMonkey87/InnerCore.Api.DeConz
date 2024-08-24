@@ -72,7 +72,10 @@ namespace InnerCore.Api.DeConz.ColorConverters
             hexColor = hexColor.Replace("#", string.Empty).Trim();
 
             if (hexColor.Length != 6)
-                throw new ArgumentException("hexColor should contains 6 characters", nameof(hexColor));
+                throw new ArgumentException(
+                    "hexColor should contains 6 characters",
+                    nameof(hexColor)
+                );
 
             int red = int.Parse(hexColor.Substring(0, 2), NumberStyles.AllowHexSpecifier);
             int green = int.Parse(hexColor.Substring(2, 2), NumberStyles.AllowHexSpecifier);
@@ -92,7 +95,12 @@ namespace InnerCore.Api.DeConz.ColorConverters
             int green = (int)(G * 255.99);
             int blue = (int)(B * 255.99);
 
-            return string.Format("{0}{1}{2}", red.ToString("X2"), green.ToString("X2"), blue.ToString("X2"));
+            return string.Format(
+                "{0}{1}{2}",
+                red.ToString("X2"),
+                green.ToString("X2"),
+                blue.ToString("X2")
+            );
         }
 
         public bool Equals(RGBColor other)

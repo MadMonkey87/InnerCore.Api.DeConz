@@ -20,7 +20,10 @@ namespace InnerCore.Api.DeConz.Tests
             Assert.NotNull(testSubject.Value);
             Assert.Equal(new DateTime(2014, 9, 20, 19, 35, 26), testSubject.Value);
 
-            string result = JsonConvert.SerializeObject(testSubject, new NullableDateTimeConverter());
+            string result = JsonConvert.SerializeObject(
+                testSubject,
+                new NullableDateTimeConverter()
+            );
             Assert.NotNull(result);
             Assert.Equal(jsonString, result);
         }
@@ -36,9 +39,12 @@ namespace InnerCore.Api.DeConz.Tests
             Assert.NotNull(testSubject);
             Assert.Null(testSubject.Value);
 
-            string result = JsonConvert.SerializeObject(testSubject, new NullableDateTimeConverter());
+            string result = JsonConvert.SerializeObject(
+                testSubject,
+                new NullableDateTimeConverter()
+            );
             Assert.NotNull(result);
-            Assert.Equal("{\"value\":null}",result);
+            Assert.Equal("{\"value\":null}", result);
         }
     }
 

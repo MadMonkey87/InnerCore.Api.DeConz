@@ -65,6 +65,5 @@ namespace InnerCore.Api.DeConz.Models.Lights
             lightCommand.On = false;
             return lightCommand;
         }
-
     }
 }

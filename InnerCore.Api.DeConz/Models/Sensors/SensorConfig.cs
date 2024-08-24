@@ -8,30 +8,30 @@ using Newtonsoft.Json;
 namespace InnerCore.Api.DeConz.Models.Sensors
 {
     [DataContract]
-    public class SensorConfig :
-        CLIPGenericFlagConfig,
-        CLIPGenericStatusConfig,
-        ZHAHumidityConfig,
-        ZHALightLevelConfig,
-        ZHAOpenCloseConfig,
-        CLIPPresenceConfig,
-        CLIPSwitchConfig,
-        DaylightSensorConfig,
-        ZHAPresenceConfig,
-        ZHASwitchConfig,
-        ZHATemperatureConfig,
-        ZHAThermostatConfig,
-        ZHAPressureConfig,
-        ZHAAlarmConfig,
-        ZHACarbonMonoxideConfig,
-        ZHAFireConfig,
-        IASZoneConfig,
-        GenericXiaomiConfig,
-        ZHAWaterConfig,
-        ZHAVibrationConfig,
-        ZHAConsumptionConfig,
-        ZHAPowerConfig,
-        ZGPSwitchConfig
+    public class SensorConfig
+        : CLIPGenericFlagConfig,
+            CLIPGenericStatusConfig,
+            ZHAHumidityConfig,
+            ZHALightLevelConfig,
+            ZHAOpenCloseConfig,
+            CLIPPresenceConfig,
+            CLIPSwitchConfig,
+            DaylightSensorConfig,
+            ZHAPresenceConfig,
+            ZHASwitchConfig,
+            ZHATemperatureConfig,
+            ZHAThermostatConfig,
+            ZHAPressureConfig,
+            ZHAAlarmConfig,
+            ZHACarbonMonoxideConfig,
+            ZHAFireConfig,
+            IASZoneConfig,
+            GenericXiaomiConfig,
+            ZHAWaterConfig,
+            ZHAVibrationConfig,
+            ZHAConsumptionConfig,
+            ZHAPowerConfig,
+            ZGPSwitchConfig
     {
         [JsonProperty("alert")]
         public string Alert { get; set; }

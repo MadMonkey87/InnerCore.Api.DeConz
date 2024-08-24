@@ -1,6 +1,4 @@
 ﻿namespace InnerCore.Api.DeConz.Models.Sensors.Zigbee
 {
-	public interface ZHAOpenClose : IGeneralSensor
-	{
-	}
+    public interface ZHAOpenClose : IGeneralSensor { }
 }

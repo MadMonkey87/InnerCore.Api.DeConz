@@ -6,8 +6,10 @@ namespace InnerCore.Api.DeConz.Models.Bridge
     {
         [EnumMember(Value = "stable")]
         Stable,
+
         [EnumMember(Value = "alpha")]
         Alpha,
+
         [EnumMember(Value = "beta")]
         Beta,
     }

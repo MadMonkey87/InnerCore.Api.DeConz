@@ -14,7 +14,12 @@ namespace InnerCore.Api.DeConz.Converters
 
         public override bool CanWrite => true;
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(
+            JsonReader reader,
+            Type objectType,
+            object existingValue,
+            JsonSerializer serializer
+        )
         {
             if (reader.TokenType == JsonToken.Integer)
             {
