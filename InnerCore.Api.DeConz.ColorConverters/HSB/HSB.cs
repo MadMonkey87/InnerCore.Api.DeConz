@@ -29,10 +29,7 @@ namespace InnerCore.Api.DeConz.ColorConverters.HSB
         /// </summary>
         public int Hue
         {
-            get
-            {
-                return _hsb;
-            }
+            get { return _hsb; }
             set
             {
                 //Value must be between 0 and HueMaxValue (like 0 and 360 degrees)
@@ -48,7 +45,7 @@ namespace InnerCore.Api.DeConz.ColorConverters.HSB
         /// <summary>
         /// Between 0 and 255
         /// </summary>
-        public int Brightness { get; set; }        // = Brightness
+        public int Brightness { get; set; } // = Brightness
 
         public RGBColor GetRGB()
         {
@@ -78,7 +75,7 @@ namespace InnerCore.Api.DeConz.ColorConverters.HSB
                 // get the fractional part of the sector
                 double fractionalSector = sectorPos - sectorNumber;
 
-                // calculate values for the three axes of the color. 
+                // calculate values for the three axes of the color.
                 double p = brightness * (1.0 - saturation);
                 double q = brightness * (1.0 - (saturation * fractionalSector));
                 double t = brightness * (1.0 - (saturation * (1 - fractionalSector)));

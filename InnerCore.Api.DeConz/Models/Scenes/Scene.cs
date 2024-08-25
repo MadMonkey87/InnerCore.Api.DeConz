@@ -1,8 +1,8 @@
-﻿using InnerCore.Api.DeConz.Converters;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using InnerCore.Api.DeConz.Converters;
+using Newtonsoft.Json;
 
 namespace InnerCore.Api.DeConz.Models.Scenes
 {
@@ -63,7 +63,7 @@ namespace InnerCore.Api.DeConz.Models.Scenes
         public TimeSpan? TransitionTime { get; set; }
 
         [DataMember(Name = "lightstates")]
-        public Dictionary<string, State> LightStates { get; set; }
+        public Dictionary<string, LightState> LightStates { get; set; }
 
         /// <summary>
         /// null defaults to LightScene

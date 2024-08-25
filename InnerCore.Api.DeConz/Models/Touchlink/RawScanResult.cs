@@ -1,9 +1,9 @@
 ﻿using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using InnerCore.Api.DeConz.Converters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace InnerCore.Api.DeConz.Models.Touchlink
 {

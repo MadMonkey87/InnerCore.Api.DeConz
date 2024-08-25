@@ -1,5 +1,6 @@
-﻿using InnerCore.Api.DeConz.Models.Sensors;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
+using InnerCore.Api.DeConz.Models.Sensors;
+using Newtonsoft.Json.Linq;
 
 namespace InnerCore.Api.DeConz.Models.WebSocket
 {
@@ -18,10 +19,10 @@ namespace InnerCore.Api.DeConz.Models.WebSocket
         [DataMember]
         public string Id { get; set; }
 
-        [DataMember]
-        public SensorState State { get; set; }
+        [DataMember(Name = "config")]
+        public SensorConfig SensorConfig { get; set; }
 
-        [DataMember]
-        public SensorConfig Config { get; set; }
+        [DataMember(Name = "state")]
+        public JObject State { get; set; }
     }
 }

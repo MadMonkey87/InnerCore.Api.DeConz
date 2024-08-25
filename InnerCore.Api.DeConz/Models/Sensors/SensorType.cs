@@ -59,6 +59,6 @@ namespace InnerCore.Api.DeConz.Models.Sensors
         CLIPPresence,
 
         [EnumMember(Value = "CLIPSwitch")]
-        CLIPSwitch
+        CLIPSwitch,
     }
 }

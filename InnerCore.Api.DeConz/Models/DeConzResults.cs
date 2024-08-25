@@ -15,10 +15,7 @@ namespace InnerCore.Api.DeConz.Models
 
         public IEnumerable<DefaultDeConzResult> Errors
         {
-            get
-            {
-                return this.Where(x => x.Error != null);
-            }
+            get { return this.Where(x => x.Error != null); }
         }
     }
 }

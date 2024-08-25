@@ -1,10 +1,10 @@
-﻿using InnerCore.Api.DeConz.ColorConverters;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using InnerCore.Api.DeConz.ColorConverters;
 using InnerCore.Api.DeConz.ColorConverters.HSB.Extensions;
 using InnerCore.Api.DeConz.Exceptions;
 using InnerCore.Api.DeConz.Models.Lights;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace InnerCore.Api.DeConz.Sample
 {
@@ -22,9 +22,11 @@ namespace InnerCore.Api.DeConz.Sample
             if (!bridges.Any())
             {
                 Console.WriteLine(
-                    "...no bridges found! Either you have none in your network or they are not connected to the internet.");
+                    "...no bridges found! Either you have none in your network or they are not connected to the internet."
+                );
                 Console.WriteLine(
-                    "(you could still could create the DeConzClient manually with the ip and its port)");
+                    "(you could still could create the DeConzClient manually with the ip and its port)"
+                );
                 QuitGracefully();
                 return;
             }
@@ -32,28 +34,35 @@ namespace InnerCore.Api.DeConz.Sample
             Console.WriteLine("...found the following bridges (first one will be used):");
             foreach (var bridge in bridges)
             {
-                Console.WriteLine($" - {bridge.Name} ({bridge.InternalIpAddress}:{bridge.InternalPort})");
+                Console.WriteLine(
+                    $" - {bridge.Name} ({bridge.InternalIpAddress}:{bridge.InternalPort})"
+                );
             }
 
             // use the first bridge to create the DeConzClient
 
             var locatedBridge = bridges.First();
-            var client = new DeConzClient(locatedBridge.InternalIpAddress, locatedBridge.InternalPort);
+            var client = new DeConzClient(
+                locatedBridge.InternalIpAddress,
+                locatedBridge.InternalPort
+            );
 
             // retrieve an appkey
             // note: if you already have an appkey you can either supply it in the constructor of the client or call client.Initialize(appkey)
-   
+
             var appkey = string.Empty;
 
-            while(appkey == string.Empty)
+            while (appkey == string.Empty)
             {
                 try
                 {
                     Console.WriteLine("registering on the bridge...");
                     appkey = await client.RegisterAsync("DeConz_Sample_Application");
-                    Console.WriteLine($"...successfully registered -> store the key {appkey} to initialize the DeConzClient in the future!");
+                    Console.WriteLine(
+                        $"...successfully registered -> store the key {appkey} to initialize the DeConzClient in the future!"
+                    );
                 }
-                catch(LinkButtonNotPressedException)
+                catch (LinkButtonNotPressedException)
                 {
                     Console.WriteLine("...failed -> please unlock the bridge in the Phoscon app");
                     Console.WriteLine("Press enter to continue");

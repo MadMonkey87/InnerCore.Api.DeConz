@@ -11,7 +11,5 @@
         /// Threshold the user configured to be used in rules to determine sufficient lightlevel (ie above threshold). Specified as relative offset to the “dark” threshold. Shall be >=1. Default value 7000
         /// </summary>
         long? TholdOffset { get; set; }
-
-
     }
 }

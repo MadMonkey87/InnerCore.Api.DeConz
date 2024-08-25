@@ -12,11 +12,11 @@ namespace InnerCore.Api.DeConz.Tests.ColorConverterTests
         [Fact]
         public void ColorConversionBlackPoint()
         {
-            State state = new State()
+            LightState state = new LightState()
             {
                 Hue = 0,
                 Brightness = 0,
-                Saturation = 0
+                Saturation = 0,
             };
 
             var rgb = state.ToRgb();
@@ -33,11 +33,11 @@ namespace InnerCore.Api.DeConz.Tests.ColorConverterTests
 
             RGBColor rgbColor = new RGBColor(color);
             var hsb = rgbColor.GetHSB();
-            State state = new State()
+            LightState state = new LightState()
             {
                 Hue = hsb.Hue,
                 Brightness = (byte)hsb.Brightness,
-                Saturation = hsb.Saturation
+                Saturation = hsb.Saturation,
             };
 
             var rgb = state.ToRgb();
@@ -54,11 +54,11 @@ namespace InnerCore.Api.DeConz.Tests.ColorConverterTests
 
             RGBColor rgbColor = new RGBColor(color);
             var hsb = rgbColor.GetHSB();
-            State state = new State()
+            LightState state = new LightState()
             {
                 Hue = hsb.Hue,
                 Brightness = (byte)hsb.Brightness,
-                Saturation = hsb.Saturation
+                Saturation = hsb.Saturation,
             };
 
             var rgb = state.ToRgb();
@@ -75,11 +75,11 @@ namespace InnerCore.Api.DeConz.Tests.ColorConverterTests
 
             RGBColor rgbColor = new RGBColor(color);
             var hsb = rgbColor.GetHSB();
-            State state = new State()
+            LightState state = new LightState()
             {
                 Hue = hsb.Hue,
                 Brightness = (byte)hsb.Brightness,
-                Saturation = hsb.Saturation
+                Saturation = hsb.Saturation,
             };
 
             var rgb = state.ToRgb();

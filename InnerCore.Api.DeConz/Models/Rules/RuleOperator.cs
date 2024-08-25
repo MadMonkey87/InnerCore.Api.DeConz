@@ -59,6 +59,6 @@ namespace InnerCore.Api.DeConz.Models.Rules
         /// GreaterThan, Allowed on int values
         /// </summary>
         [EnumMember(Value = "gt")]
-        GreaterThan
+        GreaterThan,
     }
 }

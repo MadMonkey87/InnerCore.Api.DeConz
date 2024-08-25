@@ -1,11 +1,11 @@
-﻿using InnerCore.Api.DeConz.Models;
-using InnerCore.Api.DeConz.Models.Sensors;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using InnerCore.Api.DeConz.Models;
+using InnerCore.Api.DeConz.Models.Sensors;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace InnerCore.Api.DeConz
 {
@@ -23,7 +23,9 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}sensors", ApiBase))).ConfigureAwait(false);
+            string stringResult = await client
+                .GetStringAsync(new Uri(String.Format("{0}sensors", ApiBase)))
+                .ConfigureAwait(false);
 
             List<Sensor> results = new List<Sensor>();
 
@@ -40,11 +42,9 @@ namespace InnerCore.Api.DeConz
 
                     results.Add(scene);
                 }
-
             }
 
             return results;
-
         }
 
         public async Task<string> CreateSensorAsync(Sensor sensor)
@@ -57,18 +57,31 @@ namespace InnerCore.Api.DeConz
             //Set fields to null
             sensor.Id = null;
 
-            string sensorJson = JsonConvert.SerializeObject(sensor, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string sensorJson = JsonConvert.SerializeObject(
+                sensor,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
 
             //Create sensor
-            var result = await client.PostAsync(new Uri(String.Format("{0}sensors", ApiBase)), new JsonContent(sensorJson)).ConfigureAwait(false);
+            var result = await client
+                .PostAsync(
+                    new Uri(String.Format("{0}sensors", ApiBase)),
+                    new JsonContent(sensorJson)
+                )
+                .ConfigureAwait(false);
 
             var jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-            DefaultDeConzResult[] sensorResult = JsonConvert.DeserializeObject<DefaultDeConzResult[]>(jsonResult);
+            DefaultDeConzResult[] sensorResult =
+                JsonConvert.DeserializeObject<DefaultDeConzResult[]>(jsonResult);
 
-            if (sensorResult.Length > 0 && sensorResult[0].Success != null && !string.IsNullOrEmpty(sensorResult[0].Success.Id))
+            if (
+                sensorResult.Length > 0
+                && sensorResult[0].Success != null
+                && !string.IsNullOrEmpty(sensorResult[0].Success.Id)
+            )
             {
                 var id = sensorResult[0].Success.Id;
                 sensor.Id = id;
@@ -92,7 +105,9 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}sensors/{1}", ApiBase, id))).ConfigureAwait(false);
+            string stringResult = await client
+                .GetStringAsync(new Uri(String.Format("{0}sensors/{1}", ApiBase, id)))
+                .ConfigureAwait(false);
 
             JToken token = JToken.Parse(stringResult);
             if (token.Type == JTokenType.Array)
@@ -131,17 +146,24 @@ namespace InnerCore.Api.DeConz
             JObject jsonObj = new JObject();
             jsonObj.Add("name", newName);
 
-            string jsonString = JsonConvert.SerializeObject(jsonObj, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string jsonString = JsonConvert.SerializeObject(
+                jsonObj,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
 
             //Update sensor
-            var result = await client.PutAsync(new Uri(string.Format("{0}sensors/{1}", ApiBase, id)), new JsonContent(jsonString)).ConfigureAwait(false);
+            var result = await client
+                .PutAsync(
+                    new Uri(string.Format("{0}sensors/{1}", ApiBase, id)),
+                    new JsonContent(jsonString)
+                )
+                .ConfigureAwait(false);
 
             var jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return DeserializeDefaultDeConzResult(jsonResult);
-
         }
 
         /// <summary>
@@ -161,7 +183,10 @@ namespace InnerCore.Api.DeConz
             if (config == null)
                 throw new ArgumentNullException(nameof(config));
 
-            var updateJson = JObject.FromObject(config, new JsonSerializer() { NullValueHandling = NullValueHandling.Ignore });
+            var updateJson = JObject.FromObject(
+                config,
+                new JsonSerializer() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             //Remove properties from json that are readonly
             updateJson.Remove("battery");
@@ -170,17 +195,24 @@ namespace InnerCore.Api.DeConz
             updateJson.Remove("pending");
             updateJson.Remove("sensitivitymax");
 
-            string jsonString = JsonConvert.SerializeObject(updateJson, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string jsonString = JsonConvert.SerializeObject(
+                updateJson,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
 
             //Change sensor config
-            var result = await client.PutAsync(new Uri(string.Format("{0}sensors/{1}/config", ApiBase, id)), new JsonContent(jsonString)).ConfigureAwait(false);
+            var result = await client
+                .PutAsync(
+                    new Uri(string.Format("{0}sensors/{1}/config", ApiBase, id)),
+                    new JsonContent(jsonString)
+                )
+                .ConfigureAwait(false);
 
             var jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return DeserializeDefaultDeConzResult(jsonResult);
-
         }
 
         public async Task<DeConzResults> ChangeSensorStateAsync(string id, SensorState state)
@@ -194,17 +226,24 @@ namespace InnerCore.Api.DeConz
             if (state == null)
                 throw new ArgumentNullException(nameof(state));
 
-            string jsonString = JsonConvert.SerializeObject(state, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string jsonString = JsonConvert.SerializeObject(
+                state,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
 
             //Change sensor state
-            var result = await client.PutAsync(new Uri(string.Format("{0}sensors/{1}/state", ApiBase, id)), new JsonContent(jsonString)).ConfigureAwait(false);
+            var result = await client
+                .PutAsync(
+                    new Uri(string.Format("{0}sensors/{1}/state", ApiBase, id)),
+                    new JsonContent(jsonString)
+                )
+                .ConfigureAwait(false);
 
             var jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return DeserializeDefaultDeConzResult(jsonResult);
-
         }
 
         /// <summary>
@@ -212,7 +251,9 @@ namespace InnerCore.Api.DeConz
         /// </summary>
         /// <param name="groupId"></param>
         /// <returns></returns>
-        public async Task<IReadOnlyCollection<DeleteDefaultDeConzResult>> DeleteSensorAsync(string id)
+        public async Task<IReadOnlyCollection<DeleteDefaultDeConzResult>> DeleteSensorAsync(
+            string id
+        )
         {
             CheckInitialized();
 
@@ -223,12 +264,13 @@ namespace InnerCore.Api.DeConz
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
             //Delete sensor
-            var result = await client.DeleteAsync(new Uri(ApiBase + string.Format("sensors/{0}", id))).ConfigureAwait(false);
+            var result = await client
+                .DeleteAsync(new Uri(ApiBase + string.Format("sensors/{0}", id)))
+                .ConfigureAwait(false);
 
             string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return DeserializeDefaultDeConzResult<DeleteDefaultDeConzResult>(jsonResult);
-
         }
     }
 }

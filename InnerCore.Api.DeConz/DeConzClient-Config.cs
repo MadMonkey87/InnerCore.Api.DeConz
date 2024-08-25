@@ -1,12 +1,12 @@
-﻿using InnerCore.Api.DeConz.Models;
-using InnerCore.Api.DeConz.Models.Bridge;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using InnerCore.Api.DeConz.Models;
+using InnerCore.Api.DeConz.Models.Bridge;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace InnerCore.Api.DeConz
 {
@@ -25,7 +25,9 @@ namespace InnerCore.Api.DeConz
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
 
-            var response = await client.DeleteAsync(new Uri(string.Format("{0}config/whitelist/{1}", ApiBase, entry))).ConfigureAwait(false);
+            var response = await client
+                .DeleteAsync(new Uri(string.Format("{0}config/whitelist/{1}", ApiBase, entry)))
+                .ConfigureAwait(false);
             var stringResponse = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             JArray jresponse = JArray.Parse(stringResponse);
@@ -81,7 +83,9 @@ namespace InnerCore.Api.DeConz
             //Not needed to check if initialized, can be used without API key
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}config", ApiBase))).ConfigureAwait(false);
+            string stringResult = await client
+                .GetStringAsync(new Uri(String.Format("{0}config", ApiBase)))
+                .ConfigureAwait(false);
             JToken token = JToken.Parse(stringResult);
             BridgeConfig config = null;
             if (token.Type == JTokenType.Object)
@@ -105,10 +109,15 @@ namespace InnerCore.Api.DeConz
         {
             CheckInitialized();
 
-            string command = JsonConvert.SerializeObject(update, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string command = JsonConvert.SerializeObject(
+                update,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var result = await client.PutAsync(new Uri(string.Format("{0}config", ApiBase)), new JsonContent(command)).ConfigureAwait(false);
+            var result = await client
+                .PutAsync(new Uri(string.Format("{0}config", ApiBase)), new JsonContent(command))
+                .ConfigureAwait(false);
 
             string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
@@ -123,10 +132,18 @@ namespace InnerCore.Api.DeConz
         {
             CheckInitialized();
 
-            string command = JsonConvert.SerializeObject(new { }, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string command = JsonConvert.SerializeObject(
+                new { },
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var result = await client.PostAsync(new Uri(string.Format("{0}config/update", ApiBase)), new JsonContent(command)).ConfigureAwait(false);
+            var result = await client
+                .PostAsync(
+                    new Uri(string.Format("{0}config/update", ApiBase)),
+                    new JsonContent(command)
+                )
+                .ConfigureAwait(false);
 
             string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
@@ -141,10 +158,18 @@ namespace InnerCore.Api.DeConz
         {
             CheckInitialized();
 
-            string command = JsonConvert.SerializeObject(new { }, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string command = JsonConvert.SerializeObject(
+                new { },
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var result = await client.PostAsync(new Uri(string.Format("{0}config/updatefirmware", ApiBase)), new JsonContent(command)).ConfigureAwait(false);
+            var result = await client
+                .PostAsync(
+                    new Uri(string.Format("{0}config/updatefirmware", ApiBase)),
+                    new JsonContent(command)
+                )
+                .ConfigureAwait(false);
 
             string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
@@ -160,10 +185,18 @@ namespace InnerCore.Api.DeConz
         {
             CheckInitialized();
 
-            string command = JsonConvert.SerializeObject(request, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string command = JsonConvert.SerializeObject(
+                request,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var result = await client.PostAsync(new Uri(string.Format("{0}config/reset", ApiBase)), new JsonContent(command)).ConfigureAwait(false);
+            var result = await client
+                .PostAsync(
+                    new Uri(string.Format("{0}config/reset", ApiBase)),
+                    new JsonContent(command)
+                )
+                .ConfigureAwait(false);
 
             string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
@@ -179,10 +212,18 @@ namespace InnerCore.Api.DeConz
         {
             CheckInitialized();
 
-            string command = JsonConvert.SerializeObject(request, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string command = JsonConvert.SerializeObject(
+                request,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var result = await client.PutAsync(new Uri(string.Format("{0}config/password", ApiBase)), new JsonContent(command)).ConfigureAwait(false);
+            var result = await client
+                .PutAsync(
+                    new Uri(string.Format("{0}config/password", ApiBase)),
+                    new JsonContent(command)
+                )
+                .ConfigureAwait(false);
 
             string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
@@ -198,7 +239,9 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var result = await client.DeleteAsync(new Uri(string.Format("{0}config/password", ApiBase))).ConfigureAwait(false);
+            var result = await client
+                .DeleteAsync(new Uri(string.Format("{0}config/password", ApiBase)))
+                .ConfigureAwait(false);
 
             string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 

@@ -1,11 +1,11 @@
-﻿using InnerCore.Api.DeConz.Models;
-using InnerCore.Api.DeConz.Models.Schedule;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using InnerCore.Api.DeConz.Models;
+using InnerCore.Api.DeConz.Models.Schedule;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace InnerCore.Api.DeConz
 {
@@ -23,7 +23,9 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}schedules", ApiBase))).ConfigureAwait(false);
+            string stringResult = await client
+                .GetStringAsync(new Uri(String.Format("{0}schedules", ApiBase)))
+                .ConfigureAwait(false);
 
             List<Schedule> results = new List<Schedule>();
 
@@ -35,12 +37,13 @@ namespace InnerCore.Api.DeConz
 
                 foreach (var prop in jsonResult.Properties())
                 {
-                    Schedule newSchedule = JsonConvert.DeserializeObject<Schedule>(prop.Value.ToString());
+                    Schedule newSchedule = JsonConvert.DeserializeObject<Schedule>(
+                        prop.Value.ToString()
+                    );
                     newSchedule.Id = prop.Name;
 
                     results.Add(newSchedule);
                 }
-
             }
 
             return results;
@@ -61,7 +64,9 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}schedules/{1}", ApiBase, id))).ConfigureAwait(false);
+            string stringResult = await client
+                .GetStringAsync(new Uri(String.Format("{0}schedules/{1}", ApiBase, id)))
+                .ConfigureAwait(false);
 
             Schedule schedule = DeserializeResult<Schedule>(stringResult);
 
@@ -69,7 +74,6 @@ namespace InnerCore.Api.DeConz
                 schedule.Id = id;
 
             return schedule;
-
         }
 
         /// <summary>
@@ -85,22 +89,35 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             //Set these fields to null
-            var scheduleJson = JObject.FromObject(schedule, new JsonSerializer() { NullValueHandling = NullValueHandling.Ignore });
+            var scheduleJson = JObject.FromObject(
+                schedule,
+                new JsonSerializer() { NullValueHandling = NullValueHandling.Ignore }
+            );
             scheduleJson.Remove("Id");
             scheduleJson.Remove("created");
 
-            string command = JsonConvert.SerializeObject(scheduleJson, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string command = JsonConvert.SerializeObject(
+                scheduleJson,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
 
             //Create schedule
-            var result = await client.PostAsync(new Uri(ApiBase + "schedules"), new JsonContent(command)).ConfigureAwait(false);
+            var result = await client
+                .PostAsync(new Uri(ApiBase + "schedules"), new JsonContent(command))
+                .ConfigureAwait(false);
 
             var jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-            DefaultDeConzResult[] scheduleResult = JsonConvert.DeserializeObject<DefaultDeConzResult[]>(jsonResult);
+            DefaultDeConzResult[] scheduleResult =
+                JsonConvert.DeserializeObject<DefaultDeConzResult[]>(jsonResult);
 
-            if (scheduleResult.Length > 0 && scheduleResult[0].Success != null && !string.IsNullOrEmpty(scheduleResult[0].Success.Id))
+            if (
+                scheduleResult.Length > 0
+                && scheduleResult[0].Success != null
+                && !string.IsNullOrEmpty(scheduleResult[0].Success.Id)
+            )
             {
                 return scheduleResult[0].Success.Id;
             }
@@ -126,21 +143,31 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             //Set these fields to null
-            var scheduleJson = JObject.FromObject(schedule, new JsonSerializer() { NullValueHandling = NullValueHandling.Ignore });
+            var scheduleJson = JObject.FromObject(
+                schedule,
+                new JsonSerializer() { NullValueHandling = NullValueHandling.Ignore }
+            );
             scheduleJson.Remove("Id");
             scheduleJson.Remove("created");
 
-            string command = JsonConvert.SerializeObject(scheduleJson, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string command = JsonConvert.SerializeObject(
+                scheduleJson,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
 
             //Update schedule
-            var result = await client.PutAsync(new Uri(string.Format("{0}schedules/{1}", ApiBase, id)), new JsonContent(command)).ConfigureAwait(false);
+            var result = await client
+                .PutAsync(
+                    new Uri(string.Format("{0}schedules/{1}", ApiBase, id)),
+                    new JsonContent(command)
+                )
+                .ConfigureAwait(false);
 
             var jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return DeserializeDefaultDeConzResult(jsonResult);
-
         }
 
         /// <summary>
@@ -157,12 +184,13 @@ namespace InnerCore.Api.DeConz
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
             //Delete schedule
-            var result = await client.DeleteAsync(new Uri(ApiBase + string.Format("schedules/{0}", id))).ConfigureAwait(false);
+            var result = await client
+                .DeleteAsync(new Uri(ApiBase + string.Format("schedules/{0}", id)))
+                .ConfigureAwait(false);
 
             string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return DeserializeDefaultDeConzResult(jsonResult);
         }
-
     }
 }

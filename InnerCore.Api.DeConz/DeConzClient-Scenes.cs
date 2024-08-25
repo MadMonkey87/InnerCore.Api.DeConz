@@ -1,13 +1,13 @@
-﻿using InnerCore.Api.DeConz.Models;
-using InnerCore.Api.DeConz.Models.Scenes;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using InnerCore.Api.DeConz.Models;
 using InnerCore.Api.DeConz.Models.Lights;
+using InnerCore.Api.DeConz.Models.Scenes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace InnerCore.Api.DeConz
 {
@@ -16,8 +16,6 @@ namespace InnerCore.Api.DeConz
     /// </summary>
     public partial class DeConzClient
     {
-
-
         /// <summary>
         /// Asynchronously gets all scenes registered with the bridge.
         /// </summary>
@@ -27,7 +25,9 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}scenes", ApiBase))).ConfigureAwait(false);
+            string stringResult = await client
+                .GetStringAsync(new Uri(String.Format("{0}scenes", ApiBase)))
+                .ConfigureAwait(false);
 
             List<Scene> results = new List<Scene>();
 
@@ -44,11 +44,9 @@ namespace InnerCore.Api.DeConz
 
                     results.Add(scene);
                 }
-
             }
 
             return results;
-
         }
 
         public async Task<string> CreateSceneAsync(Scene scene)
@@ -69,7 +67,10 @@ namespace InnerCore.Api.DeConz
 
             //Filter non updatable properties
             //Set these fields to null
-            var sceneJson = JObject.FromObject(scene, new JsonSerializer() { NullValueHandling = NullValueHandling.Ignore });
+            var sceneJson = JObject.FromObject(
+                scene,
+                new JsonSerializer() { NullValueHandling = NullValueHandling.Ignore }
+            );
             sceneJson.Remove("Id");
             sceneJson.Remove("version");
             sceneJson.Remove("lastupdated");
@@ -77,16 +78,28 @@ namespace InnerCore.Api.DeConz
             sceneJson.Remove("owner");
             sceneJson.Remove("lightstates");
 
-            string jsonString = JsonConvert.SerializeObject(sceneJson, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string jsonString = JsonConvert.SerializeObject(
+                sceneJson,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var response = await client.PostAsync(new Uri(String.Format("{0}scenes", ApiBase)), new JsonContent(jsonString)).ConfigureAwait(false);
+            var response = await client
+                .PostAsync(
+                    new Uri(String.Format("{0}scenes", ApiBase)),
+                    new JsonContent(jsonString)
+                )
+                .ConfigureAwait(false);
 
             var jsonResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             DeConzResults sceneResult = DeserializeDefaultDeConzResult(jsonResult);
 
-            if (sceneResult.Count > 0 && sceneResult[0].Success != null && !string.IsNullOrEmpty(sceneResult[0].Success.Id))
+            if (
+                sceneResult.Count > 0
+                && sceneResult[0].Success != null
+                && !string.IsNullOrEmpty(sceneResult[0].Success.Id)
+            )
             {
                 return sceneResult[0].Success.Id;
             }
@@ -95,7 +108,6 @@ namespace InnerCore.Api.DeConz
                 throw new Exception(sceneResult.Errors.First().Error.Description);
 
             return null;
-
         }
 
         /// <summary>
@@ -107,7 +119,13 @@ namespace InnerCore.Api.DeConz
         /// <param name="storeLightState">If set, the lightstates of the lights in the scene will be overwritten by the current state of the lights. Can also be used in combination with transitiontime to update the transition time of a scene.</param>
         /// <param name="transitionTime">Can be used in combination with storeLightState</param>
         /// <returns></returns>
-        public async Task<DeConzResults> UpdateSceneAsync(string id, string name, IEnumerable<string> lights, bool? storeLightState = null, TimeSpan? transitionTime = null)
+        public async Task<DeConzResults> UpdateSceneAsync(
+            string id,
+            string name,
+            IEnumerable<string> lights,
+            bool? storeLightState = null,
+            TimeSpan? transitionTime = null
+        )
         {
             CheckInitialized();
 
@@ -135,16 +153,22 @@ namespace InnerCore.Api.DeConz
             if (!string.IsNullOrEmpty(name))
                 jsonObj.Add("name", name);
 
-
-            string jsonString = JsonConvert.SerializeObject(jsonObj, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string jsonString = JsonConvert.SerializeObject(
+                jsonObj,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var response = await client.PutAsync(new Uri(String.Format("{0}scenes/{1}", ApiBase, id)), new JsonContent(jsonString)).ConfigureAwait(false);
+            var response = await client
+                .PutAsync(
+                    new Uri(String.Format("{0}scenes/{1}", ApiBase, id)),
+                    new JsonContent(jsonString)
+                )
+                .ConfigureAwait(false);
 
             var jsonResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return DeserializeDefaultDeConzResult(jsonResult);
-
         }
 
         /// <summary>
@@ -165,7 +189,10 @@ namespace InnerCore.Api.DeConz
                 throw new ArgumentNullException(nameof(scene));
 
             //Set these fields to null
-            var sceneJson = JObject.FromObject(scene, new JsonSerializer() { NullValueHandling = NullValueHandling.Ignore });
+            var sceneJson = JObject.FromObject(
+                scene,
+                new JsonSerializer() { NullValueHandling = NullValueHandling.Ignore }
+            );
             sceneJson.Remove("Id");
             sceneJson.Remove("recycle");
             sceneJson.Remove("version");
@@ -174,19 +201,29 @@ namespace InnerCore.Api.DeConz
             sceneJson.Remove("owner");
             sceneJson.Remove("lightstates");
 
-            string jsonString = JsonConvert.SerializeObject(sceneJson, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string jsonString = JsonConvert.SerializeObject(
+                sceneJson,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var response = await client.PutAsync(new Uri(String.Format("{0}scenes/{1}", ApiBase, id)), new JsonContent(jsonString)).ConfigureAwait(false);
+            var response = await client
+                .PutAsync(
+                    new Uri(String.Format("{0}scenes/{1}", ApiBase, id)),
+                    new JsonContent(jsonString)
+                )
+                .ConfigureAwait(false);
 
             var jsonResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return DeserializeDefaultDeConzResult(jsonResult);
-
         }
 
-
-        public async Task<DeConzResults> ModifySceneAsync(string sceneId, string lightId, LightCommand command)
+        public async Task<DeConzResults> ModifySceneAsync(
+            string sceneId,
+            string lightId,
+            LightCommand command
+        )
         {
             CheckInitialized();
 
@@ -202,16 +239,25 @@ namespace InnerCore.Api.DeConz
             if (command == null)
                 throw new ArgumentNullException(nameof(command));
 
-            string jsonCommand = JsonConvert.SerializeObject(command, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string jsonCommand = JsonConvert.SerializeObject(
+                command,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var response = await client.PutAsync(new Uri(String.Format("{0}scenes/{1}/lights/{2}/state", ApiBase, sceneId, lightId)), new JsonContent(jsonCommand)).ConfigureAwait(false);
+            var response = await client
+                .PutAsync(
+                    new Uri(
+                        String.Format("{0}scenes/{1}/lights/{2}/state", ApiBase, sceneId, lightId)
+                    ),
+                    new JsonContent(jsonCommand)
+                )
+                .ConfigureAwait(false);
 
             var jsonResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return DeserializeDefaultDeConzResult(jsonResult);
         }
-
 
         public Task<DeConzResults> RecallSceneAsync(string sceneId, string groupId = "0")
         {
@@ -221,7 +267,6 @@ namespace InnerCore.Api.DeConz
             var groupCommand = new SceneCommand() { Scene = sceneId };
 
             return this.SendGroupCommandAsync(groupCommand, groupId);
-
         }
 
         /// <summary>
@@ -234,12 +279,13 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var result = await client.DeleteAsync(new Uri(String.Format("{0}scenes/{1}", ApiBase, sceneId))).ConfigureAwait(false);
+            var result = await client
+                .DeleteAsync(new Uri(String.Format("{0}scenes/{1}", ApiBase, sceneId)))
+                .ConfigureAwait(false);
 
             string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return DeserializeDefaultDeConzResult(jsonResult);
-
         }
 
         /// <summary>
@@ -252,7 +298,9 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}scenes/{1}", ApiBase, id))).ConfigureAwait(false);
+            string stringResult = await client
+                .GetStringAsync(new Uri(String.Format("{0}scenes/{1}", ApiBase, id)))
+                .ConfigureAwait(false);
 
             Scene scene = DeserializeResult<Scene>(stringResult);
 
@@ -260,7 +308,6 @@ namespace InnerCore.Api.DeConz
                 scene.Id = id;
 
             return scene;
-
         }
     }
 }

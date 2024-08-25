@@ -6,6 +6,7 @@ namespace InnerCore.Api.DeConz.Models.Schedule
     {
         [EnumMember(Value = "enabled")]
         Enabled,
+
         [EnumMember(Value = "disabled")]
         Disabled,
     }

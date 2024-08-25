@@ -9,6 +9,7 @@ namespace InnerCore.Api.DeConz.Models.Bridge
     {
         [EnumMember(Value = "connected")]
         Connected,
+
         [EnumMember(Value = "disconnected")]
         Disconnected,
     }

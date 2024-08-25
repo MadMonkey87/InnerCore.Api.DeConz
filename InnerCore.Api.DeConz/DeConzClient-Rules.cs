@@ -1,13 +1,13 @@
-﻿using InnerCore.Api.DeConz.Models;
-using InnerCore.Api.DeConz.Models.Rules;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using InnerCore.Api.DeConz.Models;
+using InnerCore.Api.DeConz.Models.Rules;
 using InnerCore.Api.DeConz.Models.Schedule;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace InnerCore.Api.DeConz
 {
@@ -16,7 +16,6 @@ namespace InnerCore.Api.DeConz
     /// </summary>
     public partial class DeConzClient
     {
-
         /// <summary>
         /// Asynchronously gets all rules registered with the bridge.
         /// </summary>
@@ -26,7 +25,9 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}rules", ApiBase))).ConfigureAwait(false);
+            string stringResult = await client
+                .GetStringAsync(new Uri(String.Format("{0}rules", ApiBase)))
+                .ConfigureAwait(false);
 
             List<Rule> results = new List<Rule>();
 
@@ -43,11 +44,9 @@ namespace InnerCore.Api.DeConz
 
                     results.Add(rule);
                 }
-
             }
 
             return results;
-
         }
 
         /// <summary>
@@ -64,7 +63,9 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}rules/{1}", ApiBase, id))).ConfigureAwait(false);
+            string stringResult = await client
+                .GetStringAsync(new Uri(String.Format("{0}rules/{1}", ApiBase, id)))
+                .ConfigureAwait(false);
 
             JToken token = JToken.Parse(stringResult);
             if (token.Type == JTokenType.Array)
@@ -91,7 +92,11 @@ namespace InnerCore.Api.DeConz
             return CreateRule(rule.Name, rule.Conditions, rule.Actions);
         }
 
-        public async Task<string> CreateRule(string name, IEnumerable<RuleCondition> conditions, IEnumerable<InternalBridgeCommand> actions)
+        public async Task<string> CreateRule(
+            string name,
+            IEnumerable<RuleCondition> conditions,
+            IEnumerable<InternalBridgeCommand> actions
+        )
         {
             CheckInitialized();
 
@@ -107,23 +112,44 @@ namespace InnerCore.Api.DeConz
 
             JObject jsonObj = new JObject();
             if (conditions != null && conditions.Any())
-                jsonObj.Add("conditions", JToken.FromObject(conditions, new JsonSerializer { NullValueHandling = NullValueHandling.Ignore }));
+                jsonObj.Add(
+                    "conditions",
+                    JToken.FromObject(
+                        conditions,
+                        new JsonSerializer { NullValueHandling = NullValueHandling.Ignore }
+                    )
+                );
             if (actions != null && actions.Any())
-                jsonObj.Add("actions", JToken.FromObject(actions, new JsonSerializer { NullValueHandling = NullValueHandling.Ignore }));
+                jsonObj.Add(
+                    "actions",
+                    JToken.FromObject(
+                        actions,
+                        new JsonSerializer { NullValueHandling = NullValueHandling.Ignore }
+                    )
+                );
 
             if (!string.IsNullOrEmpty(name))
                 jsonObj.Add("name", name);
 
-            string jsonString = JsonConvert.SerializeObject(jsonObj, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string jsonString = JsonConvert.SerializeObject(
+                jsonObj,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
             //Create group with the lights we want to target
-            var response = await client.PostAsync(new Uri(String.Format("{0}rules", ApiBase)), new JsonContent(jsonString)).ConfigureAwait(false);
+            var response = await client
+                .PostAsync(new Uri(String.Format("{0}rules", ApiBase)), new JsonContent(jsonString))
+                .ConfigureAwait(false);
             var jsonResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             DeConzResults rulesResult = DeserializeDefaultDeConzResult(jsonResult);
 
-            if (rulesResult.Count > 0 && rulesResult[0].Success != null && !string.IsNullOrEmpty(rulesResult[0].Success.Id))
+            if (
+                rulesResult.Count > 0
+                && rulesResult[0].Success != null
+                && !string.IsNullOrEmpty(rulesResult[0].Success.Id)
+            )
             {
                 return rulesResult[0].Success.Id;
             }
@@ -142,7 +168,12 @@ namespace InnerCore.Api.DeConz
             return UpdateRule(rule.Id, rule.Name, rule.Conditions, rule.Actions);
         }
 
-        public async Task<DeConzResults> UpdateRule(string id, string name, IEnumerable<RuleCondition> conditions, IEnumerable<InternalBridgeCommand> actions)
+        public async Task<DeConzResults> UpdateRule(
+            string id,
+            string name,
+            IEnumerable<RuleCondition> conditions,
+            IEnumerable<InternalBridgeCommand> actions
+        )
         {
             CheckInitialized();
 
@@ -151,25 +182,43 @@ namespace InnerCore.Api.DeConz
             if (id.Trim() == String.Empty)
                 throw new ArgumentException("id must not be empty", nameof(id));
 
-
             JObject jsonObj = new JObject();
             if (conditions != null && conditions.Any())
-                jsonObj.Add("conditions", JToken.FromObject(conditions, new JsonSerializer { NullValueHandling = NullValueHandling.Ignore }));
+                jsonObj.Add(
+                    "conditions",
+                    JToken.FromObject(
+                        conditions,
+                        new JsonSerializer { NullValueHandling = NullValueHandling.Ignore }
+                    )
+                );
             if (actions != null && actions.Any())
-                jsonObj.Add("actions", JToken.FromObject(actions, new JsonSerializer { NullValueHandling = NullValueHandling.Ignore }));
+                jsonObj.Add(
+                    "actions",
+                    JToken.FromObject(
+                        actions,
+                        new JsonSerializer { NullValueHandling = NullValueHandling.Ignore }
+                    )
+                );
 
             if (!string.IsNullOrEmpty(name))
                 jsonObj.Add("name", name);
 
-            string jsonString = JsonConvert.SerializeObject(jsonObj, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string jsonString = JsonConvert.SerializeObject(
+                jsonObj,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var response = await client.PutAsync(new Uri(String.Format("{0}rules/{1}", ApiBase, id)), new JsonContent(jsonString)).ConfigureAwait(false);
+            var response = await client
+                .PutAsync(
+                    new Uri(String.Format("{0}rules/{1}", ApiBase, id)),
+                    new JsonContent(jsonString)
+                )
+                .ConfigureAwait(false);
 
             var jsonResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return DeserializeDefaultDeConzResult(jsonResult);
-
         }
 
         /// <summary>
@@ -182,13 +231,13 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var result = await client.DeleteAsync(new Uri(ApiBase + string.Format("rules/{0}", id))).ConfigureAwait(false);
+            var result = await client
+                .DeleteAsync(new Uri(ApiBase + string.Format("rules/{0}", id)))
+                .ConfigureAwait(false);
 
             string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return DeserializeDefaultDeConzResult(jsonResult);
-
         }
-
     }
 }

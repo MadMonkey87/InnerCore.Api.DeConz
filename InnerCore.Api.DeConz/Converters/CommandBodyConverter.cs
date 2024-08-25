@@ -1,8 +1,8 @@
-﻿using InnerCore.Api.DeConz.Interfaces;
-using Newtonsoft.Json;
-using System;
-using Newtonsoft.Json.Linq;
+﻿using System;
+using InnerCore.Api.DeConz.Interfaces;
 using InnerCore.Api.DeConz.Models.Schedule;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace InnerCore.Api.DeConz.Converters
 {
@@ -13,7 +13,12 @@ namespace InnerCore.Api.DeConz.Converters
             return objectType == typeof(ICommandBody);
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(
+            JsonReader reader,
+            Type objectType,
+            object existingValue,
+            JsonSerializer serializer
+        )
         {
             if (reader.TokenType == JsonToken.StartObject)
             {

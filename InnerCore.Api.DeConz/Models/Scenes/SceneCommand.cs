@@ -1,5 +1,5 @@
-﻿using InnerCore.Api.DeConz.Interfaces;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
+using InnerCore.Api.DeConz.Interfaces;
 
 namespace InnerCore.Api.DeConz.Models.Scenes
 {
@@ -9,10 +9,7 @@ namespace InnerCore.Api.DeConz.Models.Scenes
     [DataContract]
     public class SceneCommand : ICommandBody
     {
-        public SceneCommand()
-        {
-
-        }
+        public SceneCommand() { }
 
         public SceneCommand(string sceneId)
         {

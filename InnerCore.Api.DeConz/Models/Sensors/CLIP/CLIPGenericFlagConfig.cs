@@ -1,6 +1,4 @@
 ﻿namespace InnerCore.Api.DeConz.Models.Sensors.CLIP
 {
-    public interface CLIPGenericFlagConfig : IGeneralSensorConfig
-    {
-    }
+    public interface CLIPGenericFlagConfig : IGeneralSensorConfig { }
 }

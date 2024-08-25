@@ -7,8 +7,7 @@ namespace InnerCore.Api.DeConz.ColorConverters.HSB
     {
         public static HSB GetHSB(this RGBColor rgb)
         {
-            var hsb = new HSB
-            (
+            var hsb = new HSB(
                 (int)rgb.GetHue(),
                 (int)rgb.GetSaturation(),
                 (int)rgb.GetBrightness()

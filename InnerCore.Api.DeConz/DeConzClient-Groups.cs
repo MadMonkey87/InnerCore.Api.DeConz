@@ -1,13 +1,13 @@
-﻿using InnerCore.Api.DeConz.Interfaces;
-using InnerCore.Api.DeConz.Models;
-using InnerCore.Api.DeConz.Models.Groups;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using InnerCore.Api.DeConz.Interfaces;
+using InnerCore.Api.DeConz.Models;
+using InnerCore.Api.DeConz.Models.Groups;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace InnerCore.Api.DeConz
 {
@@ -31,16 +31,28 @@ namespace InnerCore.Api.DeConz
             if (!string.IsNullOrEmpty(name))
                 jsonObj.Name = name;
 
-            string jsonString = JsonConvert.SerializeObject(jsonObj, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string jsonString = JsonConvert.SerializeObject(
+                jsonObj,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
             //Create group with the lights we want to target
-            var response = await client.PostAsync(new Uri(String.Format("{0}groups", ApiBase)), new JsonContent(jsonString)).ConfigureAwait(false);
+            var response = await client
+                .PostAsync(
+                    new Uri(String.Format("{0}groups", ApiBase)),
+                    new JsonContent(jsonString)
+                )
+                .ConfigureAwait(false);
             var jsonResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             DeConzResults groupResult = DeserializeDefaultDeConzResult(jsonResult);
 
-            if (groupResult.Count > 0 && groupResult[0].Success != null && !string.IsNullOrEmpty(groupResult[0].Success.Id))
+            if (
+                groupResult.Count > 0
+                && groupResult[0].Success != null
+                && !string.IsNullOrEmpty(groupResult[0].Success.Id)
+            )
             {
                 return groupResult[0].Success.Id.Replace("/groups/", string.Empty);
             }
@@ -49,7 +61,6 @@ namespace InnerCore.Api.DeConz
                 throw new Exception(groupResult.Errors.First().Error.Description);
 
             return null;
-
         }
 
         /// <summary>
@@ -63,12 +74,13 @@ namespace InnerCore.Api.DeConz
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
             //Delete group 1
-            var result = await client.DeleteAsync(new Uri(ApiBase + string.Format("groups/{0}", groupId))).ConfigureAwait(false);
+            var result = await client
+                .DeleteAsync(new Uri(ApiBase + string.Format("groups/{0}", groupId)))
+                .ConfigureAwait(false);
 
             string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return DeserializeDefaultDeConzResult(jsonResult);
-
         }
 
         /// <summary>
@@ -82,7 +94,10 @@ namespace InnerCore.Api.DeConz
             if (command == null)
                 throw new ArgumentNullException(nameof(command));
 
-            string jsonCommand = JsonConvert.SerializeObject(command, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string jsonCommand = JsonConvert.SerializeObject(
+                command,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             return SendGroupCommandAsync(jsonCommand, group);
         }
@@ -101,12 +116,16 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var result = await client.PutAsync(new Uri(ApiBase + string.Format("groups/{0}/action", group)), new JsonContent(command)).ConfigureAwait(false);
+            var result = await client
+                .PutAsync(
+                    new Uri(ApiBase + string.Format("groups/{0}/action", group)),
+                    new JsonContent(command)
+                )
+                .ConfigureAwait(false);
 
             string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return DeserializeDefaultDeConzResult(jsonResult);
-
         }
 
         /// <summary>
@@ -118,7 +137,9 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}groups", ApiBase))).ConfigureAwait(false);
+            string stringResult = await client
+                .GetStringAsync(new Uri(String.Format("{0}groups", ApiBase)))
+                .ConfigureAwait(false);
 
             List<Group> results = new List<Group>();
 
@@ -135,11 +156,9 @@ namespace InnerCore.Api.DeConz
 
                     results.Add(newGroup);
                 }
-
             }
 
             return results;
-
         }
 
         /// <summary>
@@ -151,7 +170,9 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}groups/{1}", ApiBase, id))).ConfigureAwait(false);
+            string stringResult = await client
+                .GetStringAsync(new Uri(String.Format("{0}groups/{1}", ApiBase, id)))
+                .ConfigureAwait(false);
 
             Group group = DeserializeResult<Group>(stringResult);
 
@@ -168,7 +189,14 @@ namespace InnerCore.Api.DeConz
         /// <param name="lights">List of light IDs</param>
         /// <param name="name">Group Name</param>
         /// <returns></returns>
-        public async Task<DeConzResults> UpdateGroupAsync(string id, IEnumerable<string> lights, string name = null, bool? hidden = null, IEnumerable<string> lightSequence = null, IEnumerable<string> mulitDeviceIds = null)
+        public async Task<DeConzResults> UpdateGroupAsync(
+            string id,
+            IEnumerable<string> lights,
+            string name = null,
+            bool? hidden = null,
+            IEnumerable<string> lightSequence = null,
+            IEnumerable<string> mulitDeviceIds = null
+        )
         {
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
@@ -184,10 +212,18 @@ namespace InnerCore.Api.DeConz
             if (!string.IsNullOrEmpty(name))
                 jsonObj.Name = name;
 
-            string jsonString = JsonConvert.SerializeObject(jsonObj, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string jsonString = JsonConvert.SerializeObject(
+                jsonObj,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var response = await client.PutAsync(new Uri(String.Format("{0}groups/{1}", ApiBase, id)), new JsonContent(jsonString)).ConfigureAwait(false);
+            var response = await client
+                .PutAsync(
+                    new Uri(String.Format("{0}groups/{1}", ApiBase, id)),
+                    new JsonContent(jsonString)
+                )
+                .ConfigureAwait(false);
             var jsonResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return DeserializeDefaultDeConzResult(jsonResult);

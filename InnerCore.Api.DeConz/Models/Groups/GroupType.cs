@@ -9,11 +9,14 @@ namespace InnerCore.Api.DeConz.Models.Groups
     {
         [EnumMember(Value = "LightGroup")]
         LightGroup,
+
         [EnumMember(Value = "Room")]
         Room,
+
         [EnumMember(Value = "Luminaire")]
         Luminaire,
+
         [EnumMember(Value = "LightSource")]
-        LightSource
+        LightSource,
     }
 }

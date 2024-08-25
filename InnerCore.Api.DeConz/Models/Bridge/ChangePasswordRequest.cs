@@ -10,14 +10,16 @@ namespace InnerCore.Api.DeConz.Models.Bridge
         {
             UserName = username;
 
-            OldPasswordHash = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"{username}:{oldPassword}"));
-            NewPasswordHash = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"{username}:{newPassword}"));
+            OldPasswordHash = Convert.ToBase64String(
+                System.Text.Encoding.UTF8.GetBytes($"{username}:{oldPassword}")
+            );
+            NewPasswordHash = Convert.ToBase64String(
+                System.Text.Encoding.UTF8.GetBytes($"{username}:{newPassword}")
+            );
         }
 
-        public ChangePasswordRequest(string oldPassword, string newPassword) : this(Constants.DEFAULT_USERNAME, oldPassword, newPassword)
-        {
-
-        }
+        public ChangePasswordRequest(string oldPassword, string newPassword)
+            : this(Constants.DEFAULT_USERNAME, oldPassword, newPassword) { }
 
         /// <summary>
         /// The user name (currently only “delight” is supported).

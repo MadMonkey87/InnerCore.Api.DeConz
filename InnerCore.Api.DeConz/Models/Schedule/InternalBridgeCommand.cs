@@ -36,7 +36,9 @@ namespace InnerCore.Api.DeConz.Models.Schedule
                         Body = genericCommand.AsSceneCommand();
                     }
                     //If it is going to a lights or groups URL, it's probably a LightCommand
-                    else if (invariantAddress.Contains("/lights") || invariantAddress.Contains("/groups"))
+                    else if (
+                        invariantAddress.Contains("/lights") || invariantAddress.Contains("/groups")
+                    )
                     {
                         Body = genericCommand.AsLightCommand();
                     }
@@ -47,7 +49,6 @@ namespace InnerCore.Api.DeConz.Models.Schedule
                     }
                 }
             }
-
         }
     }
 }

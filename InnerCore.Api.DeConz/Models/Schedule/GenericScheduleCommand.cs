@@ -10,7 +10,7 @@ namespace InnerCore.Api.DeConz.Models.Schedule
     /// <summary>
     /// Can be used to create any type of schedule command
     /// Use a raw jsonString as input
-    /// 
+    ///
     /// dynamic dynamicCOmmand = new ExpandoObject();
     /// dynamicCOmmand.status = 1;
     /// var jsonString = JsonConvert.SerializeObject(dynamicCOmmand);

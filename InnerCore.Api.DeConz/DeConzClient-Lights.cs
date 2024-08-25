@@ -1,13 +1,13 @@
-﻿using InnerCore.Api.DeConz.Extensions;
-using InnerCore.Api.DeConz.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using InnerCore.Api.DeConz.Extensions;
+using InnerCore.Api.DeConz.Models;
 using InnerCore.Api.DeConz.Models.Lights;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace InnerCore.Api.DeConz
 {
@@ -33,7 +33,9 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}lights/{1}", ApiBase, id))).ConfigureAwait(false);
+            string stringResult = await client
+                .GetStringAsync(new Uri(String.Format("{0}lights/{1}", ApiBase, id)))
+                .ConfigureAwait(false);
 
             JToken token = JToken.Parse(stringResult);
             if (token.Type == JTokenType.Array)
@@ -70,7 +72,12 @@ namespace InnerCore.Api.DeConz
             string command = JsonConvert.SerializeObject(new { name });
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var result = await client.PutAsync(new Uri(String.Format("{0}lights/{1}", ApiBase, id)), new JsonContent(command)).ConfigureAwait(false);
+            var result = await client
+                .PutAsync(
+                    new Uri(String.Format("{0}lights/{1}", ApiBase, id)),
+                    new JsonContent(command)
+                )
+                .ConfigureAwait(false);
 
             var jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
@@ -86,7 +93,9 @@ namespace InnerCore.Api.DeConz
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            string stringResult = await client.GetStringAsync(new Uri(String.Format("{0}lights", ApiBase))).ConfigureAwait(false);
+            string stringResult = await client
+                .GetStringAsync(new Uri(String.Format("{0}lights", ApiBase)))
+                .ConfigureAwait(false);
 
             List<Light> results = new List<Light>();
 
@@ -112,16 +121,21 @@ namespace InnerCore.Api.DeConz
         /// <param name="command"></param>
         /// <param name="lightList">if null, send command to all lights</param>
         /// <returns></returns>
-        public Task<DeConzResults> SendCommandAsync(LightCommand command, IEnumerable<string> lightList = null)
+        public Task<DeConzResults> SendCommandAsync(
+            LightCommand command,
+            IEnumerable<string> lightList = null
+        )
         {
             if (command == null)
                 throw new ArgumentNullException(nameof(command));
 
-            string jsonCommand = JsonConvert.SerializeObject(command, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            string jsonCommand = JsonConvert.SerializeObject(
+                command,
+                new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
+            );
 
             return SendCommandRawAsync(jsonCommand, lightList);
         }
-
 
         /// <summary>
         /// Send a json command to a list of lights
@@ -129,7 +143,10 @@ namespace InnerCore.Api.DeConz
         /// <param name="command"></param>
         /// <param name="lightList">if null, send command to all lights</param>
         /// <returns></returns>
-        public async Task<DeConzResults> SendCommandRawAsync(string command, IEnumerable<string> lightList = null)
+        public async Task<DeConzResults> SendCommandRawAsync(
+            string command,
+            IEnumerable<string> lightList = null
+        )
         {
             if (command == null)
                 throw new ArgumentNullException(nameof(command));
@@ -145,15 +162,26 @@ namespace InnerCore.Api.DeConz
             {
                 DeConzResults results = new DeConzResults();
 
-                await lightList.ForEachAsync(_parallelRequests, async (lightId) =>
-                {
-                    HttpClient client = await GetHttpClient().ConfigureAwait(false);
-                    var result = await client.PutAsync(new Uri(ApiBase + string.Format("lights/{0}/state", lightId)), new JsonContent(command)).ConfigureAwait(false);
+                await lightList
+                    .ForEachAsync(
+                        _parallelRequests,
+                        async (lightId) =>
+                        {
+                            HttpClient client = await GetHttpClient().ConfigureAwait(false);
+                            var result = await client
+                                .PutAsync(
+                                    new Uri(ApiBase + string.Format("lights/{0}/state", lightId)),
+                                    new JsonContent(command)
+                                )
+                                .ConfigureAwait(false);
 
-                    string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
-                    results.AddRange(DeserializeDefaultDeConzResult(jsonResult));
-
-                }).ConfigureAwait(false);
+                            string jsonResult = await result
+                                .Content.ReadAsStringAsync()
+                                .ConfigureAwait(false);
+                            results.AddRange(DeserializeDefaultDeConzResult(jsonResult));
+                        }
+                    )
+                    .ConfigureAwait(false);
 
                 return results;
             }
@@ -164,13 +192,17 @@ namespace InnerCore.Api.DeConz
         /// </summary>
         /// <param name="groupId"></param>
         /// <returns></returns>
-        public async Task<IReadOnlyCollection<DeleteDefaultDeConzResult>> DeleteLightAsync(string id)
+        public async Task<IReadOnlyCollection<DeleteDefaultDeConzResult>> DeleteLightAsync(
+            string id
+        )
         {
             CheckInitialized();
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
             //Delete light
-            var result = await client.DeleteAsync(new Uri(ApiBase + string.Format("lights/{0}", id))).ConfigureAwait(false);
+            var result = await client
+                .DeleteAsync(new Uri(ApiBase + string.Format("lights/{0}", id)))
+                .ConfigureAwait(false);
 
             string jsonResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 

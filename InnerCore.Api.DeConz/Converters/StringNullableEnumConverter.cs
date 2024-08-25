@@ -1,13 +1,18 @@
-﻿using Newtonsoft.Json.Converters;
-using System;
-using Newtonsoft.Json;
+﻿using System;
 using System.Reflection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace InnerCore.Api.DeConz.Converters
 {
     public class StringNullableEnumConverter : StringEnumConverter
     {
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(
+            JsonReader reader,
+            Type objectType,
+            object existingValue,
+            JsonSerializer serializer
+        )
         {
             try
             {
@@ -24,7 +29,9 @@ namespace InnerCore.Api.DeConz.Converters
 
         private bool IsNullableType(Type t)
         {
-            return (t.GetTypeInfo().IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>));
+            return (
+                t.GetTypeInfo().IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>)
+            );
         }
     }
 }

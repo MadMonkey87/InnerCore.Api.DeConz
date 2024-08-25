@@ -1,7 +1,4 @@
 ﻿namespace InnerCore.Api.DeConz.Models.Sensors.Zigbee
 {
-	public interface ZHATemperature : IGeneralSensor
-	{
-
-	}
+    public interface ZHATemperature : IGeneralSensor { }
 }

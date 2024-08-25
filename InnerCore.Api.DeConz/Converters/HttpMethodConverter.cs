@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace InnerCore.Api.DeConz.Converters
 {
@@ -15,7 +15,12 @@ namespace InnerCore.Api.DeConz.Converters
 
         public override bool CanWrite => true;
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(
+            JsonReader reader,
+            Type objectType,
+            object existingValue,
+            JsonSerializer serializer
+        )
         {
             switch (reader.TokenType)
             {

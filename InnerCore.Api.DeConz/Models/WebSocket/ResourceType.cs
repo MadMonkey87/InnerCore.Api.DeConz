@@ -29,6 +29,6 @@ namespace InnerCore.Api.DeConz.Models.WebSocket
         /// the id field refers to a scene resource
         /// </summary>
         [EnumMember(Value = "scenes")]
-        Scene
+        Scene,
     }
 }

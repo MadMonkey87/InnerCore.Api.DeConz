@@ -17,6 +17,6 @@ namespace InnerCore.Api.DeConz.Models.Lights
         /// Color loop
         /// </summary>
         [EnumMember(Value = "colorloop")]
-        ColorLoop
+        ColorLoop,
     }
 }

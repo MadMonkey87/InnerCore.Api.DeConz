@@ -6,6 +6,7 @@ namespace InnerCore.Api.DeConz.Models.Scenes
     {
         [EnumMember(Value = "LightScene")]
         LightScene,
+
         [EnumMember(Value = "GroupScene")]
         GroupScene,
     }

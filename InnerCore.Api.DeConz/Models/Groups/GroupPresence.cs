@@ -8,7 +8,7 @@ namespace InnerCore.Api.DeConz.Models.Groups
     public class GroupPresence
     {
         [DataMember(Name = "State")]
-        public State State { get; set; }
+        public LightState State { get; set; }
 
         [JsonProperty("lastupdated")]
         [JsonConverter(typeof(NullableDateTimeConverter))]

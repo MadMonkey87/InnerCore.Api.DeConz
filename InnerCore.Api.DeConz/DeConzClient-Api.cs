@@ -1,9 +1,9 @@
-﻿using InnerCore.Api.DeConz.Exceptions;
-using InnerCore.Api.DeConz.Models;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using InnerCore.Api.DeConz.Exceptions;
+using InnerCore.Api.DeConz.Models;
+using Newtonsoft.Json.Linq;
 
 namespace InnerCore.Api.DeConz
 {
@@ -19,7 +19,7 @@ namespace InnerCore.Api.DeConz
         /// <returns>Secret key for the app to communicate with the bridge.</returns>
         public async Task<string> RegisterAsync(string applicationName)
         {
-            var result = await RegisterAsync(_ip,_port, applicationName);
+            var result = await RegisterAsync(_ip, _port, applicationName);
 
             if (!string.IsNullOrEmpty(result))
             {
@@ -42,7 +42,12 @@ namespace InnerCore.Api.DeConz
             obj["devicetype"] = applicationName;
 
             HttpClient client = await GetHttpClient().ConfigureAwait(false);
-            var response = await client.PostAsync(new Uri(string.Format("http://{0}:{1}/api", ip, port)), new JsonContent(obj.ToString())).ConfigureAwait(false);
+            var response = await client
+                .PostAsync(
+                    new Uri(string.Format("http://{0}:{1}/api", ip, port)),
+                    new JsonContent(obj.ToString())
+                )
+                .ConfigureAwait(false);
             var stringResponse = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             JObject result;
@@ -76,7 +81,9 @@ namespace InnerCore.Api.DeConz
             try
             {
                 //Check if there is a deconz bridge on the specified IP by checking the content of description.xml
-                var result = await client.GetAsync(string.Format("http://{0}:{1}/description.xml", _ip, _port)).ConfigureAwait(false);
+                var result = await client
+                    .GetAsync(string.Format("http://{0}:{1}/description.xml", _ip, _port))
+                    .ConfigureAwait(false);
                 if (result.IsSuccessStatusCode)
                 {
                     string res = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
