@@ -11,6 +11,6 @@ namespace InnerCore.Api.DeConz.Models.WebSocket
         /// the message holds an event
         /// </summary>
         [EnumMember(Value = "event")]
-        Event,
+        Event
     }
 }
