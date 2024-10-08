@@ -7,10 +7,16 @@ namespace InnerCore.Api.DeConz.Models.WebSocket
     /// </summary>
     public enum EventType
     {
-        /// <summary>
-        /// the message holds an event
-        /// </summary>
         [EnumMember(Value = "changed")]
         Changed,
-    }
+
+		[EnumMember(Value = "added")]
+		Added,
+
+		[EnumMember(Value = "deleted")]
+		Deleted,
+
+		[EnumMember(Value = "scene-called")]
+		SceneRecalled
+	}
 }
